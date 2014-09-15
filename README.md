@@ -1,8 +1,6 @@
 Servidor - Programación de Aplicaciones
 ==========================================
 
-##Servidor Central
-
 ####Integrantes Grupo 3 - 2014
 Andres Botta   - andresbotta@gmail.com
 

@@ -23,5 +23,5 @@ public interface IControladorUsuarios {
     public void elegirProveedor(String nickname);
     public DataProveedor mostrarDatosProveedor();
     public String getErrors();
-    
+    public void eliminarUsuario(String nickname);
 }

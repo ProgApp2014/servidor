@@ -12,7 +12,6 @@ import Controlador.Clases.Proveedor;
 import Controlador.DataTypes.DataCliente;
 import Controlador.DataTypes.DataProveedor;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Map;
 import static java.util.Objects.isNull;
 import static org.junit.Assert.assertEquals;
@@ -37,7 +36,6 @@ public class TestControladorUsuarios {
         cal.set(1960, 11, 1);
         DataCliente cliente1 = new DataCliente("dduck", "Daffy", "Duck", "dduck@gmail.com", cal);
         controlarUsuario.ingresarDatosCliente(cliente1);
-
         
         controlarUsuario.guardarUsuario();
         
@@ -45,9 +43,10 @@ public class TestControladorUsuarios {
         assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getEmail(), "dduck@gmail.com");        
         assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getNombre(), "Daffy");
         assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getApellido(), "Duck");
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getFechaNacimiento(), new Date(1995, 01, 01));
+        assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getFechaNacimiento().compareTo(cal), 0);
         assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").validarDatosUsuario(), true);
         
+        controlarUsuario.eliminarUsuario("dduck");
 
         //agrego un usuario proveedor
         DataProveedor proveedor1 = new DataProveedor ("pperez", "Pedro", "Perez", "perez@gmail.com", cal, "Pcel", "www.pcel.com");
@@ -58,11 +57,12 @@ public class TestControladorUsuarios {
         assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getEmail(), "perez@gmail.com");
         assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getNombre(), "Pedro");
         assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getApellido(), "Perez");
-        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getFechaNacimiento(), cal);
+        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getFechaNacimiento().compareTo(cal), 0);
         assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getNombreCompania(), "Pcel");
         assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getLinkSitio(), "www.pcel.com");
         assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").validarDatosUsuario(), true);        
 
+        controlarUsuario.eliminarUsuario("pperez");
         
         //probar fotos cuando se pueda
         
@@ -76,8 +76,9 @@ public class TestControladorUsuarios {
         assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getEmail(), "darwinduck@gmail.com");        
         assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getNombre(), "Darwin");
         assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getApellido(), "Duck");
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getFechaNacimiento(), cal);
+        assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getFechaNacimiento().compareTo(cal), 0);
         
+        controlarUsuario.eliminarUsuario("dduck");
 
         
         
@@ -92,8 +93,9 @@ public class TestControladorUsuarios {
         assertEquals (ManejadorUsuarios.getInstance().getCliente("darwind").getEmail(), "dduck@gmail.com");        
         assertEquals (ManejadorUsuarios.getInstance().getCliente("darwind").getNombre(), "Darwin");
         assertEquals (ManejadorUsuarios.getInstance().getCliente("darwind").getApellido(), "Duck");
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("darwind").getFechaNacimiento(), new Date(1997, 03, 12));        
+        assertEquals (ManejadorUsuarios.getInstance().getCliente("darwind").getFechaNacimiento().compareTo(cal), 0);        
 
+        controlarUsuario.eliminarUsuario("darwind");
     }  
     
     @Test
@@ -106,21 +108,24 @@ public class TestControladorUsuarios {
         Calendar cal = Calendar.getInstance();
         cal.set(1960, 11, 1);
         DataCliente cliente1 = new DataCliente("piedra", "Pedro", "Picapiedra", "ppiedra@gmail.com", cal);
-        DataCliente cliente2 = new DataCliente("pmar", "Pablo", "Marmol", "pmarmol@gmail.com", cal);        
-        DataCliente cliente3 = new DataCliente("loco", "Pajaro", "Loco", "ploco@gmail.com", cal);        
         controlarUsuario.ingresarDatosCliente(cliente1);
-        controlarUsuario.guardarUsuario();        
+        controlarUsuario.guardarUsuario();         
+        DataCliente cliente2 = new DataCliente("pmar", "Pablo", "Marmol", "pmarmol@gmail.com", cal);   
         controlarUsuario.ingresarDatosCliente(cliente2);
-        controlarUsuario.guardarUsuario();
+        controlarUsuario.guardarUsuario();        
+        DataCliente cliente3 = new DataCliente("loco", "Pajaro", "Loco", "ploco@gmail.com", cal);               
         controlarUsuario.ingresarDatosCliente(cliente3);
         controlarUsuario.guardarUsuario();                
         
 
-        //Listar clientes
-        Map<String, Cliente> clie = ManejadorUsuarios.getInstance().obtenerClientes();
-        assertTrue (!isNull (clie.get("piedra")));
-        assertTrue (!isNull (clie.get("pmar")));
-        assertTrue (!isNull (clie.get("loco")));
+        //Listar clientes      
+        assertTrue (!isNull (ManejadorUsuarios.getInstance().getCliente("piedra")));
+        assertTrue (!isNull (ManejadorUsuarios.getInstance().getCliente("pmar")));
+        assertTrue (!isNull (ManejadorUsuarios.getInstance().getCliente("loco")));
+        
+        controlarUsuario.eliminarUsuario("piedra");
+        controlarUsuario.eliminarUsuario("pmar");
+        controlarUsuario.eliminarUsuario("loco");
                 
     }
     
@@ -131,11 +136,15 @@ public class TestControladorUsuarios {
         Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
         IControladorUsuarios controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);
         
-        Calendar cal = Calendar.getInstance();
-        cal.set(1960, 11, 1);
-        DataProveedor proveed1 = new DataProveedor("jrod", "Juan", "Rodriguez", "jrod@gmail.com", cal,"Juegos", "www.juegos.com");
-        DataProveedor proveed2 = new DataProveedor("nmar", "Natalia", "Mar", "nmar@gmail.com", cal, "Newpc", "www.newpc.com");        
-        DataProveedor proveed3 = new DataProveedor("sdum", "Sergio", "Dumas", "sdum@gmail.com", cal,"Insumos", "www.insumos.com"); 
+        Calendar cal1 = Calendar.getInstance();
+        cal1.set(1960, 11, 1);
+        Calendar cal2 = Calendar.getInstance();
+        cal2.set(1930, 10, 1);
+        Calendar cal3 = Calendar.getInstance();
+        cal3.set(1987, 05, 1);
+        DataProveedor proveed1 = new DataProveedor("jrod", "Juan", "Rodriguez", "jrod@gmail.com", cal1,"Juegos", "www.juegos.com");
+        DataProveedor proveed2 = new DataProveedor("nmar", "Natalia", "Mar", "nmar@gmail.com", cal2, "Newpc", "www.newpc.com");        
+        DataProveedor proveed3 = new DataProveedor("sdum", "Sergio", "Dumas", "sdum@gmail.com", cal3,"Insumos", "www.insumos.com"); 
         controlarUsuario.ingresarDatosProveedor(proveed1);
         controlarUsuario.guardarUsuario();
         controlarUsuario.ingresarDatosProveedor(proveed2);
@@ -144,10 +153,13 @@ public class TestControladorUsuarios {
         controlarUsuario.guardarUsuario();
         
 
-        Map<String, Proveedor> prov = ManejadorUsuarios.getInstance().obtenerProveedores();
-        assertTrue (!isNull (prov.get("jrod")));
-        assertTrue (!isNull (prov.get("nmar")));
-        assertTrue (!isNull (prov.get("sdum")));
+          assertTrue (!isNull (ManejadorUsuarios.getInstance().getProveedor("jrod")));
+          assertTrue (!isNull (ManejadorUsuarios.getInstance().getProveedor("nmar")));
+          assertTrue (!isNull (ManejadorUsuarios.getInstance().getProveedor("sdum")));
+        
+        controlarUsuario.eliminarUsuario("jrod");
+        controlarUsuario.eliminarUsuario("nmar");
+        controlarUsuario.eliminarUsuario("sdum");
         
     }
 }

@@ -59,4 +59,13 @@ public class ManejadorCategorias {
         return this.obtenerCategorias().get(nombre);
     }
     
+    public void eliminarCategoria (String nombre){
+        Categoria aBorrar = categorias.get(nombre);
+        categorias.remove(nombre);
+        
+        entityManager.getTransaction().begin();
+        entityManager.remove(aBorrar);
+        entityManager.getTransaction().commit();
+    }
+    
 }

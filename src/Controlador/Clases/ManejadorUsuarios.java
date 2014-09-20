@@ -82,5 +82,13 @@ public class ManejadorUsuarios {
     public Proveedor getProveedor(String nickname){
         return this.obtenerProveedores().get(nickname);
     }
-    
+
+    public void eliminarUsuario(String nickname){
+        Usuario aBorrar = usuarios.get(nickname);
+        usuarios.remove(nickname);
+        
+        entityManager.getTransaction().begin();
+        entityManager.remove(aBorrar);
+        entityManager.getTransaction().commit();
+    }
 }

@@ -271,4 +271,14 @@ public class ControladorProductos implements IControladorProductos{
         //ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().remove(espProductoModificada.getNroReferencia());
         ManejadorEspProductos.getInstance().modificarProducto(espProductoModificada);
     }
+    
+    @Override
+    public void eliminarCategoria(String nombre){
+        ManejadorCategorias.getInstance().eliminarCategoria(nombre);
+    }
+    
+    @Override
+    public void eliminarEspecificacionProducto(String nroRef){
+        ManejadorEspProductos.getInstance().eliminarEspecificacionProducto(nroRef);
+    }
 }

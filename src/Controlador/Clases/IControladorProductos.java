@@ -45,5 +45,7 @@ public interface IControladorProductos {
     public void borrarCategoriaAEspecificacion(String categoria);
     public void guardarEspProductoModificado();
     public Boolean categoryAlreadyExist(String categoria);
-    
+    public void eliminarCategoria(String nombre);
+    public void eliminarEspecificacionProducto (String nroRef);
 }
+    

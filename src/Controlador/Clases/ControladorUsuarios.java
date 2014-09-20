@@ -126,7 +126,13 @@ public class ControladorUsuarios implements IControladorUsuarios {
         return dataProveedor;
     }
 
+    @Override
     public String getErrors() {
         return this.Errors;
+    }
+    
+    @Override
+    public void eliminarUsuario(String nickname){
+        ManejadorUsuarios.getInstance().eliminarUsuario(nickname);
     }
 }

@@ -65,4 +65,13 @@ public class ManejadorEspProductos {
         return this.obtenerEspecificacionProductos().get(nroRef);
     }
     
+    public void eliminarEspecificacionProducto (String nroRef){
+        EspecificacionProducto aBorrar = especificacionProductos.get(nroRef);
+        especificacionProductos.remove(nroRef);
+        
+        entityManager.getTransaction().begin();
+        entityManager.remove(aBorrar);
+        entityManager.getTransaction().commit();
+    }    
+    
 }

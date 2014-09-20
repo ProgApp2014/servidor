@@ -31,7 +31,7 @@ public class ManejadorEspProductos {
     
     public void agregarEspecificacionProducto(EspecificacionProducto especificacionProducto){
         especificacionProductos.put(especificacionProducto.getNroReferencia(), especificacionProducto);
-        especificacionProducto.getCategorias().entrySet().stream().map((categoria) -> categoria.getValue()).forEach((valor) -> {
+        especificacionProducto.getCategorias().stream().forEach((valor) -> {
             ManejadorCategorias.getInstance().getCategoria(valor.getNombre()).agregarProducto(especificacionProducto);
         });
 
@@ -51,6 +51,14 @@ public class ManejadorEspProductos {
             especificacionProductos.put(esp.getNroReferencia(), esp);
         });
         return especificacionProductos;
+    }
+    
+    public void modificarProducto(EspecificacionProducto especificacionProducto){
+        if(entityManager.find(EspecificacionProducto.class, especificacionProducto.getNroReferencia()) == null){
+           throw new IllegalArgumentException("Unknown Employee id");
+       }
+
+       entityManager.merge(especificacionProducto);
     }
     
     public EspecificacionProducto getEspecificacionProducto(String nroRef){

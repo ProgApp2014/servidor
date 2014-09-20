@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.CascadeType;
@@ -24,6 +25,8 @@ import javax.persistence.MapKey;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class EspecificacionProducto implements Serializable{
@@ -53,20 +56,20 @@ public class EspecificacionProducto implements Serializable{
     @Column(name="PATH")
     private List<String> imagenes;
     
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="CATEGORIAESPECIFICACIONPROD",
         joinColumns={@JoinColumn(name="ESP_NROREF", referencedColumnName="NROREFERENCIA")},
         inverseJoinColumns={@JoinColumn(name="CAT_NAME", referencedColumnName="NOMBRE")})
-    private Map<String,Categoria> categorias;
+    private List<Categoria> categorias;
     
-    @OneToMany(cascade={CascadeType.PERSIST},mappedBy="especificacionProducto")
+    @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.PERSIST},mappedBy="especificacionProducto")
     @JoinColumn(name="ID")
     private List<Producto> listaProductos;
 
     public EspecificacionProducto() {
     }
     
-    public EspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String,String> especificacion, Float precio, Proveedor proveedor, Map<String,Categoria> categorias,List<Producto> listaProductos) {
+    public EspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String,String> especificacion, Float precio, Proveedor proveedor, List<Categoria> categorias,List<Producto> listaProductos) {
         this.nroReferencia = nroReferencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -85,12 +88,13 @@ public class EspecificacionProducto implements Serializable{
         this.especificacion = espProducto.getEspecificacion();
         this.precio = espProducto.getPrecio();
         this.proveedor = proveedor;
-        this.categorias = new HashMap();
+        this.categorias = new ArrayList();
         this.imagenes = new ArrayList();
         this.listaProductos = new ArrayList();
-        /*espProducto.getProductos().entrySet().forEach((producto) -> {
-           this.listaProductos.put(producto.getKey(),new Producto(producto.getKey(),this));
-        });*/
+        Iterator it = espProducto.getProductos().iterator();
+        while(it.hasNext()){
+            this.listaProductos.add((Producto)it.next());
+        }
     }
 
     public String getNroReferencia() {
@@ -161,24 +165,16 @@ public class EspecificacionProducto implements Serializable{
         this.imagenes = imagenes;
     }
     
-    public Map<String,Categoria> getCategorias() {
+    public List<Categoria> getCategorias() {
         return categorias;
     }
-    
-    public List<DataCategoria> getDataCategorias() {
-        List<DataCategoria> dataCategorias = new ArrayList<>();
-        /*this.getCategorias().entrySet().stream().map((categoria) -> categoria.getValue()).forEach((valor) -> {
-            dataCategorias.add(new DataCategoria(valor, false));
-        });*/
-        return dataCategorias;
-    }
 
-    public void setCategorias(Map<String,Categoria> categorias) {
+    public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
     
     public void agregarCategoria(Categoria categoria){
-        this.categorias.put(categoria.getNombre(),categoria);
+        this.categorias.add(categoria);
     }
     
     @Override

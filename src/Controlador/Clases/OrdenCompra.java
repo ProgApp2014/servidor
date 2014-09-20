@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class OrdenCompra implements Serializable {
     private Date fecha;
     @Column(name="PRECIO")
     private Float precioTotal;
-    @OneToMany(cascade={CascadeType.PERSIST},mappedBy="Orden")
+    @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.REMOVE,CascadeType.PERSIST},mappedBy="Orden")
     @JoinColumn(name="ORDEN_ID")
     private List<ClienteCompraProducto> clienteCompraProducto;
     
@@ -69,15 +70,6 @@ public class OrdenCompra implements Serializable {
     public List<ClienteCompraProducto> getClienteCompraProducto() {
         return clienteCompraProducto;
     }
-    
-    /*public List<DataClienteCompraProducto> getDataClienteCompraProducto() {
-        List<DataClienteCompraProducto> dataClienteCompraProducto = new ArrayList<>();
-        clienteCompraProducto.forEach((cliProd) -> {
-            System.out.println(cliProd+"<<>>");
-            //dataClienteCompraProducto.add(new DataClienteCompraProducto(cliProd));
-        });
-        return dataClienteCompraProducto;
-    }*/
 
     public void setClienteCompraProducto(List<ClienteCompraProducto> clienteCompraProducto) {
         this.clienteCompraProducto = clienteCompraProducto;

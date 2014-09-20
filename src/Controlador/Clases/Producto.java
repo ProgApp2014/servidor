@@ -24,6 +24,7 @@ public class Producto implements Serializable{
     private Integer id;
     @Column(name="ID_ESPECIFICO")
     private String idEspecifico;
+    private Boolean enOrden;
     
     @ManyToOne
     @JoinColumn(name="ESPECIFICACION")
@@ -35,18 +36,21 @@ public class Producto implements Serializable{
     public Producto(Integer id, EspecificacionProducto especificacionProducto) {
         this.id = id;
         this.idEspecifico = null;
+        this.enOrden = false;
         this.especificacionProducto = especificacionProducto;
     }
     
-    public Producto(Integer id, String idEspecifico, EspecificacionProducto especificacionProducto) {
+    public Producto(Integer id, String idEspecifico, Boolean enOrden,EspecificacionProducto especificacionProducto) {
         this.id = id;
         this.idEspecifico = idEspecifico;
+        this.enOrden = enOrden;
         this.especificacionProducto = especificacionProducto;
     }
     
     public Producto(DataProducto dp) {
         this.id = dp.getId();
         this.idEspecifico = dp.getIdEspecifico();
+        this.enOrden = dp.getEnOrden();
         this.especificacionProducto = dp.getObjectEspecificacionProducto();
     }
 
@@ -64,6 +68,14 @@ public class Producto implements Serializable{
     
     public void setId(String id) {
         this.idEspecifico = id;
+    }
+    
+    public Boolean getEnOrden() {
+        return enOrden;
+    }
+    
+    public void setEnOrden(Boolean enOrden) {
+        this.enOrden = enOrden;
     }
     
     public EspecificacionProducto getEspecificacionProducto() {

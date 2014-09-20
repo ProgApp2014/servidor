@@ -40,7 +40,7 @@ class RegistrarCategoriaForm extends JInternalFrame {
 
         controladorProducto = ICP;
 
-        treePane = new ElegirCategoriaComponente(controladorProducto, true);
+        treePane = new ElegirCategoriaComponente(controladorProducto.listarCategorias(), true);
         JButton padre = new JButton("Elegir Categoria Padre");
         padre.setSize(100, 40);
         padre.addActionListener(new ActionListener() {

@@ -106,10 +106,23 @@ public class ControladorOrdenes implements IControladorOrdenes{
         Iterator it =  espProdElegido.getListaProductos().iterator();
         int indice = 0;
         while(it.hasNext() && indice<cantidad){
-            productosElegidos.add((Producto) it.next());
-            indice++;
+            Producto current = (Producto) it.next();
+            if(!current.getEnOrden()){
+                productosElegidos.add(current);
+                indice++;
+            }
         }
     }
+    
+    @Override
+    public List<DataEspecificacionProducto> listarProductosCategoria(){
+        List<DataEspecificacionProducto> result = new ArrayList<>();
+        categoriaElegida.getListaProductos().entrySet().stream().map((espProd) -> espProd.getValue()).forEach((valor) -> {
+            result.add(new DataEspecificacionProducto(valor,true));
+        });
+        return result;
+    }
+    
     @Override
     public void generarItemOrden(){
         productosElegidos.stream().forEach((productoElegido) -> {
@@ -129,9 +142,6 @@ public class ControladorOrdenes implements IControladorOrdenes{
             
             cliComProd.add(cliProd);
             tempSumTotal += cliProd.getPrecio();
-            EspecificacionProducto aux = ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().get(cliProd.getProducto().getEspecificacionProducto().getNroReferencia());
-            aux.getListaProductos().remove(cliProd.getProducto());
-            ManejadorEspProductos.getInstance().modificarProducto(aux);
         }
         
         

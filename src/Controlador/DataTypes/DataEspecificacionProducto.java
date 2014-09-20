@@ -1,9 +1,11 @@
 package Controlador.DataTypes;
 
 import Controlador.Clases.EspecificacionProducto;
+import Controlador.Clases.Producto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -126,8 +128,14 @@ public class DataEspecificacionProducto {
         this.productos = productos;
     }
     public int getStock(){
-        
-        return productos.size();
+        Integer result = 0;
+        Iterator<DataProducto> it = (Iterator<DataProducto>)productos.iterator();
+        while(it.hasNext()) {
+            DataProducto current = it.next();
+            if(!current.getEnOrden())
+                result++;
+        }
+        return result;
             
     }
     @Override

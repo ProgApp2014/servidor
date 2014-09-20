@@ -79,7 +79,7 @@ public class ModificarInformacionProducto extends JInternalFrame {
                 openDialog();
             }
         });
-        treePane = new ElegirCategoriaComponente(controlarProducto, true);
+        treePane = new ElegirCategoriaComponente(controlarProducto.listarCategorias(), true);
         listaProductosPanel = new JPanel();
         listaProductosPanel.setLayout(new GridLayout(1, 0));
 
@@ -280,7 +280,7 @@ public class ModificarInformacionProducto extends JInternalFrame {
 
         ((JComboBox) form.getComponentByName("Proveedor")).setSelectedItem(dataProducto.getProveedor());
 
-        treePane = new ElegirCategoriaComponente(controlarProducto, false);
+        treePane = new ElegirCategoriaComponente(controlarProducto.listarCategorias(), false);
 
         sdi = new SelectorDeImagenes();
         sdi.setLocation(700, 10);

@@ -57,8 +57,9 @@ public class ManejadorEspProductos {
         if(entityManager.find(EspecificacionProducto.class, especificacionProducto.getNroReferencia()) == null){
            throw new IllegalArgumentException("Unknown Employee id");
        }
-
+       entityManager.getTransaction().begin();
        entityManager.merge(especificacionProducto);
+       entityManager.getTransaction().commit();
     }
     
     public EspecificacionProducto getEspecificacionProducto(String nroRef){

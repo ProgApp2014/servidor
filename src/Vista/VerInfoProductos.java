@@ -68,7 +68,7 @@ public class VerInfoProductos extends JInternalFrame {
                 openDialog();
             }
         });
-        treePane = new ElegirCategoriaComponente(controlarProducto, true);
+        treePane = new ElegirCategoriaComponente(controlarProducto.listarCategorias(), true);
         listaProductosPanel = new JPanel();
         listaProductosPanel.setLayout(new GridLayout(1, 0));
 

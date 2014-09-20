@@ -2,6 +2,7 @@ package Controlador.Clases;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -34,6 +35,16 @@ public class ManejadorOrdenes {
         //guardo la orden en bd
         entityManager.getTransaction().begin();
         entityManager.persist(orden);
+        entityManager.getTransaction().commit();
+        
+        Iterator it =  orden.getClienteCompraProducto().iterator();
+        entityManager.getTransaction().begin();
+        while(it.hasNext()){
+            ClienteCompraProducto current = (ClienteCompraProducto) it.next();
+            Producto aux = current.getProducto();
+            aux.setEnOrden(true);
+            entityManager.merge(aux);
+        }
         entityManager.getTransaction().commit();
     }
     

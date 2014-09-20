@@ -61,7 +61,7 @@ public class RegistrarProducto extends javax.swing.JInternalFrame {
         form.addField("Proveedor", "combo", controlarProducto.listarProveedores().toArray(),null);
 
 
-        treePane = new ElegirCategoriaComponente(controlarProducto, false);
+        treePane = new ElegirCategoriaComponente(controlarProducto.listarCategorias(), false);
         sdi = new SelectorDeImagenes();
         sdi.setLocation(700, 10);
 

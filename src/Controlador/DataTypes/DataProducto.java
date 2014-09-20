@@ -8,23 +8,27 @@ public class DataProducto {
     
     private Integer id;
     private String idEspecifico;
+    private Boolean enOrden;
     private DataEspecificacionProducto especificacionProducto;
     
     public DataProducto(Producto p) {
         this.id = p.getId();
         this.idEspecifico = p.getIdEspecifico();
+        this.enOrden = p.getEnOrden();
         this.especificacionProducto = p.getDataEspecificacionProducto();
     }
     
     public DataProducto(Integer id, DataEspecificacionProducto especificacionProducto) {
         this.id = id;
         this.idEspecifico = null;
+        this.enOrden = false;
         this.especificacionProducto = especificacionProducto;
     }
     
-    public DataProducto(Integer id, String idEspecifico, DataEspecificacionProducto especificacionProducto) {
+    public DataProducto(Integer id, String idEspecifico, Boolean enOrden, DataEspecificacionProducto especificacionProducto) {
         this.id = id;
         this.idEspecifico = idEspecifico;
+        this.enOrden = enOrden;
         this.especificacionProducto = especificacionProducto;
     }
 
@@ -34,6 +38,14 @@ public class DataProducto {
     
     public void setId(Integer id) {
         this.id = id;
+    }
+    
+    public Boolean getEnOrden() {
+        return enOrden;
+    }
+    
+    public void setEnOrden(Boolean enOrden) {
+        this.enOrden = enOrden;
     }
     
     public String getIdEspecifico() {

@@ -45,9 +45,10 @@ public class ManejadorCategorias {
     public Map<String,Categoria> obtenerCategorias(){
         //obtengo todas las categorias de la bd
         Query query = entityManager.createQuery("SELECT c FROM Categoria c", Categoria.class);
-        
+        System.out.println("ENTROOOOOOOOOOOOOOOOOO");
         //las guardo en la colecion
         List<Categoria> listCategorias = query.getResultList();
+        categorias.clear();
         listCategorias.stream().forEach((cat) -> {
             categorias.put(cat.getNombre(), cat);
         });

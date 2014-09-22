@@ -26,7 +26,7 @@ public class Categoria implements Serializable{
     @ManyToOne(optional = false)
     @JoinColumn(name = "PADRE")
     private Categoria padre;
-    @ManyToMany(fetch=FetchType.EAGER,cascade={CascadeType.PERSIST}, mappedBy="categorias")
+    @ManyToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL}, mappedBy="categorias")
     @MapKeyColumn(name="ESP_NROREF", table="CATEGORIAESPECIFICACIONPROD")
     private Map<String,EspecificacionProducto> listaProductos = new HashMap<String,EspecificacionProducto>();
 

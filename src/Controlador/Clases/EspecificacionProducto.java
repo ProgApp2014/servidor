@@ -62,7 +62,7 @@ public class EspecificacionProducto implements Serializable{
         inverseJoinColumns={@JoinColumn(name="CAT_NAME", referencedColumnName="NOMBRE")})
     private List<Categoria> categorias;
     
-    @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.PERSIST,CascadeType.REMOVE},mappedBy="especificacionProducto")
+    @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL},mappedBy="especificacionProducto")
     @JoinColumn(name="ID")
     private List<Producto> listaProductos;
 

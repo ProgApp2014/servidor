@@ -43,6 +43,7 @@ public class ManejadorUsuarios {
         
         //las guardo en la colecion
         List<Usuario> listUsuarios = query.getResultList();
+        usuarios.clear();
         listUsuarios.stream().forEach((usu) -> {
             usuarios.put(usu.getNickname(), usu);
         });

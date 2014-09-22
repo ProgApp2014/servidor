@@ -84,7 +84,7 @@ public class ControladorProductos implements IControladorProductos{
     @Override
     public List<DataCategoria> listarCategorias(){
         List<DataCategoria> dataCategoria = new ArrayList<>();
-        ManejadorCategorias.getInstance().obtenerCategorias().entrySet().stream().map((categoria) -> categoria.getValue()).forEach((valor) -> {
+        ManejadorCategorias.getInstance().obtenerCategorias().stream().forEach((valor) -> {
             dataCategoria.add(new DataCategoria(valor,true));
         });
         return dataCategoria;

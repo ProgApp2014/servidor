@@ -47,6 +47,7 @@ public class ManejadorEspProductos {
         
         //las guardo en la colecion
         List<EspecificacionProducto> listUsuarios = query.getResultList();
+        especificacionProductos.clear();
         listUsuarios.stream().forEach((esp) -> {
             especificacionProductos.put(esp.getNroReferencia(), esp);
         });

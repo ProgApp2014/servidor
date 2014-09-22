@@ -54,7 +54,7 @@ public class ManejadorOrdenes {
         //las guardo en la colecion
         List<OrdenCompra> listOrdenes = query.getResultList();
         System.out.println("underlying entity manager is: "+entityManager.getDelegate().getClass().getSimpleName());
-        ordenes = new HashMap();
+        ordenes.clear();
         listOrdenes.stream().forEach((ord) -> {
             ordenes.put(ord.getNroOrden(), ord);
         });

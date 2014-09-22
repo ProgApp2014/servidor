@@ -104,52 +104,29 @@ public class Utils {
             ManejadorUsuarios.getInstance().agregarUsuario(c4);
 
         /*Categorias*/
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Celulares"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Celulares", null));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Sistemas Operativos"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Sistemas Operativos", ManejadorCategorias.getInstance().getCategoria("Celulares")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("iOS"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("iOS", ManejadorCategorias.getInstance().getCategoria("Sistemas Operativos")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Android"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Android", ManejadorCategorias.getInstance().getCategoria("Sistemas Operativos")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Windows Phone"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Windows Phone", ManejadorCategorias.getInstance().getCategoria("Sistemas Operativos")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Symbian"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Symbian", ManejadorCategorias.getInstance().getCategoria("Sistemas Operativos")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Blackberry OS"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Blackberry OS", ManejadorCategorias.getInstance().getCategoria("Sistemas Operativos")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Equipos"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Equipos", ManejadorCategorias.getInstance().getCategoria("Celulares")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("iPhone"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("iPhone", ManejadorCategorias.getInstance().getCategoria("Equipos")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Nexus"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Nexus", ManejadorCategorias.getInstance().getCategoria("Equipos")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Samsung"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Samsung", ManejadorCategorias.getInstance().getCategoria("Equipos")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Galaxy S3"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Galaxy S3", ManejadorCategorias.getInstance().getCategoria("Samsung")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Galaxy S4"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Galaxy S4", ManejadorCategorias.getInstance().getCategoria("Samsung")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Galaxy Ace"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Galaxy Ace", ManejadorCategorias.getInstance().getCategoria("Samsung")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Blackberry"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Blackberry", ManejadorCategorias.getInstance().getCategoria("Equipos")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Nokia"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Nokia", ManejadorCategorias.getInstance().getCategoria("Equipos")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Accesorios"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Accesorios", ManejadorCategorias.getInstance().getCategoria("Celulares")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Protectores"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Protectores", ManejadorCategorias.getInstance().getCategoria("Accesorios")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Baterías"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Baterías", ManejadorCategorias.getInstance().getCategoria("Accesorios")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Apple"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Apple", null));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Videojuegos"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Videojuegos", null));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Playstation"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Playstation", ManejadorCategorias.getInstance().getCategoria("Videojuegos")));
-        if(!ManejadorCategorias.getInstance().obtenerCategorias().containsKey("Xbox"))
-            ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Xbox", ManejadorCategorias.getInstance().getCategoria("Videojuegos")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Celulares", null));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Sistemas Operativos", ManejadorCategorias.getInstance().getCategoria("Celulares")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("iOS", ManejadorCategorias.getInstance().getCategoria("Sistemas Operativos")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Android", ManejadorCategorias.getInstance().getCategoria("Sistemas Operativos")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Windows Phone", ManejadorCategorias.getInstance().getCategoria("Sistemas Operativos")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Symbian", ManejadorCategorias.getInstance().getCategoria("Sistemas Operativos")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Blackberry OS", ManejadorCategorias.getInstance().getCategoria("Sistemas Operativos")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Equipos", ManejadorCategorias.getInstance().getCategoria("Celulares")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("iPhone", ManejadorCategorias.getInstance().getCategoria("Equipos")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Nexus", ManejadorCategorias.getInstance().getCategoria("Equipos")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Samsung", ManejadorCategorias.getInstance().getCategoria("Equipos")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Galaxy S3", ManejadorCategorias.getInstance().getCategoria("Samsung")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Galaxy S4", ManejadorCategorias.getInstance().getCategoria("Samsung")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Galaxy Ace", ManejadorCategorias.getInstance().getCategoria("Samsung")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Blackberry", ManejadorCategorias.getInstance().getCategoria("Equipos")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Nokia", ManejadorCategorias.getInstance().getCategoria("Equipos")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Accesorios", ManejadorCategorias.getInstance().getCategoria("Celulares")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Protectores", ManejadorCategorias.getInstance().getCategoria("Accesorios")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Baterías", ManejadorCategorias.getInstance().getCategoria("Accesorios")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Apple", null));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Videojuegos", null));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Playstation", ManejadorCategorias.getInstance().getCategoria("Videojuegos")));
+        ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Xbox", ManejadorCategorias.getInstance().getCategoria("Videojuegos")));
         /**
          * productos*
          */

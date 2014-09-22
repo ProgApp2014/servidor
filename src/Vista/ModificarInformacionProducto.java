@@ -186,8 +186,6 @@ public class ModificarInformacionProducto extends JInternalFrame {
         controlarProducto.elegirProveedor(Proveedor.getNickname());
         controlarProducto.ingresarDatosProductos(espProducto);
 
-        controlarProducto.agregarMultiplesProductosAutogenerados(stockReal);
-
         categorias.forEach((cat) -> {
             controlarProducto.agregarCategoriaAEspecificacion(cat);
         });

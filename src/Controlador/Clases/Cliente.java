@@ -20,12 +20,12 @@ public class Cliente extends Usuario implements Serializable{
     public Cliente() {
     }
     
-    public Cliente(String nickname, String nombre, String apellido, String email, Calendar fechaNacimiento) {
-        super(nickname, nombre, apellido, email, fechaNacimiento);
+    public Cliente(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento) {
+        super(nickname, password, nombre, apellido, email, fechaNacimiento);
     }
     
     public Cliente(DataCliente dc) {
-        super(dc.getNickname(), dc.getNombre(), dc.getApellido(), dc.getEmail(), dc.getFechaNacimiento());
+        super(dc.getNickname(), dc.getPassword(), dc.getNombre(), dc.getApellido(), dc.getEmail(), dc.getFechaNacimiento());
         this.setImagen(dc.getImagen());
         
     }

@@ -6,12 +6,12 @@ import java.util.Calendar;
 public class DataCliente extends DataUsuario{
 
     public DataCliente(Cliente c) {
-        super(c.getNickname(), c.getNombre(), c.getApellido(), c.getEmail(), c.getFechaNacimiento());
+        super(c.getNickname(), c.getNickname(), c.getNombre(), c.getApellido(), c.getEmail(), c.getFechaNacimiento());
         this.setImagen(c.getImagen());
     }
 
-    public DataCliente(String nickname, String nombre, String apellido, String email, Calendar fechaNacimiento) {
-        super(nickname, nombre, apellido, email, fechaNacimiento);
+    public DataCliente(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento) {
+        super(nickname, password, nombre, apellido, email, fechaNacimiento);
     }
     
     @Override

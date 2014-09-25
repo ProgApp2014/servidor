@@ -8,14 +8,14 @@ public class DataProveedor extends DataUsuario{
     private String nombreCompania;
     private String linkSitio;
     
-    public DataProveedor(String nickname, String nombre, String apellido, String email, Calendar fechaNacimiento, String nombreCompania, String linkSitio) {
-        super(nickname, nombre, apellido, email, fechaNacimiento);
+    public DataProveedor(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento, String nombreCompania, String linkSitio) {
+        super(nickname, password, nombre, apellido, email, fechaNacimiento);
         this.nombreCompania = nombreCompania;
         this.linkSitio = linkSitio;
     }
     
     public DataProveedor(Proveedor p) {
-        super(p.getNickname(), p.getNombre(), p.getApellido(), p.getEmail(), p.getFechaNacimiento());
+        super(p.getNickname(), p.getPassword(), p.getNombre(), p.getApellido(), p.getEmail(), p.getFechaNacimiento());
         this.nombreCompania = p.getNombreCompania();
         this.linkSitio = p.getLinkSitio();
         this.setImagen(p.getImagen());

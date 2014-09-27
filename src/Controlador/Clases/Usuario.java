@@ -22,6 +22,7 @@ public abstract class Usuario implements Serializable {
     
     @Id
     protected String nickname;
+    protected String password;
     protected String nombre;
     protected String apellido;
     protected String email;
@@ -32,8 +33,9 @@ public abstract class Usuario implements Serializable {
     public Usuario() {
     }
     
-    public Usuario(String nickname, String nombre, String apellido, String email, Calendar fechaNacimiento) {
+    public Usuario(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento) {
         this.nickname = nickname;
+        this.password = password;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -42,6 +44,7 @@ public abstract class Usuario implements Serializable {
     
     public Usuario(DataUsuario du) {
         this.nickname = du.getNickname();
+        this.password = du.getPassword();
         this.nombre = du.getNombre();
         this.apellido = du.getApellido();
         this.email = du.getEmail();
@@ -54,6 +57,14 @@ public abstract class Usuario implements Serializable {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNombre() {

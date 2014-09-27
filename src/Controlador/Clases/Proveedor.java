@@ -21,14 +21,14 @@ public class Proveedor extends Usuario implements Serializable{
     public Proveedor() {
     }
 
-    public Proveedor(String nickname, String nombre, String apellido, String email, Calendar fechaNacimiento, String nombreCompania, String linkSitio) {
-        super(nickname, nombre, apellido, email, fechaNacimiento);
+    public Proveedor(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento, String nombreCompania, String linkSitio) {
+        super(nickname, password, nombre, apellido, email, fechaNacimiento);
         this.nombreCompania = nombreCompania;
         this.linkSitio = linkSitio; 
     }
     
     public Proveedor(DataProveedor dp) {
-        super(dp.getNickname(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento());
+        super(dp.getNickname(), dp.getPassword(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento());
         this.nombreCompania = dp.getNombreCompania();
         this.linkSitio = dp.getLinkSitio();
         this.setImagen(dp.getImagen());

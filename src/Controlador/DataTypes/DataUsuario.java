@@ -6,6 +6,7 @@ import java.util.Calendar;
 public class DataUsuario {
     
     private String nickname;
+    private String password;
     private String nombre;
     private String apellido;
     private String email;
@@ -17,8 +18,9 @@ public class DataUsuario {
         
     }
     
-    public DataUsuario(String nickname, String nombre, String apellido, String email, Calendar fechaNacimiento) {
+    public DataUsuario(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento) {
         this.nickname = nickname;
+        this.password = password;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -31,6 +33,14 @@ public class DataUsuario {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNombre() {

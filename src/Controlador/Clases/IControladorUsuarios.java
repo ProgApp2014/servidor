@@ -24,4 +24,5 @@ public interface IControladorUsuarios {
     public DataProveedor mostrarDatosProveedor();
     public String getErrors();
     public void eliminarUsuario(String nickname);
+    public Boolean login(String nickname, String hashPassword);
 }

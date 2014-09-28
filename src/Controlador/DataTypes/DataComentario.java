@@ -3,7 +3,8 @@ package Controlador.DataTypes;
 import Controlador.Clases.Comentario;
 
 public class DataComentario {
-    
+    private Integer id;
+    private DataComentario padre;
     private DataCliente cliente;
     private DataEspecificacionProducto especificacionProducto;
     private String comentario;
@@ -12,12 +13,30 @@ public class DataComentario {
         
     }
     
-    public DataComentario(DataCliente cliente, DataEspecificacionProducto especificacionProducto, String comentario) {
+    public DataComentario(DataCliente cliente, DataEspecificacionProducto especificacionProducto, String comentario, Integer id, DataComentario padre) {
+        this.id = id;
+        this.padre = padre;
         this.cliente = cliente;
         this.especificacionProducto = especificacionProducto;
         this.comentario = comentario;
     }
 
+    public Integer getid() {
+        return id;
+    }
+    
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    public DataComentario getPadre() {
+        return padre;
+    }
+    
+    public void setPadre(DataComentario padre) {
+        this.padre = padre;
+    }
+    
     public DataCliente getCliente() {
         return cliente;
     }

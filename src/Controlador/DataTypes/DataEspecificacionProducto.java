@@ -20,6 +20,7 @@ public class DataEspecificacionProducto {
     private List<String> imagenes;
     private List<DataCategoria> categorias;
     private List<DataProducto> productos;
+    private List<DataComentario> comentarios;
     
     public DataEspecificacionProducto(EspecificacionProducto ep, boolean conCategorias) {
         this.nroReferencia = ep.getNroReferencia();
@@ -38,13 +39,18 @@ public class DataEspecificacionProducto {
             ep.getListaProductos().forEach((producto) -> {
                productos.add(new DataProducto(producto));
             });
+            this.comentarios = new ArrayList();
+            ep.getComentarios().forEach((comentario) -> {
+               comentarios.add(new DataComentario(comentario));
+            });
         }else{
             this.categorias = new ArrayList<DataCategoria>();
             this.productos = new ArrayList();
+            this.comentarios = new ArrayList();
         }
     }
     
-    public DataEspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String,String> especificacion, Float precio, DataProveedor proveedor, ArrayList<String> imagenes, ArrayList<DataCategoria> categorias,List<DataProducto> productos) {
+    public DataEspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String,String> especificacion, Float precio, DataProveedor proveedor, ArrayList<String> imagenes, ArrayList<DataCategoria> categorias,List<DataProducto> productos,List<DataComentario> comentarios) {
         this.nroReferencia = nroReferencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -54,6 +60,7 @@ public class DataEspecificacionProducto {
         this.imagenes = imagenes;
         this.categorias = categorias;
         this.productos = productos;
+        this.comentarios = comentarios;
     }
 
     public String getNroReferencia() {
@@ -127,6 +134,15 @@ public class DataEspecificacionProducto {
     public void setProductos(List<DataProducto> productos) {
         this.productos = productos;
     }
+    
+    public List<DataComentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<DataComentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+    
     public int getStock(){
         Integer result = 0;
         Iterator<DataProducto> it = (Iterator<DataProducto>)productos.iterator();

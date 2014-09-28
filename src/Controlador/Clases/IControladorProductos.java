@@ -4,9 +4,7 @@ import Controlador.DataTypes.DataCategoria;
 import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataProducto;
 import Controlador.DataTypes.DataProveedor;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public interface IControladorProductos {
     
@@ -47,5 +45,6 @@ public interface IControladorProductos {
     public Boolean categoryAlreadyExist(String categoria);
     public void eliminarCategoria(String nombre);
     public void eliminarEspecificacionProducto (String nroRef);
+    public void agregarComentario(String nickname, String nroRef, Integer padre, String Comentario);
 }
     

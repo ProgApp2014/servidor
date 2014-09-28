@@ -5,12 +5,12 @@ import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataProducto;
 import Controlador.DataTypes.DataProveedor;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import static java.util.Objects.isNull;
 
 public class ControladorProductos implements IControladorProductos{
@@ -214,6 +214,27 @@ public class ControladorProductos implements IControladorProductos{
     @Override
     public DataProducto mostrarInformacionProducto(){
         return null;
+    }
+    
+    @Override
+    public void agregarComentario(String nickname, String nroRef, Integer padre, String Comentario){
+        EspecificacionProducto aModificar = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);
+        System.out.println("ergwerg "+aModificar);
+        List<Comentario> comentarios = aModificar.getComentarios();
+        Comentario comentarioAAgregar = new Comentario();
+        comentarioAAgregar.setCliente(ManejadorUsuarios.getInstance().getCliente(nickname));
+        comentarioAAgregar.setEspecificacionProducto(aModificar);
+        Iterator it = comentarios.iterator();
+        while(it.hasNext()){
+            Comentario current = (Comentario)it.next();
+            if(Objects.equals(current.getId(), padre)){
+                comentarioAAgregar.setPadre(current);
+            }
+        }
+        comentarioAAgregar.setComentario(Comentario);
+        comentarios.add(comentarioAAgregar);
+        ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).setComentarios(comentarios);
+        ManejadorEspProductos.getInstance().modificarProducto(aModificar);
     }
     
     /*@Override

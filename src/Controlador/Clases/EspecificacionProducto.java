@@ -63,11 +63,15 @@ public class EspecificacionProducto implements Serializable{
     @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL},mappedBy="especificacionProducto")
     @JoinColumn(name="ID")
     private List<Producto> listaProductos;
+    
+    @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL},mappedBy="especificacionProducto")
+    @JoinColumn(name="ID")
+    private List<Comentario> comentarios;
 
     public EspecificacionProducto() {
     }
     
-    public EspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String,String> especificacion, Float precio, Proveedor proveedor, List<Categoria> categorias,List<Producto> listaProductos) {
+    public EspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String,String> especificacion, Float precio, Proveedor proveedor, List<Categoria> categorias,List<Producto> listaProductos,List<Comentario> comentarios) {
         this.nroReferencia = nroReferencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -76,6 +80,7 @@ public class EspecificacionProducto implements Serializable{
         this.proveedor = proveedor;
         this.categorias = categorias;
         this.listaProductos = listaProductos;
+        this.comentarios = comentarios;
         this.imagenes = new ArrayList<String>();
     }
     
@@ -92,6 +97,10 @@ public class EspecificacionProducto implements Serializable{
         Iterator it = espProducto.getProductos().iterator();
         while(it.hasNext()){
             this.listaProductos.add((Producto)it.next());
+        }
+        Iterator itC = espProducto.getComentarios().iterator();
+        while(itC.hasNext()){
+            this.comentarios.add((Comentario)itC.next());
         }
     }
 
@@ -133,6 +142,14 @@ public class EspecificacionProducto implements Serializable{
 
     public void setListaProductos(List<Producto> listaProductos) {
         this.listaProductos = listaProductos;
+    }
+    
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
     public Float getPrecio() {

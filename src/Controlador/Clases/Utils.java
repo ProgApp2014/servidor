@@ -142,7 +142,7 @@ public class Utils {
         catpr1.add (ManejadorCategorias.getInstance().getCategoria("iPhone"));
         catpr1.add (ManejadorCategorias.getInstance().getCategoria("iOS"));
         catpr1.add (ManejadorCategorias.getInstance().getCategoria("Apple"));
-        EspecificacionProducto pr1 = new EspecificacionProducto("IPH5", "iPhone 5", "El último celular de Apple", esppr1, (float) 199.0, p1, catpr1, prodpr1); 
+        EspecificacionProducto pr1 = new EspecificacionProducto("IPH5", "iPhone 5", "El último celular de Apple", esppr1, (float) 199.0, p1, catpr1, prodpr1,new ArrayList()); 
         controlarProducto.elegirEspProducto ("IPH5");
         for(Integer i = 0; i < 10; i++){
             productospr1.add(new Producto(i, pr1));
@@ -161,7 +161,7 @@ public class Utils {
         catpr2.add(ManejadorCategorias.getInstance().getCategoria("iPhone"));
         catpr2.add(ManejadorCategorias.getInstance().getCategoria("iOS"));
         catpr2.add(ManejadorCategorias.getInstance().getCategoria("Apple"));
-        EspecificacionProducto pr2 = new EspecificacionProducto("IPH4", "iPhone 4S", "El siguiente celular al iPhone 4", esppr2, (float) 99.0, p1, catpr2, prodpr2);
+        EspecificacionProducto pr2 = new EspecificacionProducto("IPH4", "iPhone 4S", "El siguiente celular al iPhone 4", esppr2, (float) 99.0, p1, catpr2, prodpr2,new ArrayList());
         controlarProducto.elegirEspProducto ("IPH4");
         productospr2 = new ArrayList();
         for(Integer i = 0; i < 10; i++){
@@ -180,7 +180,7 @@ public class Utils {
         esppr3.put("Versión de Android", "4.3");
         catpr3.add(ManejadorCategorias.getInstance().getCategoria("Android"));
         catpr3.add(ManejadorCategorias.getInstance().getCategoria("Nexus"));
-        EspecificacionProducto pr3 = new EspecificacionProducto("NEX4", "Nexus4", "El celular de Google", esppr3, (float) 299.0, p2, catpr3, prodpr3);
+        EspecificacionProducto pr3 = new EspecificacionProducto("NEX4", "Nexus4", "El celular de Google", esppr3, (float) 299.0, p2, catpr3, prodpr3,new ArrayList());
         controlarProducto.elegirEspProducto ("NEX4");
         productospr3 = new ArrayList();
         for(Integer i = 0; i < 10; i++){
@@ -199,7 +199,7 @@ public class Utils {
         esppr4.put("Versión de Android", "4.0.4");
         catpr4.add(ManejadorCategorias.getInstance().getCategoria("Android"));
         catpr4.add(ManejadorCategorias.getInstance().getCategoria("Galaxy S3"));
-        EspecificacionProducto pr4 = new EspecificacionProducto("GA3", "Samsung Galaxy S3", "La versión S3 de la línea Samsung Galaxy", esppr4, (float) 415.0, p2, catpr4, prodpr4);
+        EspecificacionProducto pr4 = new EspecificacionProducto("GA3", "Samsung Galaxy S3", "La versión S3 de la línea Samsung Galaxy", esppr4, (float) 415.0, p2, catpr4, prodpr4,new ArrayList());
         controlarProducto.elegirEspProducto ("GA3");
         productospr4 = new ArrayList();
         for(Integer i = 0; i < 10; i++){
@@ -218,7 +218,7 @@ public class Utils {
         esppr5.put("Versión de Android", "4.2.2");
         catpr5.add(ManejadorCategorias.getInstance().getCategoria("Android"));
         catpr5.add(ManejadorCategorias.getInstance().getCategoria("Galaxy S4"));
-        EspecificacionProducto pr5 = new EspecificacionProducto("GA4", "Samsung Galaxy S4", "La versión S4 de la línea Samsung Galaxy", esppr5, (float) 839.99, p2, catpr5, prodpr5);
+        EspecificacionProducto pr5 = new EspecificacionProducto("GA4", "Samsung Galaxy S4", "La versión S4 de la línea Samsung Galaxy", esppr5, (float) 839.99, p2, catpr5, prodpr5,new ArrayList());
         controlarProducto.elegirEspProducto ("GA4");
         productospr5 = new ArrayList();
         for(Integer i = 0; i < 10; i++){
@@ -237,7 +237,7 @@ public class Utils {
         esppr6.put("Versión de Android", "2.3");
         catpr6.add(ManejadorCategorias.getInstance().getCategoria("Android"));
         catpr6.add(ManejadorCategorias.getInstance().getCategoria("Galaxy Ace"));
-        EspecificacionProducto pr6 = new EspecificacionProducto("AS5", "Galaxy Ace S5830", "La versión Ace de la línea Samsung Galaxy", esppr6, (float) 237.0, p2, catpr6, prodpr6);
+        EspecificacionProducto pr6 = new EspecificacionProducto("AS5", "Galaxy Ace S5830", "La versión Ace de la línea Samsung Galaxy", esppr6, (float) 237.0, p2, catpr6, prodpr6,new ArrayList());
 
         controlarProducto.elegirEspProducto ("AS5");
         productospr6 = new ArrayList();
@@ -254,7 +254,7 @@ public class Utils {
         esppr7.put("Dimensiones", "12.5 cm x 6.7 cm x 2.0 cm");
         esppr7.put("Peso", "44 g");
         catpr7.add(ManejadorCategorias.getInstance().getCategoria("Protectores"));
-        EspecificacionProducto pr7 = new EspecificacionProducto("PCG", "Protector de cuero para Galaxy", "Asombroso protector de cuero para Samsung Galaxy I900", esppr7, (float) 3.5, p2, catpr7, prodpr7);
+        EspecificacionProducto pr7 = new EspecificacionProducto("PCG", "Protector de cuero para Galaxy", "Asombroso protector de cuero para Samsung Galaxy I900", esppr7, (float) 3.5, p2, catpr7, prodpr7,new ArrayList());
         controlarProducto.elegirEspProducto ("PCG");
         productospr7 = new ArrayList();
         for(Integer i = 0; i < 10; i++){
@@ -270,7 +270,7 @@ public class Utils {
         esppr8.put("Dimensiones", "12.4 cm x 7.0 cm x 1.3 cm");
         esppr8.put("Peso", "26 g");
         catpr8.add(ManejadorCategorias.getInstance().getCategoria("Protectores"));
-        EspecificacionProducto pr8 = new EspecificacionProducto("PMH", "Protector de aluminio para HTC", "El mejor protector de aluminio para HTC Desire HD", esppr8, (float) 3.4, p5, catpr8, prodpr8);
+        EspecificacionProducto pr8 = new EspecificacionProducto("PMH", "Protector de aluminio para HTC", "El mejor protector de aluminio para HTC Desire HD", esppr8, (float) 3.4, p5, catpr8, prodpr8,new ArrayList());
         controlarProducto.elegirEspProducto ("PMH");
         productospr8 = new ArrayList();
         for(Integer i = 0; i < 10; i++){
@@ -289,7 +289,7 @@ public class Utils {
         esppr9.put("Procesador", "A6X");
         catpr9.add(ManejadorCategorias.getInstance().getCategoria("Apple"));
         catpr9.add(ManejadorCategorias.getInstance().getCategoria("iOS"));
-        EspecificacionProducto pr9 = new EspecificacionProducto("IRD", "iPad Retina Display", "La última tableta de Apple con pantalla Retina", esppr9, (float) 499.0, p1, catpr9, prodpr9);
+        EspecificacionProducto pr9 = new EspecificacionProducto("IRD", "iPad Retina Display", "La última tableta de Apple con pantalla Retina", esppr9, (float) 499.0, p1, catpr9, prodpr9,new ArrayList());
         controlarProducto.elegirEspProducto ("IRD");
         productospr9 = new ArrayList();
         for(Integer i = 0; i < 10; i++){
@@ -308,7 +308,7 @@ public class Utils {
         esppr10.put("Procesador", "A5");
         catpr10.add(ManejadorCategorias.getInstance().getCategoria("Apple"));
         catpr10.add(ManejadorCategorias.getInstance().getCategoria("iOS"));
-        EspecificacionProducto pr10 = new EspecificacionProducto("IM", "iPad Mini", "La primera tableta chica de Apple", esppr10, (float) 329.0, p1, catpr10, prodpr10);
+        EspecificacionProducto pr10 = new EspecificacionProducto("IM", "iPad Mini", "La primera tableta chica de Apple", esppr10, (float) 329.0, p1, catpr10, prodpr10,new ArrayList());
         controlarProducto.elegirEspProducto ("IM");
         productospr10 = new ArrayList();
         for(Integer i = 0; i < 10; i++){
@@ -324,7 +324,7 @@ public class Utils {
         esppr11.put("Dimensiones", "7.5 cm x 4.2 cm x 1.8 cm");
         esppr11.put("Peso", "111 g");
         catpr11.add(ManejadorCategorias.getInstance().getCategoria("Xbox"));
-        EspecificacionProducto pr11 = new EspecificacionProducto("RIX", "Receptor inalámbrico para Xbox", "Receptor inalámbrico de color negro para controles de Xbox 360", esppr11, (float) 10.99, p4, catpr11, prodpr11);
+        EspecificacionProducto pr11 = new EspecificacionProducto("RIX", "Receptor inalámbrico para Xbox", "Receptor inalámbrico de color negro para controles de Xbox 360", esppr11, (float) 10.99, p4, catpr11, prodpr11,new ArrayList());
         controlarProducto.elegirEspProducto ("RIX");
         productospr11 = new ArrayList();
         for(Integer i = 0; i < 10; i++){
@@ -341,7 +341,7 @@ public class Utils {
         esppr12.put("Dimensiones", "5.91 in x 4.33 in x 1.77 in");
         esppr12.put("Peso", "7.83 oz");
         catpr12.add(ManejadorCategorias.getInstance().getCategoria("Xbox"));
-        EspecificacionProducto pr12 = new EspecificacionProducto("CIX", "Control inalámbrico para Xbox", "Control inalámbrico de 2.4 GHz para Xbox 360 ", esppr12, (float) 27.27, p4, catpr12, prodpr12);
+        EspecificacionProducto pr12 = new EspecificacionProducto("CIX", "Control inalámbrico para Xbox", "Control inalámbrico de 2.4 GHz para Xbox 360 ", esppr12, (float) 27.27, p4, catpr12, prodpr12,new ArrayList());
         controlarProducto.elegirEspProducto ("CIX");
         productospr12 = new ArrayList();
         for(Integer i = 0; i < 10; i++){
@@ -357,7 +357,7 @@ public class Utils {
         esppr13.put("Dimensiones", "0 in x 0 in x 0 in");
         esppr13.put("Peso", "7.83 oz");
         catpr13.add(ManejadorCategorias.getInstance().getCategoria("Playstation"));
-        EspecificacionProducto pr13 = new EspecificacionProducto("CHP", "Cable HDMI para PS3", "Es un cable HDMI para PS3", esppr13, (float) 7.99, p3, catpr13, prodpr13);
+        EspecificacionProducto pr13 = new EspecificacionProducto("CHP", "Cable HDMI para PS3", "Es un cable HDMI para PS3", esppr13, (float) 7.99, p3, catpr13, prodpr13,new ArrayList());
         controlarProducto.elegirEspProducto("CHP");
         productospr13 = new ArrayList();
         for(Integer i = 0; i < 10; i++){
@@ -373,7 +373,7 @@ public class Utils {
         esppr14.put("Dimensiones", "16.0 cm x 9.5 cm x 5.0 cm");
         esppr14.put("Peso", "184 g");
         catpr14.add(ManejadorCategorias.getInstance().getCategoria("Playstation"));
-        EspecificacionProducto pr14 = new EspecificacionProducto("CP3", "Control para PS3", "Control inalámbrico Dualshock 3 de color azul para Playstation 3", esppr14, (float) 30.8, p3, catpr14, prodpr14);
+        EspecificacionProducto pr14 = new EspecificacionProducto("CP3", "Control para PS3", "Control inalámbrico Dualshock 3 de color azul para Playstation 3", esppr14, (float) 30.8, p3, catpr14, prodpr14,new ArrayList());
         controlarProducto.elegirEspProducto ("CP3");
         productospr14 = new ArrayList();
         for(Integer i = 0; i < 10; i++){

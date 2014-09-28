@@ -135,4 +135,22 @@ public class ControladorUsuarios implements IControladorUsuarios {
     public void eliminarUsuario(String nickname){
         ManejadorUsuarios.getInstance().eliminarUsuario(nickname);
     }
+    
+    @Override
+    public Boolean login(String nickname, String hashPassword){
+        Cliente usuCliente = ManejadorUsuarios.getInstance().getCliente(nickname);
+        if(usuCliente != null){
+            if(usuCliente.getPassword().equals(hashPassword)){
+                return true;
+            }
+        }else{
+            Proveedor usuProveedor = ManejadorUsuarios.getInstance().getProveedor(nickname);
+            if(usuProveedor != null){
+                if(usuProveedor.getPassword().equals(hashPassword)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

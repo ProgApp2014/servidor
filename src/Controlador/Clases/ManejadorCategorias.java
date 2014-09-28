@@ -63,8 +63,9 @@ public class ManejadorCategorias {
         Iterator it = this.obtenerCategorias().iterator();
         while(it.hasNext()){
             Categoria current = (Categoria)it.next();
-            if(current.getNombre() == nombre)
+            if(current.getNombre().equals(nombre)){
                 return current;
+            }
         }
         return null;
     }

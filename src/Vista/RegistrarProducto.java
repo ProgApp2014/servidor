@@ -152,7 +152,7 @@ public class RegistrarProducto extends javax.swing.JInternalFrame {
             return;
         }
 
-        DataEspecificacionProducto espProducto = new DataEspecificacionProducto(NroRef, titulo, descripcion, new HashMap(), precioReal, Proveedor, new ArrayList<String>(), new ArrayList<DataCategoria>(), new ArrayList());
+        DataEspecificacionProducto espProducto = new DataEspecificacionProducto(NroRef, titulo, descripcion, new HashMap(), precioReal, Proveedor, new ArrayList<String>(), new ArrayList<DataCategoria>(), new ArrayList(),new ArrayList());
         controlarProducto.elegirProveedor(Proveedor.getNickname());
         controlarProducto.ingresarDatosProductos(espProducto);
         

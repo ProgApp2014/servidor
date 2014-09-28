@@ -43,7 +43,10 @@ public class Main {
         controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
         controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);
 
-        Calendar cal1 = Calendar.getInstance();
+        controlarProducto.elegirCategoria("Apple");
+        //List<DataEspecificacionProducto> productos = controlarProducto.listarProductosCategoria();
+        controlarProducto.agregarComentario("Dan", "IPH5", 1, "comment");
+        /* Calendar cal1 = Calendar.getInstance();
         cal1.set(1960, 11, 1);
         Proveedor p1 = new Proveedor("Tim1", Utils.md5("password"), "Tim", "Cook", "tim.cook@apple.com", cal1, "Apple", " http://www.apple.com");
         Calendar cal2 = Calendar.getInstance();
@@ -89,7 +92,7 @@ public class Main {
         ManejadorUsuarios.getInstance().agregarUsuario(c3);
         ManejadorUsuarios.getInstance().agregarUsuario(c4);
 
-        /* Categorias */
+        /* Categorias * /
         ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Celulares", null));
         ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Sistemas Operativos", ManejadorCategorias.getInstance().getCategoria("Celulares")));
         ManejadorCategorias.getInstance().agregarCategoria(new Categoria("iOS", ManejadorCategorias.getInstance().getCategoria("Sistemas Operativos")));
@@ -114,7 +117,7 @@ public class Main {
         ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Playstation", ManejadorCategorias.getInstance().getCategoria("Videojuegos")));
         ManejadorCategorias.getInstance().agregarCategoria(new Categoria("Xbox", ManejadorCategorias.getInstance().getCategoria("Videojuegos")));
         
-        /* productos */
+        /* productos * /
         Map<String,String> esp3= new HashMap();
         List<Producto> prod3 = new ArrayList();
         List<Categoria> cat1 = new ArrayList();
@@ -140,7 +143,7 @@ public class Main {
         controlarOrden.elegirProducto(1);
         controlarOrden.generarItemOrden();
         DataOrdenCompra dataOrden = new DataOrdenCompra(1);
-        controlarOrden.guardarOrden(dataOrden);
+        controlarOrden.guardarOrden(dataOrden);*/
 
 //        /////////////////Producto 1
 //        cat1.put ("iPhone",ManejadorCategorias.getInstance().getCategoria("iPhone"));

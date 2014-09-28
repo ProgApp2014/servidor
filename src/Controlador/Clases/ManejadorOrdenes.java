@@ -67,6 +67,15 @@ public class ManejadorOrdenes {
     
     public void eliminarOrden(Integer nroOrden){
         OrdenCompra aBorrar = ordenes.get(nroOrden);
+        Iterator it =  aBorrar.getClienteCompraProducto().iterator();
+        entityManager.getTransaction().begin();
+        while(it.hasNext()){
+            ClienteCompraProducto current = (ClienteCompraProducto) it.next();
+            Producto aux = current.getProducto();
+            aux.setEnOrden(false);
+            entityManager.merge(aux);
+        }
+        entityManager.getTransaction().commit();
         ordenes.remove(nroOrden);
         
         entityManager.getTransaction().begin();

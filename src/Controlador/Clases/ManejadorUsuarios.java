@@ -1,5 +1,6 @@
 package Controlador.Clases;
 
+import static com.sun.org.apache.bcel.internal.Repository.instanceOf;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -82,6 +83,16 @@ public class ManejadorUsuarios {
     
     public Proveedor getProveedor(String nickname){
         return this.obtenerProveedores().get(nickname);
+    }
+    
+    public String getTipo(String nickname){
+        Map<String,Usuario> listaUsuarios = this.obtenerUsuarios();
+        if((listaUsuarios.get(nickname) instanceof Cliente)){
+            return "Cliente";
+        }else if((listaUsuarios.get(nickname) instanceof Proveedor)){
+            return "Proveedor";
+        }
+        return "Desconocido";   
     }
 
     public void eliminarUsuario(String nickname){

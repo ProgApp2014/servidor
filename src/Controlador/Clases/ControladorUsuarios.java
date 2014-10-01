@@ -153,4 +153,14 @@ public class ControladorUsuarios implements IControladorUsuarios {
         }
         return false;
     }
+    
+    @Override
+    public Boolean esProveedor(String nickname){
+        return ManejadorUsuarios.getInstance().getTipo(nickname) == "Proveedor";
+    }
+    
+    @Override
+    public Boolean esCliente(String nickname){
+        return ManejadorUsuarios.getInstance().getTipo(nickname) == "Cliente";
+    }
 }

@@ -1,0 +1,174 @@
+[EL Config]: metadata: 2014-09-30 23:56:26.792--ServerSession(2095490653)--Thread(Thread[main,5,main])--The access type for the persistent class [class Controlador.Clases.Usuario] is set to [FIELD].
+[EL Config]: metadata: 2014-09-30 23:56:26.838--ServerSession(2095490653)--Thread(Thread[main,5,main])--The access type for the persistent class [class Controlador.Clases.Cliente] is set to [FIELD].
+[EL Config]: metadata: 2014-09-30 23:56:26.839--ServerSession(2095490653)--Thread(Thread[main,5,main])--The access type for the persistent class [class Controlador.Clases.Proveedor] is set to [FIELD].
+[EL Config]: metadata: 2014-09-30 23:56:26.839--ServerSession(2095490653)--Thread(Thread[main,5,main])--The access type for the persistent class [class Controlador.Clases.OrdenCompra] is set to [FIELD].
+[EL Config]: metadata: 2014-09-30 23:56:26.855--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the one to many mapping element [field clienteCompraProducto] is being defaulted to: class Controlador.Clases.ClienteCompraProducto.
+[EL Config]: metadata: 2014-09-30 23:56:26.858--ServerSession(2095490653)--Thread(Thread[main,5,main])--The access type for the persistent class [class Controlador.Clases.Producto] is set to [FIELD].
+[EL Config]: metadata: 2014-09-30 23:56:26.862--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the many to one mapping element [field especificacionProducto] is being defaulted to: class Controlador.Clases.EspecificacionProducto.
+[EL Config]: metadata: 2014-09-30 23:56:26.863--ServerSession(2095490653)--Thread(Thread[main,5,main])--The access type for the persistent class [class Controlador.Clases.Comentario] is set to [FIELD].
+[EL Config]: metadata: 2014-09-30 23:56:26.863--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the many to one mapping element [field padre] is being defaulted to: class Controlador.Clases.Comentario.
+[EL Config]: metadata: 2014-09-30 23:56:26.864--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the many to one mapping element [field cliente] is being defaulted to: class Controlador.Clases.Cliente.
+[EL Config]: metadata: 2014-09-30 23:56:26.865--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the many to one mapping element [field especificacionProducto] is being defaulted to: class Controlador.Clases.EspecificacionProducto.
+[EL Config]: metadata: 2014-09-30 23:56:26.865--ServerSession(2095490653)--Thread(Thread[main,5,main])--The access type for the persistent class [class Controlador.Clases.ClienteCompraProducto] is set to [FIELD].
+[EL Config]: metadata: 2014-09-30 23:56:26.866--ServerSession(2095490653)--Thread(Thread[main,5,main])--The element [field cliente] is being defaulted to a one to one mapping.
+[EL Config]: metadata: 2014-09-30 23:56:26.866--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the many to one mapping element [field cliente] is being defaulted to: class Controlador.Clases.Cliente.
+[EL Config]: metadata: 2014-09-30 23:56:26.867--ServerSession(2095490653)--Thread(Thread[main,5,main])--The element [field Orden] is being defaulted to a one to one mapping.
+[EL Config]: metadata: 2014-09-30 23:56:26.867--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the many to one mapping element [field Orden] is being defaulted to: class Controlador.Clases.OrdenCompra.
+[EL Config]: metadata: 2014-09-30 23:56:26.867--ServerSession(2095490653)--Thread(Thread[main,5,main])--The element [field producto] is being defaulted to a one to one mapping.
+[EL Config]: metadata: 2014-09-30 23:56:26.868--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the many to one mapping element [field producto] is being defaulted to: class Controlador.Clases.Producto.
+[EL Config]: metadata: 2014-09-30 23:56:26.868--ServerSession(2095490653)--Thread(Thread[main,5,main])--The access type for the persistent class [class Controlador.Clases.EspecificacionProducto] is set to [FIELD].
+[EL Config]: metadata: 2014-09-30 23:56:26.869--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the one to many mapping element [field listaProductos] is being defaulted to: class Controlador.Clases.Producto.
+[EL Config]: metadata: 2014-09-30 23:56:26.875--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target class (reference) class for the element collection mapping element [field imagenes] is being defaulted to: class java.lang.String.
+[EL Config]: metadata: 2014-09-30 23:56:26.876--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the many to many mapping element [field categorias] is being defaulted to: class Controlador.Clases.Categoria.
+[EL Config]: metadata: 2014-09-30 23:56:26.877--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the many to one mapping element [field proveedor] is being defaulted to: class Controlador.Clases.Proveedor.
+[EL Config]: metadata: 2014-09-30 23:56:26.878--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target class (reference) class for the element collection mapping element [field especificacion] is being defaulted to: class java.lang.String.
+[EL Config]: metadata: 2014-09-30 23:56:26.879--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the one to many mapping element [field comentarios] is being defaulted to: class Controlador.Clases.Comentario.
+[EL Config]: metadata: 2014-09-30 23:56:26.879--ServerSession(2095490653)--Thread(Thread[main,5,main])--The access type for the persistent class [class Controlador.Clases.Categoria] is set to [FIELD].
+[EL Config]: metadata: 2014-09-30 23:56:26.879--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the many to one mapping element [field padre] is being defaulted to: class Controlador.Clases.Categoria.
+[EL Config]: metadata: 2014-09-30 23:56:26.88--ServerSession(2095490653)--Thread(Thread[main,5,main])--The target entity (reference) class for the many to many mapping element [field listaProductos] is being defaulted to: class Controlador.Clases.EspecificacionProducto.
+[EL Config]: metadata: 2014-09-30 23:56:26.881--ServerSession(2095490653)--Thread(Thread[main,5,main])--The alias name for the entity class [class Controlador.Clases.Cliente] is being defaulted to: Cliente.
+[EL Config]: metadata: 2014-09-30 23:56:26.881--ServerSession(2095490653)--Thread(Thread[main,5,main])--The alias name for the entity class [class Controlador.Clases.Usuario] is being defaulted to: Usuario.
+[EL Config]: metadata: 2014-09-30 23:56:26.882--ServerSession(2095490653)--Thread(Thread[main,5,main])--The table name for entity [class Controlador.Clases.Usuario] is being defaulted to: USUARIO.
+[EL Config]: metadata: 2014-09-30 23:56:26.91--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [password] is being defaulted to: PASSWORD.
+[EL Config]: metadata: 2014-09-30 23:56:26.912--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [fechaNacimiento] is being defaulted to: FECHANACIMIENTO.
+[EL Config]: metadata: 2014-09-30 23:56:26.915--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [apellido] is being defaulted to: APELLIDO.
+[EL Config]: metadata: 2014-09-30 23:56:26.916--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [nickname] is being defaulted to: NICKNAME.
+[EL Config]: metadata: 2014-09-30 23:56:26.916--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [imagen] is being defaulted to: IMAGEN.
+[EL Config]: metadata: 2014-09-30 23:56:26.917--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [nombre] is being defaulted to: NOMBRE.
+[EL Config]: metadata: 2014-09-30 23:56:26.917--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [email] is being defaulted to: EMAIL.
+[EL Config]: metadata: 2014-09-30 23:56:26.918--ServerSession(2095490653)--Thread(Thread[main,5,main])--The table name for entity [class Controlador.Clases.Cliente] is being defaulted to: CLIENTE.
+[EL Config]: metadata: 2014-09-30 23:56:26.919--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the inheritance class [class Controlador.Clases.Cliente] is being defaulted to: NICKNAME.
+[EL Config]: metadata: 2014-09-30 23:56:26.92--ServerSession(2095490653)--Thread(Thread[main,5,main])--The foreign key column name for the inheritance class [Controlador.Clases.Cliente] is being defaulted to: NICKNAME.
+[EL Config]: metadata: 2014-09-30 23:56:26.92--ServerSession(2095490653)--Thread(Thread[main,5,main])--The alias name for the entity class [class Controlador.Clases.Proveedor] is being defaulted to: Proveedor.
+[EL Config]: metadata: 2014-09-30 23:56:26.921--ServerSession(2095490653)--Thread(Thread[main,5,main])--The table name for entity [class Controlador.Clases.Proveedor] is being defaulted to: PROVEEDOR.
+[EL Config]: metadata: 2014-09-30 23:56:26.921--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the inheritance class [class Controlador.Clases.Proveedor] is being defaulted to: NICKNAME.
+[EL Config]: metadata: 2014-09-30 23:56:26.921--ServerSession(2095490653)--Thread(Thread[main,5,main])--The foreign key column name for the inheritance class [Controlador.Clases.Proveedor] is being defaulted to: NICKNAME.
+[EL Config]: metadata: 2014-09-30 23:56:26.922--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [nombreCompania] is being defaulted to: NOMBRECOMPANIA.
+[EL Config]: metadata: 2014-09-30 23:56:26.922--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [linkSitio] is being defaulted to: LINKSITIO.
+[EL Config]: metadata: 2014-09-30 23:56:26.923--ServerSession(2095490653)--Thread(Thread[main,5,main])--The alias name for the entity class [class Controlador.Clases.OrdenCompra] is being defaulted to: OrdenCompra.
+[EL Config]: metadata: 2014-09-30 23:56:26.923--ServerSession(2095490653)--Thread(Thread[main,5,main])--The table name for entity [class Controlador.Clases.OrdenCompra] is being defaulted to: ORDENCOMPRA.
+[EL Config]: metadata: 2014-09-30 23:56:26.923--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [fecha] is being defaulted to: FECHA.
+[EL Config]: metadata: 2014-09-30 23:56:26.924--ServerSession(2095490653)--Thread(Thread[main,5,main])--The alias name for the entity class [class Controlador.Clases.Producto] is being defaulted to: Producto.
+[EL Config]: metadata: 2014-09-30 23:56:26.925--ServerSession(2095490653)--Thread(Thread[main,5,main])--The table name for entity [class Controlador.Clases.Producto] is being defaulted to: PRODUCTO.
+[EL Config]: metadata: 2014-09-30 23:56:26.926--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [enOrden] is being defaulted to: ENORDEN.
+[EL Config]: metadata: 2014-09-30 23:56:26.927--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [id] is being defaulted to: ID.
+[EL Config]: metadata: 2014-09-30 23:56:26.927--ServerSession(2095490653)--Thread(Thread[main,5,main])--The alias name for the entity class [class Controlador.Clases.Comentario] is being defaulted to: Comentario.
+[EL Config]: metadata: 2014-09-30 23:56:26.927--ServerSession(2095490653)--Thread(Thread[main,5,main])--The table name for entity [class Controlador.Clases.Comentario] is being defaulted to: COMENTARIO.
+[EL Config]: metadata: 2014-09-30 23:56:26.928--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [id] is being defaulted to: ID.
+[EL Config]: metadata: 2014-09-30 23:56:26.928--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [comentario] is being defaulted to: COMENTARIO.
+[EL Config]: metadata: 2014-09-30 23:56:26.929--ServerSession(2095490653)--Thread(Thread[main,5,main])--The alias name for the entity class [class Controlador.Clases.ClienteCompraProducto] is being defaulted to: ClienteCompraProducto.
+[EL Config]: metadata: 2014-09-30 23:56:26.929--ServerSession(2095490653)--Thread(Thread[main,5,main])--The table name for entity [class Controlador.Clases.ClienteCompraProducto] is being defaulted to: CLIENTECOMPRAPRODUCTO.
+[EL Config]: metadata: 2014-09-30 23:56:26.93--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [precio] is being defaulted to: PRECIO.
+[EL Config]: metadata: 2014-09-30 23:56:26.93--ServerSession(2095490653)--Thread(Thread[main,5,main])--The alias name for the entity class [class Controlador.Clases.EspecificacionProducto] is being defaulted to: EspecificacionProducto.
+[EL Config]: metadata: 2014-09-30 23:56:26.931--ServerSession(2095490653)--Thread(Thread[main,5,main])--The table name for entity [class Controlador.Clases.EspecificacionProducto] is being defaulted to: ESPECIFICACIONPRODUCTO.
+[EL Config]: metadata: 2014-09-30 23:56:26.931--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [descripcion] is being defaulted to: DESCRIPCION.
+[EL Config]: metadata: 2014-09-30 23:56:26.932--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [precio] is being defaulted to: PRECIO.
+[EL Config]: metadata: 2014-09-30 23:56:26.932--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [nombre] is being defaulted to: NOMBRE.
+[EL Config]: metadata: 2014-09-30 23:56:26.933--ServerSession(2095490653)--Thread(Thread[main,5,main])--The alias name for the entity class [class Controlador.Clases.Categoria] is being defaulted to: Categoria.
+[EL Config]: metadata: 2014-09-30 23:56:26.933--ServerSession(2095490653)--Thread(Thread[main,5,main])--The table name for entity [class Controlador.Clases.Categoria] is being defaulted to: CATEGORIA.
+[EL Config]: metadata: 2014-09-30 23:56:26.934--ServerSession(2095490653)--Thread(Thread[main,5,main])--The column name for element [nombre] is being defaulted to: NOMBRE.
+[EL Config]: metadata: 2014-09-30 23:56:26.95--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the mapping element [field cliente] is being defaulted to: NICKNAME.
+[EL Config]: metadata: 2014-09-30 23:56:26.951--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the mapping element [field Orden] is being defaulted to: NRO_ORDEN.
+[EL Config]: metadata: 2014-09-30 23:56:26.952--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the mapping element [field producto] is being defaulted to: ID.
+[EL Warning]: metadata: 2014-09-30 23:56:26.952--ServerSession(2095490653)--Thread(Thread[main,5,main])--You have specified multiple ids for the entity class [Controlador.Clases.ClienteCompraProducto] without specifying an @IdClass. By doing this you may lose the ability to find by identity, distributed cache support etc. Note: You may however use entity manager find operations by passing a list of primary key fields. Else, you will have to use JPQL queries to read your entities. For other id options see @PrimaryKey.
+[EL Config]: metadata: 2014-09-30 23:56:26.974--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the mapping element [field imagenes] is being defaulted to: NROREFERENCIA.
+[EL Config]: metadata: 2014-09-30 23:56:26.983--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the mapping element [field especificacion] is being defaulted to: NROREFERENCIA.
+[EL Config]: metadata: 2014-09-30 23:56:26.987--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the mapping element [field especificacionProducto] is being defaulted to: NROREFERENCIA.
+[EL Config]: metadata: 2014-09-30 23:56:26.987--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the mapping element [field padre] is being defaulted to: ID.
+[EL Config]: metadata: 2014-09-30 23:56:26.988--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the mapping element [field cliente] is being defaulted to: NICKNAME.
+[EL Config]: metadata: 2014-09-30 23:56:26.988--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the mapping element [field especificacionProducto] is being defaulted to: NROREFERENCIA.
+[EL Config]: metadata: 2014-09-30 23:56:26.993--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the mapping element [field proveedor] is being defaulted to: NICKNAME.
+[EL Config]: metadata: 2014-09-30 23:56:26.994--ServerSession(2095490653)--Thread(Thread[main,5,main])--The primary key column name for the mapping element [field padre] is being defaulted to: NOMBRE.
+[EL Info]: 2014-09-30 23:56:27.646--ServerSession(2095490653)--Thread(Thread[main,5,main])--EclipseLink, version: Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd
+[EL Fine]: connection: 2014-09-30 23:56:27.733--Thread(Thread[main,5,main])--Detected database platform: org.eclipse.persistence.platform.database.H2Platform
+[EL Config]: connection: 2014-09-30 23:56:27.751--ServerSession(2095490653)--Connection(1539477312)--Thread(Thread[main,5,main])--connecting(DatabaseLogin(
+	platform=>H2Platform
+	user name=> "admin"
+	datasource URL=> "jdbc:h2:tcp://localhost/~/prog1"
+))
+[EL Config]: connection: 2014-09-30 23:56:27.757--ServerSession(2095490653)--Connection(581364120)--Thread(Thread[main,5,main])--Connected: jdbc:h2:tcp://localhost/~/prog1
+	User: ADMIN
+	Database: H2  Version: 1.4.181 (2014-08-06)
+	Driver: H2 JDBC Driver  Version: 1.4.181 (2014-08-06)
+[EL Info]: connection: 2014-09-30 23:56:27.864--ServerSession(2095490653)--Thread(Thread[main,5,main])--file:/home/mauro/servidor/build/classes/_ProgramacionAppPU login successful
+[EL Fine]: sql: 2014-09-30 23:56:27.936--ClientSession(641011362)--Connection(581364120)--Thread(Thread[main,5,main])--INSERT INTO USUARIO (NICKNAME, APELLIDO, EMAIL, FECHANACIMIENTO, IMAGEN, NOMBRE, PASSWORD, DTYPE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [dduck, Duck, dduck@gmail.com, 1960-12-01, null, Daffy, pasaguord, Cliente]
+[EL Fine]: sql: 2014-09-30 23:56:27.959--ClientSession(641011362)--Thread(Thread[main,5,main])--SELECT 1
+[EL Warning]: 2014-09-30 23:56:27.973--UnitOfWork(751259764)--Thread(Thread[main,5,main])--Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: org.h2.jdbc.JdbcSQLException: Columna "PASSWORD" no encontrada
+Column "PASSWORD" not found; SQL statement:
+INSERT INTO USUARIO (NICKNAME, APELLIDO, EMAIL, FECHANACIMIENTO, IMAGEN, NOMBRE, PASSWORD, DTYPE) VALUES (?, ?, ?, ?, ?, ?, ?, ?) [42122-181]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.table.Table.getColumn(Table.java:636)
+	at org.h2.command.Parser.parseColumn(Parser.java:850)
+	at org.h2.command.Parser.parseColumnList(Parser.java:834)
+	at org.h2.command.Parser.parseInsert(Parser.java:1034)
+	at org.h2.command.Parser.parsePrepared(Parser.java:401)
+	at org.h2.command.Parser.parse(Parser.java:305)
+	at org.h2.command.Parser.parse(Parser.java:277)
+	at org.h2.command.Parser.prepareCommand(Parser.java:242)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.server.TcpServerThread.process(TcpServerThread.java:264)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:159)
+	at java.lang.Thread.run(Thread.java:745)
+
+Error Code: 42122
+Call: INSERT INTO USUARIO (NICKNAME, APELLIDO, EMAIL, FECHANACIMIENTO, IMAGEN, NOMBRE, PASSWORD, DTYPE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [dduck, Duck, dduck@gmail.com, 1960-12-01, null, Daffy, pasaguord, Cliente]
+Query: InsertObjectQuery(dduck  --  Daffy  --  Duck -- null)
+[EL Fine]: sql: 2014-09-30 23:56:28.005--ClientSession(2142660176)--Connection(581364120)--Thread(Thread[main,5,main])--INSERT INTO USUARIO (NICKNAME, APELLIDO, EMAIL, FECHANACIMIENTO, IMAGEN, NOMBRE, PASSWORD, DTYPE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [piedra, Picapiedra, ppiedra@gmail.com, 1960-12-01, null, Pedro, pasaguord5, Cliente]
+[EL Fine]: sql: 2014-09-30 23:56:28.007--ClientSession(2142660176)--Thread(Thread[main,5,main])--SELECT 1
+[EL Warning]: 2014-09-30 23:56:28.008--UnitOfWork(446093644)--Thread(Thread[main,5,main])--Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: org.h2.jdbc.JdbcSQLException: Columna "PASSWORD" no encontrada
+Column "PASSWORD" not found; SQL statement:
+INSERT INTO USUARIO (NICKNAME, APELLIDO, EMAIL, FECHANACIMIENTO, IMAGEN, NOMBRE, PASSWORD, DTYPE) VALUES (?, ?, ?, ?, ?, ?, ?, ?) [42122-181]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.table.Table.getColumn(Table.java:636)
+	at org.h2.command.Parser.parseColumn(Parser.java:850)
+	at org.h2.command.Parser.parseColumnList(Parser.java:834)
+	at org.h2.command.Parser.parseInsert(Parser.java:1034)
+	at org.h2.command.Parser.parsePrepared(Parser.java:401)
+	at org.h2.command.Parser.parse(Parser.java:305)
+	at org.h2.command.Parser.parse(Parser.java:277)
+	at org.h2.command.Parser.prepareCommand(Parser.java:242)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.server.TcpServerThread.process(TcpServerThread.java:264)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:159)
+	at java.lang.Thread.run(Thread.java:745)
+
+Error Code: 42122
+Call: INSERT INTO USUARIO (NICKNAME, APELLIDO, EMAIL, FECHANACIMIENTO, IMAGEN, NOMBRE, PASSWORD, DTYPE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [piedra, Picapiedra, ppiedra@gmail.com, 1960-12-01, null, Pedro, pasaguord5, Cliente]
+Query: InsertObjectQuery(piedra  --  Pedro  --  Picapiedra -- null)
+[EL Fine]: sql: 2014-09-30 23:56:28.017--ClientSession(2068450031)--Connection(581364120)--Thread(Thread[main,5,main])--INSERT INTO USUARIO (NICKNAME, APELLIDO, EMAIL, FECHANACIMIENTO, IMAGEN, NOMBRE, PASSWORD, DTYPE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [jotarod, Rodriguez, jotarod@gmail.com, 1960-12-01, null, Juan, pasaguord8, Proveedor]
+[EL Fine]: sql: 2014-09-30 23:56:28.019--ClientSession(2068450031)--Thread(Thread[main,5,main])--SELECT 1
+[EL Warning]: 2014-09-30 23:56:28.02--UnitOfWork(1171178358)--Thread(Thread[main,5,main])--Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: org.h2.jdbc.JdbcSQLException: Columna "PASSWORD" no encontrada
+Column "PASSWORD" not found; SQL statement:
+INSERT INTO USUARIO (NICKNAME, APELLIDO, EMAIL, FECHANACIMIENTO, IMAGEN, NOMBRE, PASSWORD, DTYPE) VALUES (?, ?, ?, ?, ?, ?, ?, ?) [42122-181]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.table.Table.getColumn(Table.java:636)
+	at org.h2.command.Parser.parseColumn(Parser.java:850)
+	at org.h2.command.Parser.parseColumnList(Parser.java:834)
+	at org.h2.command.Parser.parseInsert(Parser.java:1034)
+	at org.h2.command.Parser.parsePrepared(Parser.java:401)
+	at org.h2.command.Parser.parse(Parser.java:305)
+	at org.h2.command.Parser.parse(Parser.java:277)
+	at org.h2.command.Parser.prepareCommand(Parser.java:242)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.server.TcpServerThread.process(TcpServerThread.java:264)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:159)
+	at java.lang.Thread.run(Thread.java:745)
+
+Error Code: 42122
+Call: INSERT INTO USUARIO (NICKNAME, APELLIDO, EMAIL, FECHANACIMIENTO, IMAGEN, NOMBRE, PASSWORD, DTYPE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [jotarod, Rodriguez, jotarod@gmail.com, 1960-12-01, null, Juan, pasaguord8, Proveedor]
+Query: InsertObjectQuery(jotarod  --  Juan  --  Rodriguez -- null)

@@ -42,7 +42,7 @@ public class Main {
         controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);
         controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
         controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);
-        System.out.println("ACA "+ManejadorEspProductos.getInstance().buscarEspProductos("IPH"));
+        System.out.println("ACA "+ManejadorEspProductos.getInstance().buscarEspProductos("ipa"));
         //controlarProducto.elegirCategoria("Apple");
         //List<DataEspecificacionProducto> productos = controlarProducto.listarProductosCategoria();
         //controlarProducto.agregarComentario("Dan", "IPH5", 1, "comment");

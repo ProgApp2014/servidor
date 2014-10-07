@@ -77,9 +77,9 @@ public class ManejadorEspProductos {
     }    
     
     public List<EspecificacionProducto> buscarEspProductos(String keyword){
-        Query query = entityManager.createQuery("SELECT e FROM EspecificacionProducto e where e.nombre LIKE :x", EspecificacionProducto.class);
-        query.setParameter("x", '%' + keyword + '%');
-        //las guardo en la colecion
+        Query query = entityManager.createQuery("SELECT DISTINCT e FROM EspecificacionProducto e JOIN e.categorias c where upper(e.nombre) LIKE :x or c.nombre LIKE :y", EspecificacionProducto.class);
+        query.setParameter("x", '%' + keyword.toUpperCase() + '%');
+        query.setParameter("y", '%' + keyword.toUpperCase() + '%');
         List<EspecificacionProducto> listEspProd = query.getResultList();
         
         return listEspProd;

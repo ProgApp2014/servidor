@@ -1,6 +1,7 @@
 package Controlador.Clases;
 
 import Controlador.DataTypes.DataCliente;
+import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProveedor;
 import java.util.ArrayList;
@@ -27,4 +28,5 @@ public interface IControladorUsuarios {
     public Boolean login(String nickname, String hashPassword);
     public Boolean esProveedor(String nickname);
     public Boolean esCliente(String nickname);
+    public List<DataEspecificacionProducto> listarProductosProveedor();
 }

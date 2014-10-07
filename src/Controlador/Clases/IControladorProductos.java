@@ -46,5 +46,6 @@ public interface IControladorProductos {
     public void eliminarCategoria(String nombre);
     public void eliminarEspecificacionProducto (String nroRef);
     public void agregarComentario(String nickname, String nroRef, Integer padre, String Comentario);
+    public List<DataEspecificacionProducto> buscarProductos(String keyword);
 }
     

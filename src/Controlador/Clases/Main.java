@@ -42,10 +42,10 @@ public class Main {
         controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);
         controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
         controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);
-
-        controlarProducto.elegirCategoria("Apple");
+        System.out.println("ACA "+ManejadorEspProductos.getInstance().buscarEspProductos("IPH"));
+        //controlarProducto.elegirCategoria("Apple");
         //List<DataEspecificacionProducto> productos = controlarProducto.listarProductosCategoria();
-        controlarProducto.agregarComentario("Dan", "IPH5", 1, "comment");
+        //controlarProducto.agregarComentario("Dan", "IPH5", 1, "comment");
         /* Calendar cal1 = Calendar.getInstance();
         cal1.set(1960, 11, 1);
         Proveedor p1 = new Proveedor("Tim1", Utils.md5("password"), "Tim", "Cook", "tim.cook@apple.com", cal1, "Apple", " http://www.apple.com");

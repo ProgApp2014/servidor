@@ -2,6 +2,7 @@ package Controlador.DataTypes;
 
 import Controlador.Clases.ClienteCompraProducto;
 import Controlador.Clases.OrdenCompra;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -59,6 +60,12 @@ public class DataOrdenCompra {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+    
+    public String getFechaFormateada(){
+        SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+        String formatted = format1.format(fecha.getTime());
+        return formatted;
     }
     
     public List<DataClienteCompraProducto> getClienteCompraProducto() {

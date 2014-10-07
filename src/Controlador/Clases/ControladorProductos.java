@@ -302,4 +302,10 @@ public class ControladorProductos implements IControladorProductos{
     public void eliminarEspecificacionProducto(String nroRef){
         ManejadorEspProductos.getInstance().eliminarEspecificacionProducto(nroRef);
     }
+    
+    @Override
+    public List<DataEspecificacionProducto> buscarProductos(String keyword){
+        List<EspecificacionProducto> resultadosBusqueda = ManejadorEspProductos.getInstance().buscarEspProductos(keyword);
+        return null;
+    }
 }

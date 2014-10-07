@@ -1,9 +1,11 @@
 package Controlador.Clases;
 
 import Controlador.DataTypes.DataCliente;
+import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProveedor;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
@@ -99,7 +101,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
     public List<DataOrdenCompra> listarOrdenesCliente() {
         List<DataOrdenCompra> dataOrdenCompra = new ArrayList<>();
         ManejadorOrdenes.getInstance().obtenerOrdenes().entrySet().stream().map((orden) -> orden.getValue()).forEach((valor) -> {
-            if (valor.getCliente() == clienteElegido) {
+            if (valor.getCliente().getNickname().equals(clienteElegido.getNickname())) {
                 dataOrdenCompra.add(new DataOrdenCompra(valor));
             }
         });
@@ -152,6 +154,19 @@ public class ControladorUsuarios implements IControladorUsuarios {
             }
         }
         return false;
+    }
+    
+    @Override
+    public List<DataEspecificacionProducto> listarProductosProveedor(){
+        List<DataEspecificacionProducto> result = new ArrayList();
+        Iterator it = ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().values().iterator();
+        while(it.hasNext()){
+            EspecificacionProducto current = (EspecificacionProducto)it.next();
+            if(current.getProveedor().getNickname().equals(proveedorElegido.getNickname())){
+                result.add(new DataEspecificacionProducto(current,false));
+            }
+        }
+        return result;
     }
     
     @Override

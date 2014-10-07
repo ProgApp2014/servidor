@@ -1,6 +1,7 @@
 package Controlador.DataTypes;
 
 import Controlador.Clases.Usuario;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class DataUsuario {
@@ -73,6 +74,12 @@ public class DataUsuario {
 
     public void setFechaNacimiento(Calendar fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+    
+    public String getFechaNacFormateada(){
+        SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+        String formatted = format1.format(fechaNacimiento.getTime());
+        return formatted;
     }
 
     public String getImagen() {

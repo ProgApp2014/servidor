@@ -46,9 +46,9 @@ public class ManejadorEspProductos {
         Query query = entityManager.createQuery("SELECT e FROM EspecificacionProducto e", EspecificacionProducto.class);
         
         //las guardo en la colecion
-        List<EspecificacionProducto> listUsuarios = query.getResultList();
+        List<EspecificacionProducto> listEspProd = query.getResultList();
         especificacionProductos.clear();
-        listUsuarios.stream().forEach((esp) -> {
+        listEspProd.stream().forEach((esp) -> {
             especificacionProductos.put(esp.getNroReferencia(), esp);
         });
         return especificacionProductos;
@@ -75,5 +75,14 @@ public class ManejadorEspProductos {
         entityManager.remove(aBorrar);
         entityManager.getTransaction().commit();
     }    
+    
+    public List<EspecificacionProducto> buscarEspProductos(String keyword){
+        Query query = entityManager.createQuery("SELECT e FROM EspecificacionProducto e where e.nombre LIKE :x", EspecificacionProducto.class);
+        query.setParameter("x", '%' + keyword + '%');
+        //las guardo en la colecion
+        List<EspecificacionProducto> listEspProd = query.getResultList();
+        
+        return listEspProd;
+    }
     
 }

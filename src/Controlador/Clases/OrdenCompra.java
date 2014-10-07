@@ -85,10 +85,10 @@ public class OrdenCompra implements Serializable {
     
     public Cliente getCliente(){
         Iterator<ClienteCompraProducto> it = this.getClienteCompraProducto().iterator();
-        /*while(it.hasNext()){
+        while(it.hasNext()){
             ClienteCompraProducto cliProd = it.next();
             return cliProd.getCliente();
-        }*/
+        }
         return null;
     }
     

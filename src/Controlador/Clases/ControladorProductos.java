@@ -305,7 +305,29 @@ public class ControladorProductos implements IControladorProductos{
     
     @Override
     public List<DataEspecificacionProducto> buscarProductos(String keyword){
+        List<DataEspecificacionProducto> result = new ArrayList();
         List<EspecificacionProducto> resultadosBusqueda = ManejadorEspProductos.getInstance().buscarEspProductos(keyword);
-        return null;
+        Iterator it = resultadosBusqueda.iterator();
+        while(it.hasNext()){
+            EspecificacionProducto current = (EspecificacionProducto)it.next();
+            result.add(new DataEspecificacionProducto(current,false));
+        }
+        return result;
+    }
+    
+    @Override
+    public Map<String,List<DataEspecificacionProducto>> buscarProductosSeparados(String keyword){
+        Map<String,List<DataEspecificacionProducto>> result = new HashMap();
+        Map<String,List<EspecificacionProducto>> resultadosBusqueda = ManejadorEspProductos.getInstance().buscarEspProductosSeparados(keyword);
+        resultadosBusqueda.keySet().forEach((tipo) -> {
+            List<DataEspecificacionProducto> aAgregar = new ArrayList();
+            Iterator it = resultadosBusqueda.get(tipo).iterator();
+            while(it.hasNext()){
+                EspecificacionProducto current = (EspecificacionProducto)it.next();
+                aAgregar.add(new DataEspecificacionProducto(current,false));
+            }
+            result.put(tipo,aAgregar);
+        });
+        return result;
     }
 }

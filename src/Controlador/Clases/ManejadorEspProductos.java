@@ -1,7 +1,9 @@
 package Controlador.Clases;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -77,12 +79,32 @@ public class ManejadorEspProductos {
     }    
     
     public List<EspecificacionProducto> buscarEspProductos(String keyword){
-        Query query = entityManager.createQuery("SELECT DISTINCT e FROM EspecificacionProducto e JOIN e.categorias c where upper(e.nombre) LIKE :x or c.nombre LIKE :y", EspecificacionProducto.class);
+        Query query = entityManager.createQuery("SELECT DISTINCT e FROM EspecificacionProducto e JOIN e.categorias c where upper(e.nombre) LIKE :x or upper(c.nombre) LIKE :y", EspecificacionProducto.class);
         query.setParameter("x", '%' + keyword.toUpperCase() + '%');
         query.setParameter("y", '%' + keyword.toUpperCase() + '%');
         List<EspecificacionProducto> listEspProd = query.getResultList();
         
         return listEspProd;
+    }
+    
+    public Map<String,List<EspecificacionProducto>> buscarEspProductosSeparados(String keyword){
+        Map<String,List<EspecificacionProducto>> result = new HashMap();
+        Query query = entityManager.createQuery("SELECT DISTINCT e FROM EspecificacionProducto e where upper(e.nombre) LIKE :x", EspecificacionProducto.class);
+        query.setParameter("x", '%' + keyword.toUpperCase() + '%');
+        List<EspecificacionProducto> listEspProd = query.getResultList();
+        result.put("productos", listEspProd);
+        List<String> idObtenidas = new ArrayList();
+        Iterator it = listEspProd.iterator();
+        while(it.hasNext()){
+            EspecificacionProducto current = (EspecificacionProducto)it.next();
+            idObtenidas.add(current.getNroReferencia());
+        }
+        query = entityManager.createQuery("SELECT DISTINCT e FROM EspecificacionProducto e JOIN e.categorias c where upper(c.nombre) LIKE :y AND e.nroReferencia NOT IN :ids", EspecificacionProducto.class);
+        query.setParameter("y", '%' + keyword.toUpperCase() + '%');
+        query.setParameter("ids", idObtenidas);
+        result.put("categorias", query.getResultList());
+        
+        return result;
     }
     
 }

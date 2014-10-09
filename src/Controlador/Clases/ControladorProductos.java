@@ -335,17 +335,20 @@ public class ControladorProductos implements IControladorProductos{
     @Override
     public Boolean puedeComentar(String nickname, String nroRef){
         Iterator it = ManejadorOrdenes.getInstance().obtenerOrdenes().values().iterator();
+        try{
         while(it.hasNext()){
             OrdenCompra current = (OrdenCompra) it.next();
             if (current.getCliente().getNickname().equals(nickname)) {
                 Iterator it2 = current.getClienteCompraProducto().iterator();
                 while(it2.hasNext()){
-                    ClienteCompraProducto current2 = (ClienteCompraProducto)it.next();
+                    ClienteCompraProducto current2 = (ClienteCompraProducto)it2.next();
                     if(current2.getProducto().getEspecificacionProducto().getNroReferencia().equals(nroRef)){
                         return true;
                     }
                 }
             }
+        }}catch(Exception e){
+        System.out.println("ACAAAAAAAAAA" + e.getMessage());
         }
         return false;
     }

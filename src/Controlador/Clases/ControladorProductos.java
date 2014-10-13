@@ -1,7 +1,9 @@
 package Controlador.Clases;
 
 import Controlador.DataTypes.DataCategoria;
+import Controlador.DataTypes.DataComentario;
 import Controlador.DataTypes.DataEspecificacionProducto;
+import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProducto;
 import Controlador.DataTypes.DataProveedor;
 import java.util.ArrayList;
@@ -219,7 +221,6 @@ public class ControladorProductos implements IControladorProductos{
     @Override
     public void agregarComentario(String nickname, String nroRef, Integer padre, String Comentario){
         EspecificacionProducto aModificar = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);
-        System.out.println("ergwerg "+aModificar);
         List<Comentario> comentarios = aModificar.getComentarios();
         Comentario comentarioAAgregar = new Comentario();
         comentarioAAgregar.setCliente(ManejadorUsuarios.getInstance().getCliente(nickname));
@@ -329,5 +330,34 @@ public class ControladorProductos implements IControladorProductos{
             result.put(tipo,aAgregar);
         });
         return result;
+    }
+    
+    @Override
+    public Boolean puedeComentar(String nickname, String nroRef){
+        Iterator it = ManejadorOrdenes.getInstance().obtenerOrdenes().values().iterator();
+        while(it.hasNext()){
+            OrdenCompra current = (OrdenCompra) it.next();
+            if (current.getCliente().getNickname().equals(nickname)) {
+                Iterator it2 = current.getClienteCompraProducto().iterator();
+                while(it2.hasNext()){
+                    ClienteCompraProducto current2 = (ClienteCompraProducto)it2.next();
+                    if(current2.getProducto().getEspecificacionProducto().getNroReferencia().equals(nroRef)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    @Override
+    public List<DataComentario> listarComentarios(String nroRef){
+        List<DataComentario> dataComentario = new ArrayList<>();
+        EspecificacionProducto espElegida = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);
+        Iterator it = espElegida.getComentarios().iterator();
+        while(it.hasNext()){
+            Comentario current = (Comentario) it.next();
+            dataComentario.add(new DataComentario(current));
+        }
+        return dataComentario;
     }
 }

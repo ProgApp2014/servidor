@@ -126,7 +126,6 @@ public class ControladorOrdenes implements IControladorOrdenes{
     @Override
     public void generarItemOrden(){
         productosElegidos.stream().forEach((productoElegido) -> {
-            
             cliComProds.add(new ClienteCompraProducto(clienteElegido, productoElegido, espProdElegido.getPrecio(), new OrdenCompra()));
         });
         productosElegidos = new ArrayList<>();

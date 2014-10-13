@@ -1,6 +1,7 @@
 package Controlador.Clases;
 
 import Controlador.DataTypes.DataCategoria;
+import Controlador.DataTypes.DataComentario;
 import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataProducto;
 import Controlador.DataTypes.DataProveedor;
@@ -49,5 +50,7 @@ public interface IControladorProductos {
     public void agregarComentario(String nickname, String nroRef, Integer padre, String Comentario);
     public List<DataEspecificacionProducto> buscarProductos(String keyword);
     public Map<String,List<DataEspecificacionProducto>> buscarProductosSeparados(String keyword);
+    public Boolean puedeComentar(String nickname, String nroRef);
+    public List<DataComentario> listarComentarios(String nroRef);
 }
     

@@ -10,7 +10,11 @@ public class DataComentario {
     private String comentario;
     
     public DataComentario(Comentario c) {
-        
+        this.id = c.getId();
+        this.padre = c.getPadre() == null?null:new DataComentario(c.getPadre());
+        this.cliente = new DataCliente(c.getCliente());
+        this.especificacionProducto = new DataEspecificacionProducto(c.getEspecificacionProducto(),false);
+        this.comentario = c.getComentario();
     }
     
     public DataComentario(DataCliente cliente, DataEspecificacionProducto especificacionProducto, String comentario, Integer id, DataComentario padre) {
@@ -21,7 +25,7 @@ public class DataComentario {
         this.comentario = comentario;
     }
 
-    public Integer getid() {
+    public Integer getId() {
         return id;
     }
     
@@ -61,4 +65,7 @@ public class DataComentario {
         this.comentario = comentario;
     }
     
+    public boolean tienePadre() {
+        return this.padre != null;
+    }
 }

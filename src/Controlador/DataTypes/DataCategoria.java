@@ -62,6 +62,6 @@ public class DataCategoria {
 
     public boolean tienePadre() {
         return this.padre != null;
-     }
+    }
     
 }

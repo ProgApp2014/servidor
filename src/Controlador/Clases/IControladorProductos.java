@@ -52,5 +52,6 @@ public interface IControladorProductos {
     public Map<String,List<DataEspecificacionProducto>> buscarProductosSeparados(String keyword);
     public Boolean puedeComentar(String nickname, String nroRef);
     public List<DataComentario> listarComentarios(String nroRef);
+    public List<DataProducto> listarProductosEnEspecificacion();
 }
     

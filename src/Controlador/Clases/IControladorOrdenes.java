@@ -4,6 +4,7 @@ import Controlador.DataTypes.DataCategoria;
 import Controlador.DataTypes.DataCliente;
 import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataOrdenCompra;
+import Controlador.DataTypes.DataProducto;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public interface IControladorOrdenes {
 
     public void removerEspecificacionProducto(String ref);
     public List<DataEspecificacionProducto> listarProductosCategoria();
-
-    public Integer getNextId();
+    public List<DataProducto> listarProductosEnEspecificacion();
+    public Integer getUltimaOrdenGuardada();
     
 }

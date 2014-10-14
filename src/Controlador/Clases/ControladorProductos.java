@@ -127,6 +127,17 @@ public class ControladorProductos implements IControladorProductos{
     }
     
     @Override
+    public List<DataProducto> listarProductosEnEspecificacion(){
+        List<DataProducto> result = new ArrayList<>();
+        Iterator it = espProdElegido.getListaProductos().iterator();
+        while(it.hasNext()){
+            Producto current = (Producto) it.next();
+            result.add(new DataProducto(current));
+        }
+        return result;
+    }
+    
+    @Override
     public DataEspecificacionProducto mostrarDatosProducto(String numRef){
         EspecificacionProducto productoElegido = ManejadorEspProductos.getInstance().getEspecificacionProducto(numRef);
         DataEspecificacionProducto dataProducto = new DataEspecificacionProducto(productoElegido,true);

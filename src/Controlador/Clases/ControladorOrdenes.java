@@ -5,6 +5,7 @@ import Controlador.DataTypes.DataCliente;
 import Controlador.DataTypes.DataClienteCompraProducto;
 import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataOrdenCompra;
+import Controlador.DataTypes.DataProducto;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +21,8 @@ public class ControladorOrdenes implements IControladorOrdenes{
     private List<ClienteCompraProducto> cliComProds = new ArrayList<>();
 //    private OrdenCompra nuevaOrden;
     private OrdenCompra ordenElegida;
+    private Integer ultimaOrdenGuardada;
+    
     
     @Override
     public Integer getId(){
@@ -29,6 +32,11 @@ public class ControladorOrdenes implements IControladorOrdenes{
     @Override
     public void setId(Integer id){
         this.id = id;
+    }
+    
+    @Override
+    public Integer getUltimaOrdenGuardada(){
+        return this.ultimaOrdenGuardada;
     }
     
     @Override
@@ -76,6 +84,17 @@ public class ControladorOrdenes implements IControladorOrdenes{
     }
     
     @Override
+    public List<DataProducto> listarProductosEnEspecificacion(){
+        List<DataProducto> result = new ArrayList<>();
+        Iterator it = espProdElegido.getListaProductos().iterator();
+        while(it.hasNext()){
+            Producto current = (Producto) it.next();
+            result.add(new DataProducto(current));
+        }
+        return result;
+    }
+    
+    @Override
     public void removerEspecificacionProducto(String nroRef){
             espProdElegido = null;
     }
@@ -98,7 +117,13 @@ public class ControladorOrdenes implements IControladorOrdenes{
     
     @Override
     public void elegirProducto(Integer id){
-        productosElegidos.add(espProdElegido.getListaProductos().get(id));
+        Iterator it = espProdElegido.getListaProductos().iterator();
+        while(it.hasNext()){
+            Producto current = (Producto) it.next();
+            if(current.getId() == id)
+                productosElegidos.add(current);
+        }     
+        
     }
     @Override
     public void elegirCantidadProducto(Integer cantidad){
@@ -153,6 +178,7 @@ public class ControladorOrdenes implements IControladorOrdenes{
         orden.setPrecioTotal(tempSumTotal);
         orden.setClienteCompraProducto(cliComProd);
         ManejadorOrdenes.getInstance().agregarOrden(orden);
+        ultimaOrdenGuardada = orden.getNroOrden();
         cliComProds = new ArrayList<>();
     }
     
@@ -160,10 +186,6 @@ public class ControladorOrdenes implements IControladorOrdenes{
 //    public void imprimirDatosOrden(){
 //        
 //    }
-    @Override
-    public Integer getNextId(){
-        return ManejadorOrdenes.getInstance().obtenerOrdenes().keySet().size();
-    }
     @Override
     public List<DataOrdenCompra> listarOrdenes(){
         List<DataOrdenCompra> dataOrdenCompra = new ArrayList<>();
@@ -186,7 +208,6 @@ public class ControladorOrdenes implements IControladorOrdenes{
     @Override
     public void borrarOrdenCompra(){
         ManejadorOrdenes.getInstance().eliminarOrden(ordenElegida.getNroOrden());
-        System.out.println("Borrar orden: " + ordenElegida);
     }
     
     @Override

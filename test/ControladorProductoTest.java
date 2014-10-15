@@ -14,17 +14,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import static java.util.Objects.isNull;
-import static org.junit.Assert.*;
-import org.junit.Test;
+import junit.framework.TestCase;
 
 /**
  *
  * @author mauro
  */
-public class TestControladorProducto {
+public class ControladorProductoTest extends TestCase{
 
-    @Test
-    public void AltaDeCategoriaTest() {
+    public void testAltaDeCategoria() {
         Integer idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
         IControladorProductos controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
 
@@ -59,8 +57,7 @@ public class TestControladorProducto {
 
     }
 
-    @Test
-    public void TestRegistrarProducto() {
+    public void testRegistrarProducto() {
 
         Integer idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
         IControladorProductos controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
@@ -115,8 +112,7 @@ public class TestControladorProducto {
 
     }
 
-      @Test
-      public void TestVerInformaciondeProducto() {
+      public void testVerInformaciondeProducto() {
 
         Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
         IControladorUsuarios controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);
@@ -172,8 +168,7 @@ public class TestControladorProducto {
         controlarUsuario.eliminarUsuario("gclaud");
       }
 
-      @Test
-      public void TestModificarProducto() {
+      public void testModificarProducto() {
           
         Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
         IControladorUsuarios controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);
@@ -234,8 +229,7 @@ public class TestControladorProducto {
         
     }
 //    
-//    @Test  
-//    public void TestModificarProducto() {
+//    public void testModificarProducto() {
 //
 //        Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
 //        IControladorUsuarios controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);

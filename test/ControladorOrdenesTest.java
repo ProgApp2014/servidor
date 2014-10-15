@@ -17,13 +17,11 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import static java.util.Objects.isNull;
-import static org.junit.Assert.*;
-import org.junit.Test;
+import junit.framework.TestCase;
 
-public class TestControladorOrdenes {
+public class ControladorOrdenesTest extends TestCase{
     
-    @Test
-    public void GenerarOrdenTest() {
+    public void testGenerarOrdenTest() {
         Integer idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
         IControladorOrdenes controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);
         Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
@@ -91,8 +89,7 @@ public class TestControladorOrdenes {
         
      }
     
-    @Test
-    public void CancelarOrdenTest () {
+    public void testCancelarOrden () {
         Integer idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
         IControladorOrdenes controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);
         Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
@@ -153,8 +150,7 @@ public class TestControladorOrdenes {
         controlarUsuario.eliminarUsuario("jrod");
     }
     
-    @Test
-    public void VerInformacionOrdenTest () {
+    public void testVerInformacionOrden () {
         Integer idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
         IControladorOrdenes controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);
         Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();

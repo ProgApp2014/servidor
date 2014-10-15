@@ -4,29 +4,25 @@
  * and open the template in the editor.
  */
 
-import Controlador.Clases.Cliente;
 import Controlador.Clases.Fabrica;
 import Controlador.Clases.IControladorUsuarios;
 import Controlador.Clases.ManejadorUsuarios;
-import Controlador.Clases.Proveedor;
 import Controlador.DataTypes.DataCliente;
 import Controlador.DataTypes.DataProveedor;
 import java.util.Calendar;
-import java.util.Map;
 import static java.util.Objects.isNull;
+import junit.framework.TestCase;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import org.junit.Test;
 
 /**
  *
  * @author mauro
  */
-public class TestControladorUsuarios {
+public class ControladorUsuariosTest extends TestCase{
 
     
-    @Test
-    public void AltadeUsuarioTest () {
+    public void testAltadeUsuario () {
 
         //agrego un usuario cliente
         Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
@@ -98,8 +94,7 @@ public class TestControladorUsuarios {
         controlarUsuario.eliminarUsuario("darwind");
     }  
     
-    @Test
-    public void TestVerInformacionCliente () {
+    public void testVerInformacionCliente () {
     
         //cargar clientes
         Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
@@ -129,8 +124,7 @@ public class TestControladorUsuarios {
                 
     }
     
-    @Test
-    public void TestVerInformacionProveedor () {
+    public void testVerInformacionProveedor () {
     
         //cargar clientes
         Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();

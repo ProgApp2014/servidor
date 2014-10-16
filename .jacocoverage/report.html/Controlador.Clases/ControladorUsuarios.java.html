@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ControladorUsuarios.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProgServer&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador.Clases</a> &gt; <span class="el_source">ControladorUsuarios.java</span></div><h1>ControladorUsuarios.java</h1><pre class="source lang-java linenums">package Controlador.Clases;
+
+import Controlador.DataTypes.DataCliente;
+import Controlador.DataTypes.DataEspecificacionProducto;
+import Controlador.DataTypes.DataOrdenCompra;
+import Controlador.DataTypes.DataProveedor;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.regex.Pattern;
+
+<span class="fc" id="L13">public class ControladorUsuarios implements IControladorUsuarios {</span>
+
+    private Integer id;
+    private Usuario nuevoUsuario;
+    private Cliente clienteElegido;
+    private Proveedor proveedorElegido;
+    private String Errors;
+
+    @Override
+    public Integer getId() {
+<span class="fc" id="L23">        return this.id;</span>
+    }
+
+    @Override
+    public void setId(Integer id) {
+<span class="fc" id="L28">        this.id = id;</span>
+<span class="fc" id="L29">    }</span>
+
+//    - prvLst : Set&lt;Proveedor&gt; 
+    @Override
+    public void ingresarDatosCliente(DataCliente cliente) {
+<span class="fc" id="L34">        nuevoUsuario = new Cliente(cliente);</span>
+<span class="fc" id="L35">    }</span>
+
+    @Override
+    public void ingresarDatosProveedor(DataProveedor proveedor) {
+<span class="fc" id="L39">        nuevoUsuario = new Proveedor(proveedor);</span>
+<span class="fc" id="L40">    }</span>
+
+    @Override
+    public Boolean validarDatosUsuario() {
+<span class="fc" id="L44">        Errors = &quot;&quot;;</span>
+       
+<span class="fc" id="L46">        Pattern p = Pattern.compile(&quot;^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$&quot;);</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        Boolean invalidaEmail = !p.matcher(nuevoUsuario.getEmail()).matches();</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        if(invalidaEmail){</span>
+        
+<span class="nc" id="L50">            Errors = &quot;El formato de email es incorrecto&quot;;</span>
+<span class="nc" id="L51">            return true;</span>
+        }      
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        for (Entry&lt;String, Usuario&gt; iter : ManejadorUsuarios.getInstance().obtenerUsuarios().entrySet()) {</span>
+<span class="fc" id="L54">            Boolean validateEmail = iter.getValue().getEmail().equals(nuevoUsuario.getEmail());</span>
+<span class="fc" id="L55">            Boolean valdiateNickname = iter.getValue().getNickname().equals(nuevoUsuario.getNickname());</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">            if (valdiateNickname) {</span>
+<span class="nc" id="L57">                Errors = &quot;El usuario con este Nickname ya existe&quot;;</span>
+            }
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">            if (validateEmail) {</span>
+<span class="nc" id="L60">                String emailMsg = &quot;El usuario con este Email ya existe&quot;;</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">                Errors += (valdiateNickname) ? &quot;,&quot; + emailMsg : emailMsg;</span>
+            }
+<span class="pc bpc" id="L63" title="2 of 4 branches missed.">            if (valdiateNickname || validateEmail) {</span>
+<span class="nc" id="L64">                return true;</span>
+            }
+<span class="fc" id="L66">        }</span>
+<span class="fc" id="L67">        return false;</span>
+    }
+
+    @Override
+    public void guardarUsuario() {
+<span class="fc" id="L72">        ManejadorUsuarios.getInstance().agregarUsuario(nuevoUsuario);</span>
+<span class="fc" id="L73">        System.out.println(&quot;Nuevo Usuario &quot; + nuevoUsuario);</span>
+<span class="fc" id="L74">    }</span>
+
+    //@Override
+//    public void cancelar(){
+//        
+//    }
+    @Override
+    public List&lt;DataCliente&gt; listarClientes() {
+<span class="fc" id="L82">        List&lt;DataCliente&gt; dataCliente = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L83">        ManejadorUsuarios.getInstance().obtenerClientes().entrySet().stream().map((cliente) -&gt; cliente.getValue()).forEach((valor) -&gt; {</span>
+<span class="fc" id="L84">            dataCliente.add(new DataCliente(valor));</span>
+<span class="fc" id="L85">        });</span>
+<span class="fc" id="L86">        return dataCliente;</span>
+    }
+
+    @Override
+    public void elegirCliente(String nickname) {
+<span class="fc" id="L91">        clienteElegido = ManejadorUsuarios.getInstance().getCliente(nickname);</span>
+<span class="fc" id="L92">    }</span>
+
+    @Override
+    public DataCliente mostrarDatosCliente() {
+<span class="nc" id="L96">        DataCliente dataCliente = new DataCliente(clienteElegido);</span>
+<span class="nc" id="L97">        return dataCliente;</span>
+    }
+
+    @Override
+    public List&lt;DataOrdenCompra&gt; listarOrdenesCliente() {
+<span class="nc" id="L102">        List&lt;DataOrdenCompra&gt; dataOrdenCompra = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L103">        ManejadorOrdenes.getInstance().obtenerOrdenes().entrySet().stream().map((orden) -&gt; orden.getValue()).forEach((valor) -&gt; {</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (valor.getCliente().getNickname().equals(clienteElegido.getNickname())) {</span>
+<span class="nc" id="L105">                dataOrdenCompra.add(new DataOrdenCompra(valor));</span>
+            }
+<span class="nc" id="L107">        });</span>
+<span class="nc" id="L108">        return dataOrdenCompra;</span>
+    }
+
+    @Override
+    public List&lt;DataProveedor&gt; listarProveedores() {
+<span class="fc" id="L113">        List&lt;DataProveedor&gt; dataProveedor = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L114">        ManejadorUsuarios.getInstance().obtenerProveedores().entrySet().stream().map((proovedor) -&gt; proovedor.getValue()).forEach((valor) -&gt; {</span>
+<span class="fc" id="L115">            dataProveedor.add(new DataProveedor(valor));</span>
+<span class="fc" id="L116">        });</span>
+<span class="fc" id="L117">        return dataProveedor;</span>
+    }
+
+    @Override
+    public void elegirProveedor(String nickname) {
+<span class="fc" id="L122">        proveedorElegido = ManejadorUsuarios.getInstance().getProveedor(nickname);</span>
+<span class="fc" id="L123">    }</span>
+
+    @Override
+    public DataProveedor mostrarDatosProveedor() {
+<span class="nc" id="L127">        DataProveedor dataProveedor = new DataProveedor(proveedorElegido);</span>
+<span class="nc" id="L128">        return dataProveedor;</span>
+    }
+
+    @Override
+    public String getErrors() {
+<span class="nc" id="L133">        return this.Errors;</span>
+    }
+    
+    @Override
+    public void eliminarUsuario(String nickname){
+<span class="fc" id="L138">        ManejadorUsuarios.getInstance().eliminarUsuario(nickname);</span>
+<span class="fc" id="L139">    }</span>
+    
+    @Override
+    public Boolean login(String nickname, String hashPassword){
+<span class="nc" id="L143">        Cliente usuCliente = ManejadorUsuarios.getInstance().getCliente(nickname);</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        if(usuCliente != null){</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if(usuCliente.getPassword().equals(hashPassword)){</span>
+<span class="nc" id="L146">                return true;</span>
+            }
+        }else{
+<span class="nc" id="L149">            Proveedor usuProveedor = ManejadorUsuarios.getInstance().getProveedor(nickname);</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            if(usuProveedor != null){</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">                if(usuProveedor.getPassword().equals(hashPassword)){</span>
+<span class="nc" id="L152">                    return true;</span>
+                }
+            }
+        }
+<span class="nc" id="L156">        return false;</span>
+    }
+    
+    @Override
+    public List&lt;DataEspecificacionProducto&gt; listarProductosProveedor(){
+<span class="nc" id="L161">        List&lt;DataEspecificacionProducto&gt; result = new ArrayList();</span>
+<span class="nc" id="L162">        Iterator it = ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().values().iterator();</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">        while(it.hasNext()){</span>
+<span class="nc" id="L164">            EspecificacionProducto current = (EspecificacionProducto)it.next();</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            if(current.getProveedor().getNickname().equals(proveedorElegido.getNickname())){</span>
+<span class="nc" id="L166">                result.add(new DataEspecificacionProducto(current,false));</span>
+            }
+<span class="nc" id="L168">        }</span>
+<span class="nc" id="L169">        return result;</span>
+    }
+    
+    @Override
+    public Boolean esProveedor(String nickname){
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">        return ManejadorUsuarios.getInstance().getTipo(nickname) == &quot;Proveedor&quot;;</span>
+    }
+    
+    @Override
+    public Boolean esCliente(String nickname){
+<span class="pc bpc" id="L179" title="1 of 2 branches missed.">        return ManejadorUsuarios.getInstance().getTipo(nickname) == &quot;Cliente&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

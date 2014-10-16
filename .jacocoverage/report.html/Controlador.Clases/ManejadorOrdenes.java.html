@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ManejadorOrdenes.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProgServer&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador.Clases</a> &gt; <span class="el_source">ManejadorOrdenes.java</span></div><h1>ManejadorOrdenes.java</h1><pre class="source lang-java linenums">package Controlador.Clases;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+public class ManejadorOrdenes {
+    
+<span class="fc" id="L15">    private static ManejadorOrdenes instance = null;</span>
+<span class="fc" id="L16">    Map&lt;Integer,OrdenCompra&gt; ordenes = new HashMap();</span>
+    
+<span class="fc" id="L18">    EntityManagerFactory EntityManagerFactory = Persistence.createEntityManagerFactory(&quot;ProgramacionAppPU&quot;);</span>
+<span class="fc" id="L19">    EntityManager entityManager = EntityManagerFactory.createEntityManager();</span>
+    
+    public static ManejadorOrdenes getInstance(){
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if(ManejadorOrdenes.instance == null){</span>
+<span class="fc" id="L23">            ManejadorOrdenes.instance = new ManejadorOrdenes();</span>
+        }
+<span class="fc" id="L25">        return ManejadorOrdenes.instance;</span>
+    }
+    
+<span class="fc" id="L28">    private ManejadorOrdenes(){</span>
+    
+<span class="fc" id="L30">    }</span>
+    
+    public void agregarOrden(OrdenCompra orden){
+<span class="fc" id="L33">        ordenes.put(orden.getNroOrden(), orden);</span>
+        
+        //guardo la orden en bd
+<span class="fc" id="L36">        entityManager.getTransaction().begin();</span>
+<span class="fc" id="L37">        entityManager.persist(orden);</span>
+<span class="fc" id="L38">        entityManager.getTransaction().commit();</span>
+        
+<span class="fc" id="L40">        Iterator it =  orden.getClienteCompraProducto().iterator();</span>
+<span class="fc" id="L41">        entityManager.getTransaction().begin();</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        while(it.hasNext()){</span>
+<span class="fc" id="L43">            ClienteCompraProducto current = (ClienteCompraProducto) it.next();</span>
+<span class="fc" id="L44">            Producto aux = current.getProducto();</span>
+<span class="fc" id="L45">            aux.setEnOrden(true);</span>
+<span class="fc" id="L46">            entityManager.merge(aux);</span>
+<span class="fc" id="L47">        }</span>
+<span class="fc" id="L48">        entityManager.getTransaction().commit();</span>
+<span class="fc" id="L49">    }</span>
+    
+    public Map&lt;Integer,OrdenCompra&gt; obtenerOrdenes(){
+        //obtengo todas las ordenes de la bd
+<span class="fc" id="L53">        Query query = entityManager.createQuery(&quot;SELECT o FROM OrdenCompra o&quot;, OrdenCompra.class);</span>
+        //las guardo en la colecion
+<span class="fc" id="L55">        List&lt;OrdenCompra&gt; listOrdenes = query.getResultList();</span>
+<span class="fc" id="L56">        System.out.println(&quot;underlying entity manager is: &quot;+entityManager.getDelegate().getClass().getSimpleName());</span>
+<span class="fc" id="L57">        ordenes.clear();</span>
+<span class="fc" id="L58">        listOrdenes.stream().forEach((ord) -&gt; {</span>
+<span class="fc" id="L59">            ordenes.put(ord.getNroOrden(), ord);</span>
+<span class="fc" id="L60">        });</span>
+<span class="fc" id="L61">        return ordenes;</span>
+    }
+    
+    public OrdenCompra getOrden(Integer nroOrden){
+<span class="fc" id="L65">        return this.obtenerOrdenes().get(nroOrden);</span>
+    }
+    
+    public void eliminarOrden(Integer nroOrden){
+<span class="fc" id="L69">        OrdenCompra aBorrar = ordenes.get(nroOrden);</span>
+<span class="fc" id="L70">        Iterator it =  aBorrar.getClienteCompraProducto().iterator();</span>
+<span class="fc" id="L71">        entityManager.getTransaction().begin();</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        while(it.hasNext()){</span>
+<span class="fc" id="L73">            ClienteCompraProducto current = (ClienteCompraProducto) it.next();</span>
+<span class="fc" id="L74">            Producto aux = current.getProducto();</span>
+<span class="fc" id="L75">            aux.setEnOrden(false);</span>
+<span class="fc" id="L76">            entityManager.merge(aux);</span>
+<span class="fc" id="L77">        }</span>
+<span class="fc" id="L78">        entityManager.getTransaction().commit();</span>
+<span class="fc" id="L79">        ordenes.remove(nroOrden);</span>
+        
+<span class="fc" id="L81">        entityManager.getTransaction().begin();</span>
+<span class="fc" id="L82">        entityManager.remove(aBorrar);</span>
+<span class="fc" id="L83">        entityManager.getTransaction().commit();</span>
+<span class="fc" id="L84">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

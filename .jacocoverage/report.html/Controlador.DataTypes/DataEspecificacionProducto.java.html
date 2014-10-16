@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DataEspecificacionProducto.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProgServer&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador.DataTypes</a> &gt; <span class="el_source">DataEspecificacionProducto.java</span></div><h1>DataEspecificacionProducto.java</h1><pre class="source lang-java linenums">package Controlador.DataTypes;
+
+import Controlador.Clases.EspecificacionProducto;
+import Controlador.Clases.Producto;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+public class DataEspecificacionProducto {
+    
+    private String nroReferencia;
+    private String nombre;
+    private String descripcion;
+    private Map&lt;String,String&gt; especificacion;
+    private Float precio;
+    private DataProveedor proveedor;
+    private List&lt;String&gt; imagenes;
+    private List&lt;DataCategoria&gt; categorias;
+    private List&lt;DataProducto&gt; productos;
+    private List&lt;DataComentario&gt; comentarios;
+    
+<span class="fc" id="L25">    public DataEspecificacionProducto(EspecificacionProducto ep, boolean conCategorias) {</span>
+<span class="fc" id="L26">        this.nroReferencia = ep.getNroReferencia();</span>
+<span class="fc" id="L27">        this.nombre = ep.getNombre();</span>
+<span class="fc" id="L28">        this.descripcion = ep.getDescripcion();</span>
+<span class="fc" id="L29">        this.especificacion = ep.getEspecificacion();</span>
+<span class="fc" id="L30">        this.precio = ep.getPrecio();</span>
+<span class="fc" id="L31">        this.proveedor = ep.getDataProveedor();</span>
+<span class="fc" id="L32">        this.imagenes = ep.getImagenes();</span>
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        if(conCategorias){</span>
+<span class="nc" id="L34">            this.categorias = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L35">            ep.getCategorias().stream().forEach((valor) -&gt; {</span>
+<span class="nc" id="L36">                this.categorias.add(new DataCategoria(valor, false));</span>
+<span class="nc" id="L37">            });</span>
+<span class="nc" id="L38">            this.productos = new ArrayList();</span>
+<span class="nc" id="L39">            ep.getListaProductos().forEach((producto) -&gt; {</span>
+<span class="nc" id="L40">               productos.add(new DataProducto(producto));</span>
+<span class="nc" id="L41">            });</span>
+<span class="nc" id="L42">            this.comentarios = new ArrayList();</span>
+<span class="nc" id="L43">            ep.getComentarios().forEach((comentario) -&gt; {</span>
+<span class="nc" id="L44">               comentarios.add(new DataComentario(comentario));</span>
+<span class="nc" id="L45">            });</span>
+        }else{
+<span class="fc" id="L47">            this.categorias = new ArrayList&lt;DataCategoria&gt;();</span>
+<span class="fc" id="L48">            this.productos = new ArrayList();</span>
+<span class="fc" id="L49">            this.comentarios = new ArrayList();</span>
+        }
+<span class="fc" id="L51">    }</span>
+    
+<span class="fc" id="L53">    public DataEspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map&lt;String,String&gt; especificacion, Float precio, DataProveedor proveedor, ArrayList&lt;String&gt; imagenes, ArrayList&lt;DataCategoria&gt; categorias,List&lt;DataProducto&gt; productos,List&lt;DataComentario&gt; comentarios) {</span>
+<span class="fc" id="L54">        this.nroReferencia = nroReferencia;</span>
+<span class="fc" id="L55">        this.nombre = nombre;</span>
+<span class="fc" id="L56">        this.descripcion = descripcion;</span>
+<span class="fc" id="L57">        this.especificacion = especificacion;</span>
+<span class="fc" id="L58">        this.precio = precio;</span>
+<span class="fc" id="L59">        this.proveedor = proveedor;</span>
+<span class="fc" id="L60">        this.imagenes = imagenes;</span>
+<span class="fc" id="L61">        this.categorias = categorias;</span>
+<span class="fc" id="L62">        this.productos = productos;</span>
+<span class="fc" id="L63">        this.comentarios = comentarios;</span>
+<span class="fc" id="L64">    }</span>
+
+    public String getNroReferencia() {
+<span class="fc" id="L67">        return nroReferencia;</span>
+    }
+
+    public void setNroReferencia(String nroReferencia) {
+<span class="nc" id="L71">        this.nroReferencia = nroReferencia;</span>
+<span class="nc" id="L72">    }</span>
+
+    public String getNombre() {
+<span class="fc" id="L75">        return nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="nc" id="L79">        this.nombre = nombre;</span>
+<span class="nc" id="L80">    }</span>
+    
+    public String getDescripcion() {
+<span class="fc" id="L83">        return descripcion;</span>
+    }
+
+    public void setDescripcion(String descripcion) {
+<span class="nc" id="L87">        this.descripcion = descripcion;</span>
+<span class="nc" id="L88">    }</span>
+
+    public Map&lt;String,String&gt; getEspecificacion() {
+<span class="fc" id="L91">        return especificacion;</span>
+    }
+
+    public void setEspecificacion(Map&lt;String,String&gt; especificacion) {
+<span class="nc" id="L95">        this.especificacion = especificacion;</span>
+<span class="nc" id="L96">    }</span>
+
+    public Float getPrecio() {
+<span class="fc" id="L99">        return precio;</span>
+    }
+
+    public void setPrecio(Float precio) {
+<span class="nc" id="L103">        this.precio = precio;</span>
+<span class="nc" id="L104">    }</span>
+    
+    public DataProveedor getProveedor() {
+<span class="fc" id="L107">        return proveedor;</span>
+    }
+
+    public void setProveedor(DataProveedor proveedor) {
+<span class="nc" id="L111">        this.proveedor = proveedor;</span>
+<span class="nc" id="L112">    }</span>
+
+    public List&lt;String&gt; getImagenes() {
+<span class="nc" id="L115">        return imagenes;</span>
+    }
+
+    public void setImagenes(List&lt;String&gt; imagenes) {
+<span class="nc" id="L119">        this.imagenes = imagenes;</span>
+<span class="nc" id="L120">    }</span>
+    
+    public List&lt;DataCategoria&gt; getCategorias() {
+<span class="nc" id="L123">        return categorias;</span>
+    }
+
+    public void setCategorias(List&lt;DataCategoria&gt; categorias) {
+<span class="nc" id="L127">        this.categorias = categorias;</span>
+<span class="nc" id="L128">    }</span>
+    
+    public List&lt;DataProducto&gt; getProductos() {
+<span class="fc" id="L131">        return productos;</span>
+    }
+
+    public void setProductos(List&lt;DataProducto&gt; productos) {
+<span class="nc" id="L135">        this.productos = productos;</span>
+<span class="nc" id="L136">    }</span>
+    
+    public List&lt;DataComentario&gt; getComentarios() {
+<span class="fc" id="L139">        return comentarios;</span>
+    }
+
+    public void setComentarios(List&lt;DataComentario&gt; comentarios) {
+<span class="nc" id="L143">        this.comentarios = comentarios;</span>
+<span class="nc" id="L144">    }</span>
+    
+    public int getStock(){
+<span class="nc" id="L147">        Integer result = 0;</span>
+<span class="nc" id="L148">        Iterator&lt;DataProducto&gt; it = (Iterator&lt;DataProducto&gt;)productos.iterator();</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">        while(it.hasNext()) {</span>
+<span class="nc" id="L150">            DataProducto current = it.next();</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if(!current.getEnOrden())</span>
+<span class="nc" id="L152">                result++;</span>
+<span class="nc" id="L153">        }</span>
+<span class="nc" id="L154">        return result;</span>
+            
+    }
+    @Override
+    public String toString() {
+<span class="nc" id="L159">        return this.getNroReferencia() + &quot;  --  &quot; + this.getNombre();</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

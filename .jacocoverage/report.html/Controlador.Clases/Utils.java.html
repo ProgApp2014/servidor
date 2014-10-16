@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Utils.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProgServer&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador.Clases</a> &gt; <span class="el_source">Utils.java</span></div><h1>Utils.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador.Clases;
+
+import Controlador.DataTypes.DataOrdenCompra;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ *
+ * @author rodro
+ */
+<span class="nc" id="L30">public class Utils {</span>
+
+    public static final void generarDatosDePrueba() {
+<span class="nc" id="L33">        Integer idUsuariosControlador = null;</span>
+<span class="nc" id="L34">        Integer idProductosControlador = null;;</span>
+<span class="nc" id="L35">        Integer idOrdenesControlador = null;;</span>
+        IControladorUsuarios controlarUsuario;
+        IControladorProductos controlarProducto;
+        IControladorOrdenes controlarOrden;
+        try {
+<span class="nc" id="L40">            idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();</span>
+<span class="nc" id="L41">            idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();</span>
+<span class="nc" id="L42">            idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();</span>
+<span class="nc" id="L43">        } catch (Exception e) {</span>
+<span class="nc" id="L44">            Writer writer = new StringWriter();</span>
+<span class="nc" id="L45">            PrintWriter printWriter = new PrintWriter(writer);</span>
+<span class="nc" id="L46">            e.printStackTrace(printWriter);</span>
+<span class="nc" id="L47">            String s = writer.toString();</span>
+<span class="nc" id="L48">            System.out.println(s);</span>
+<span class="nc" id="L49">        }</span>
+
+<span class="nc" id="L51">        controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);</span>
+<span class="nc" id="L52">        controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);</span>
+<span class="nc" id="L53">        controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);</span>
+
+<span class="nc" id="L55">        Calendar cal1 = Calendar.getInstance();</span>
+<span class="nc" id="L56">        cal1.set(1960, 11, 1);</span>
+<span class="nc" id="L57">        Proveedor p1 = new Proveedor(&quot;Tim1&quot;, md5(&quot;password&quot;), &quot;Tim&quot;, &quot;Cook&quot;, &quot;tim.cook@apple.com&quot;, cal1, &quot;Apple&quot;, &quot; http://www.apple.com&quot;);</span>
+<span class="nc" id="L58">        Calendar cal2 = Calendar.getInstance();</span>
+<span class="nc" id="L59">        cal2.set(1965, 9, 2);</span>
+<span class="nc" id="L60">        Proveedor p2 = new Proveedor(&quot;Eddy&quot;, md5(&quot;password&quot;), &quot;Eduardo&quot;, &quot;Cue&quot;, &quot;eddy.cue@samsung.com&quot;, cal2, &quot;Samsung&quot;, &quot;http://www.samsung.com&quot;);</span>
+<span class="nc" id="L61">        Calendar cal3 = Calendar.getInstance();</span>
+<span class="nc" id="L62">        cal3.set(1965, 9, 2);</span>
+<span class="nc" id="L63">        Proveedor p3 = new Proveedor(&quot;CraigX&quot;, md5(&quot;password&quot;), &quot;Craig&quot;, &quot;Federighi&quot;, &quot;craig.feder@sony.com&quot;, cal3, &quot;Sony&quot;, &quot;http://us.playstation.com&quot;);</span>
+<span class="nc" id="L64">        Calendar cal4 = Calendar.getInstance();</span>
+<span class="nc" id="L65">        cal4.set(1967, 2, 12);</span>
+<span class="nc" id="L66">        Proveedor p4 = new Proveedor(&quot;Johnny&quot;, md5(&quot;password&quot;), &quot;Jonathan&quot;, &quot;Ive&quot;, &quot;johnny.ive@outlook.com&quot;, cal4, &quot;Microsoft&quot;, &quot;http://www.xbox.com&quot;);</span>
+<span class="nc" id="L67">        Calendar cal5 = Calendar.getInstance();</span>
+<span class="nc" id="L68">        cal5.set(1963, 8, 5);</span>
+<span class="nc" id="L69">        Proveedor p5 = new Proveedor(&quot;OpenPeter&quot;, md5(&quot;password&quot;), &quot;Peter&quot;, &quot;Oppenhemier&quot;, &quot;peter.open@htc.com&quot;, cal5, &quot;HTC&quot;, &quot;http://www.htc.com&quot;);</span>
+
+<span class="nc" id="L71">        Calendar cal6 = Calendar.getInstance();</span>
+<span class="nc" id="L72">        cal6.set(1963, 7, 5);</span>
+<span class="nc" id="L73">        Cliente c1 = new Cliente(&quot;Dan&quot;, md5(&quot;password&quot;), &quot;Daniel&quot;, &quot;Riccio&quot;, &quot;dan.riccio@gmail.com&quot;, cal6);</span>
+<span class="nc" id="L74">        Calendar cal7 = Calendar.getInstance();</span>
+<span class="nc" id="L75">        cal7.set(1961, 10, 7);</span>
+<span class="nc" id="L76">        Cliente c2 = new Cliente(&quot;Phil&quot;, md5(&quot;password&quot;), &quot;Philip&quot;, &quot;Schiller&quot;, &quot;phil.schiller@gmail.com&quot;, cal7);</span>
+<span class="nc" id="L77">        Calendar cal8 = Calendar.getInstance();</span>
+<span class="nc" id="L78">        cal8.set(1959, 12, 3);</span>
+<span class="nc" id="L79">        Cliente c3 = new Cliente(&quot;BruceS&quot;, md5(&quot;password&quot;), &quot;Bruce&quot;, &quot;Sewell&quot;, &quot;bruce.sewell@gmail.com&quot;, cal8);</span>
+<span class="nc" id="L80">        Calendar cal9 = Calendar.getInstance();</span>
+<span class="nc" id="L81">        cal9.set(1964, 11, 27);</span>
+<span class="nc" id="L82">        Cliente c4 = new Cliente(&quot;JeffW&quot;, md5(&quot;password&quot;), &quot;Jeff&quot;, &quot;Wiliams&quot;, &quot;jeff.williams@gmail.com&quot;, cal9);</span>
+
+<span class="nc" id="L84">        p1.setImagen(&quot;/home/tecnoinf/Escritorio/imag/cook.jpg&quot;);</span>
+<span class="nc" id="L85">        p2.setImagen(&quot;/home/tecnoinf/Escritorio/imag/cue.jpg&quot;);</span>
+<span class="nc" id="L86">        p3.setImagen(&quot;/home/tecnoinf/Escritorio/imag/federighi.jpg&quot;);</span>
+<span class="nc" id="L87">        p4.setImagen(&quot;/home/tecnoinf/Escritorio/imag/ive.jpg&quot;);</span>
+<span class="nc" id="L88">        c2.setImagen(&quot;/home/tecnoinf/Escritorio/imag/schiller.jpg&quot;);</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        if (!ManejadorUsuarios.getInstance().obtenerClientes().containsKey(p1.getNickname())) {</span>
+<span class="nc" id="L90">            ManejadorUsuarios.getInstance().agregarUsuario(p1);</span>
+        }
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (!ManejadorUsuarios.getInstance().obtenerClientes().containsKey(p2.getNickname())) {</span>
+<span class="nc" id="L93">            ManejadorUsuarios.getInstance().agregarUsuario(p2);</span>
+        }
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (!ManejadorUsuarios.getInstance().obtenerClientes().containsKey(p3.getNickname())) {</span>
+<span class="nc" id="L96">            ManejadorUsuarios.getInstance().agregarUsuario(p3);</span>
+        }
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        if (!ManejadorUsuarios.getInstance().obtenerClientes().containsKey(p4.getNickname())) {</span>
+<span class="nc" id="L99">            ManejadorUsuarios.getInstance().agregarUsuario(p4);</span>
+        }
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        if (!ManejadorUsuarios.getInstance().obtenerClientes().containsKey(p5.getNickname())) {</span>
+<span class="nc" id="L102">            ManejadorUsuarios.getInstance().agregarUsuario(p5);</span>
+        }
+
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (!ManejadorUsuarios.getInstance().obtenerClientes().containsKey(c1.getNickname())) {</span>
+<span class="nc" id="L106">            ManejadorUsuarios.getInstance().agregarUsuario(c1);</span>
+        }
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        if (!ManejadorUsuarios.getInstance().obtenerClientes().containsKey(c2.getNickname())) {</span>
+<span class="nc" id="L109">            ManejadorUsuarios.getInstance().agregarUsuario(c2);</span>
+        }
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        if (!ManejadorUsuarios.getInstance().obtenerClientes().containsKey(c3.getNickname())) {</span>
+<span class="nc" id="L112">            ManejadorUsuarios.getInstance().agregarUsuario(c3);</span>
+        }
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (!ManejadorUsuarios.getInstance().obtenerClientes().containsKey(c4.getNickname())) {</span>
+<span class="nc" id="L115">            ManejadorUsuarios.getInstance().agregarUsuario(c4);</span>
+        }
+
+        /*Categorias*/
+<span class="nc" id="L119">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Celulares&quot;, null));</span>
+<span class="nc" id="L120">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Sistemas Operativos&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Celulares&quot;)));</span>
+<span class="nc" id="L121">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;iOS&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Sistemas Operativos&quot;)));</span>
+<span class="nc" id="L122">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Android&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Sistemas Operativos&quot;)));</span>
+<span class="nc" id="L123">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Windows Phone&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Sistemas Operativos&quot;)));</span>
+<span class="nc" id="L124">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Symbian&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Sistemas Operativos&quot;)));</span>
+<span class="nc" id="L125">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Blackberry OS&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Sistemas Operativos&quot;)));</span>
+<span class="nc" id="L126">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Equipos&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Celulares&quot;)));</span>
+<span class="nc" id="L127">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;iPhone&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Equipos&quot;)));</span>
+<span class="nc" id="L128">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Nexus&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Equipos&quot;)));</span>
+<span class="nc" id="L129">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Samsung&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Equipos&quot;)));</span>
+<span class="nc" id="L130">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Galaxy S3&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Samsung&quot;)));</span>
+<span class="nc" id="L131">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Galaxy S4&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Samsung&quot;)));</span>
+<span class="nc" id="L132">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Galaxy Ace&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Samsung&quot;)));</span>
+<span class="nc" id="L133">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Blackberry&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Equipos&quot;)));</span>
+<span class="nc" id="L134">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Nokia&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Equipos&quot;)));</span>
+<span class="nc" id="L135">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Accesorios&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Celulares&quot;)));</span>
+<span class="nc" id="L136">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Protectores&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Accesorios&quot;)));</span>
+<span class="nc" id="L137">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Baterías&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Accesorios&quot;)));</span>
+<span class="nc" id="L138">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Apple&quot;, null));</span>
+<span class="nc" id="L139">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Videojuegos&quot;, null));</span>
+<span class="nc" id="L140">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Playstation&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Videojuegos&quot;)));</span>
+<span class="nc" id="L141">        ManejadorCategorias.getInstance().agregarCategoria(new Categoria(&quot;Xbox&quot;, ManejadorCategorias.getInstance().getCategoria(&quot;Videojuegos&quot;)));</span>
+        /**
+         * productos*
+         */
+
+        /////////////////Producto 1
+<span class="nc" id="L147">        Map&lt;String, String&gt; esppr1 = new HashMap();</span>
+<span class="nc" id="L148">        List&lt;Producto&gt; prodpr1 = new ArrayList();</span>
+<span class="nc" id="L149">        List&lt;Categoria&gt; catpr1 = new ArrayList();</span>
+<span class="nc" id="L150">        List&lt;Producto&gt; productospr1 = new ArrayList();</span>
+<span class="nc" id="L151">        catpr1.add(ManejadorCategorias.getInstance().getCategoria(&quot;iPhone&quot;));</span>
+<span class="nc" id="L152">        catpr1.add(ManejadorCategorias.getInstance().getCategoria(&quot;iOS&quot;));</span>
+<span class="nc" id="L153">        catpr1.add(ManejadorCategorias.getInstance().getCategoria(&quot;Apple&quot;));</span>
+<span class="nc" id="L154">        EspecificacionProducto pr1 = new EspecificacionProducto(&quot;IPH5&quot;, &quot;iPhone 5&quot;, &quot;El último celular de Apple&quot;, esppr1, (float) 199.0, p1, catpr1, prodpr1, new ArrayList());</span>
+<span class="nc" id="L155">        controlarProducto.elegirEspProducto(&quot;IPH5&quot;);</span>
+<span class="nc bnc" id="L156" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L157">            productospr1.add(new Producto(i, pr1));</span>
+        }
+<span class="nc" id="L159">        pr1.setListaProductos(productospr1);</span>
+
+        /////////////////Producto 2
+<span class="nc" id="L162">        Map&lt;String, String&gt; esppr2 = new HashMap();</span>
+<span class="nc" id="L163">        List&lt;Producto&gt; prodpr2 = new ArrayList();</span>
+<span class="nc" id="L164">        List&lt;Categoria&gt; catpr2 = new ArrayList();</span>
+<span class="nc" id="L165">        List&lt;Producto&gt; productospr2 = new ArrayList();</span>
+<span class="nc" id="L166">        esppr2.put(&quot;Capacidad&quot;, &quot;16 GB&quot;);</span>
+<span class="nc" id="L167">        esppr2.put(&quot;Peso&quot;, &quot;140 g&quot;);</span>
+<span class="nc" id="L168">        esppr2.put(&quot;Pantalla&quot;, &quot;3.5”&quot;);</span>
+<span class="nc" id="L169">        esppr2.put(&quot;Versiones de Wifi&quot;, &quot;b/g/n&quot;);</span>
+<span class="nc" id="L170">        catpr2.add(ManejadorCategorias.getInstance().getCategoria(&quot;iPhone&quot;));</span>
+<span class="nc" id="L171">        catpr2.add(ManejadorCategorias.getInstance().getCategoria(&quot;iOS&quot;));</span>
+<span class="nc" id="L172">        catpr2.add(ManejadorCategorias.getInstance().getCategoria(&quot;Apple&quot;));</span>
+<span class="nc" id="L173">        EspecificacionProducto pr2 = new EspecificacionProducto(&quot;IPH4&quot;, &quot;iPhone 4S&quot;, &quot;El siguiente celular al iPhone 4&quot;, esppr2, (float) 99.0, p1, catpr2, prodpr2, new ArrayList());</span>
+<span class="nc" id="L174">        controlarProducto.elegirEspProducto(&quot;IPH4&quot;);</span>
+<span class="nc" id="L175">        productospr2 = new ArrayList();</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L177">            productospr2.add(new Producto(i, pr2));</span>
+        }
+<span class="nc" id="L179">        pr2.setListaProductos(productospr2);</span>
+
+        /////////////////Producto 3
+<span class="nc" id="L182">        Map&lt;String, String&gt; esppr3 = new HashMap();</span>
+<span class="nc" id="L183">        List&lt;Producto&gt; prodpr3 = new ArrayList();</span>
+<span class="nc" id="L184">        List&lt;Categoria&gt; catpr3 = new ArrayList();</span>
+<span class="nc" id="L185">        List&lt;Producto&gt; productospr3 = new ArrayList();</span>
+<span class="nc" id="L186">        esppr3.put(&quot;Capacidad&quot;, &quot;8 GB&quot;);</span>
+<span class="nc" id="L187">        esppr3.put(&quot;Peso&quot;, &quot;139 g&quot;);</span>
+<span class="nc" id="L188">        esppr3.put(&quot;Pantalla&quot;, &quot;4.7”&quot;);</span>
+<span class="nc" id="L189">        esppr3.put(&quot;Versión de Android&quot;, &quot;4.3&quot;);</span>
+<span class="nc" id="L190">        catpr3.add(ManejadorCategorias.getInstance().getCategoria(&quot;Android&quot;));</span>
+<span class="nc" id="L191">        catpr3.add(ManejadorCategorias.getInstance().getCategoria(&quot;Nexus&quot;));</span>
+<span class="nc" id="L192">        EspecificacionProducto pr3 = new EspecificacionProducto(&quot;NEX4&quot;, &quot;Nexus4&quot;, &quot;El celular de Google&quot;, esppr3, (float) 299.0, p2, catpr3, prodpr3, new ArrayList());</span>
+<span class="nc" id="L193">        controlarProducto.elegirEspProducto(&quot;NEX4&quot;);</span>
+<span class="nc" id="L194">        productospr3 = new ArrayList();</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L196">            productospr3.add(new Producto(i, pr3));</span>
+        }
+<span class="nc" id="L198">        pr3.setListaProductos(productospr3);</span>
+
+        /////////////////Producto 4
+<span class="nc" id="L201">        Map&lt;String, String&gt; esppr4 = new HashMap();</span>
+<span class="nc" id="L202">        List&lt;Producto&gt; prodpr4 = new ArrayList();</span>
+<span class="nc" id="L203">        List&lt;Categoria&gt; catpr4 = new ArrayList();</span>
+<span class="nc" id="L204">        List&lt;Producto&gt; productospr4 = new ArrayList();</span>
+<span class="nc" id="L205">        esppr4.put(&quot;Dimensiones&quot;, &quot;136.6 x 70.6 x 8.6 mm&quot;);</span>
+<span class="nc" id="L206">        esppr4.put(&quot;Peso&quot;, &quot;133 g&quot;);</span>
+<span class="nc" id="L207">        esppr4.put(&quot;Pantalla&quot;, &quot;4.8”&quot;);</span>
+<span class="nc" id="L208">        esppr4.put(&quot;Versión de Android&quot;, &quot;4.0.4&quot;);</span>
+<span class="nc" id="L209">        catpr4.add(ManejadorCategorias.getInstance().getCategoria(&quot;Android&quot;));</span>
+<span class="nc" id="L210">        catpr4.add(ManejadorCategorias.getInstance().getCategoria(&quot;Galaxy S3&quot;));</span>
+<span class="nc" id="L211">        EspecificacionProducto pr4 = new EspecificacionProducto(&quot;GA3&quot;, &quot;Samsung Galaxy S3&quot;, &quot;La versión S3 de la línea Samsung Galaxy&quot;, esppr4, (float) 415.0, p2, catpr4, prodpr4, new ArrayList());</span>
+<span class="nc" id="L212">        controlarProducto.elegirEspProducto(&quot;GA3&quot;);</span>
+<span class="nc" id="L213">        productospr4 = new ArrayList();</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L215">            productospr4.add(new Producto(i, pr4));</span>
+        }
+<span class="nc" id="L217">        pr4.setListaProductos(productospr4);</span>
+
+        /////////////////Producto 5
+<span class="nc" id="L220">        Map&lt;String, String&gt; esppr5 = new HashMap();</span>
+<span class="nc" id="L221">        List&lt;Producto&gt; prodpr5 = new ArrayList();</span>
+<span class="nc" id="L222">        List&lt;Categoria&gt; catpr5 = new ArrayList();</span>
+<span class="nc" id="L223">        List&lt;Producto&gt; productospr5 = new ArrayList();</span>
+<span class="nc" id="L224">        esppr5.put(&quot;Dimensiones&quot;, &quot;136.6 x 69.8 x 7.9 mm&quot;);</span>
+<span class="nc" id="L225">        esppr5.put(&quot;Peso&quot;, &quot;130 g&quot;);</span>
+<span class="nc" id="L226">        esppr5.put(&quot;Pantalla&quot;, &quot;4.99”&quot;);</span>
+<span class="nc" id="L227">        esppr5.put(&quot;Versión de Android&quot;, &quot;4.2.2&quot;);</span>
+<span class="nc" id="L228">        catpr5.add(ManejadorCategorias.getInstance().getCategoria(&quot;Android&quot;));</span>
+<span class="nc" id="L229">        catpr5.add(ManejadorCategorias.getInstance().getCategoria(&quot;Galaxy S4&quot;));</span>
+<span class="nc" id="L230">        EspecificacionProducto pr5 = new EspecificacionProducto(&quot;GA4&quot;, &quot;Samsung Galaxy S4&quot;, &quot;La versión S4 de la línea Samsung Galaxy&quot;, esppr5, (float) 839.99, p2, catpr5, prodpr5, new ArrayList());</span>
+<span class="nc" id="L231">        controlarProducto.elegirEspProducto(&quot;GA4&quot;);</span>
+<span class="nc" id="L232">        productospr5 = new ArrayList();</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L234">            productospr5.add(new Producto(i, pr5));</span>
+        }
+<span class="nc" id="L236">        pr5.setListaProductos(productospr5);</span>
+
+        /////////////////Producto 6
+<span class="nc" id="L239">        Map&lt;String, String&gt; esppr6 = new HashMap();</span>
+<span class="nc" id="L240">        List&lt;Producto&gt; prodpr6 = new ArrayList();</span>
+<span class="nc" id="L241">        List&lt;Categoria&gt; catpr6 = new ArrayList();</span>
+<span class="nc" id="L242">        List&lt;Producto&gt; productospr6 = new ArrayList();</span>
+<span class="nc" id="L243">        esppr6.put(&quot;Dimensiones&quot;, &quot;112.4 x 59.9 x 11.5 mm&quot;);</span>
+<span class="nc" id="L244">        esppr6.put(&quot;Peso&quot;, &quot;113 g&quot;);</span>
+<span class="nc" id="L245">        esppr6.put(&quot;Pantalla&quot;, &quot;: 3.5”&quot;);</span>
+<span class="nc" id="L246">        esppr6.put(&quot;Versión de Android&quot;, &quot;2.3&quot;);</span>
+<span class="nc" id="L247">        catpr6.add(ManejadorCategorias.getInstance().getCategoria(&quot;Android&quot;));</span>
+<span class="nc" id="L248">        catpr6.add(ManejadorCategorias.getInstance().getCategoria(&quot;Galaxy Ace&quot;));</span>
+<span class="nc" id="L249">        EspecificacionProducto pr6 = new EspecificacionProducto(&quot;AS5&quot;, &quot;Galaxy Ace S5830&quot;, &quot;La versión Ace de la línea Samsung Galaxy&quot;, esppr6, (float) 237.0, p2, catpr6, prodpr6, new ArrayList());</span>
+
+<span class="nc" id="L251">        controlarProducto.elegirEspProducto(&quot;AS5&quot;);</span>
+<span class="nc" id="L252">        productospr6 = new ArrayList();</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L254">            productospr6.add(new Producto(i, pr6));</span>
+        }
+<span class="nc" id="L256">        pr6.setListaProductos(productospr6);</span>
+
+        /////////////////Producto 7
+<span class="nc" id="L259">        Map&lt;String, String&gt; esppr7 = new HashMap();</span>
+<span class="nc" id="L260">        List&lt;Producto&gt; prodpr7 = new ArrayList();</span>
+<span class="nc" id="L261">        List&lt;Categoria&gt; catpr7 = new ArrayList();</span>
+<span class="nc" id="L262">        List&lt;Producto&gt; productospr7 = new ArrayList();</span>
+<span class="nc" id="L263">        esppr7.put(&quot;Dimensiones&quot;, &quot;12.5 cm x 6.7 cm x 2.0 cm&quot;);</span>
+<span class="nc" id="L264">        esppr7.put(&quot;Peso&quot;, &quot;44 g&quot;);</span>
+<span class="nc" id="L265">        catpr7.add(ManejadorCategorias.getInstance().getCategoria(&quot;Protectores&quot;));</span>
+<span class="nc" id="L266">        EspecificacionProducto pr7 = new EspecificacionProducto(&quot;PCG&quot;, &quot;Protector de cuero para Galaxy&quot;, &quot;Asombroso protector de cuero para Samsung Galaxy I900&quot;, esppr7, (float) 3.5, p2, catpr7, prodpr7, new ArrayList());</span>
+<span class="nc" id="L267">        controlarProducto.elegirEspProducto(&quot;PCG&quot;);</span>
+<span class="nc" id="L268">        productospr7 = new ArrayList();</span>
+<span class="nc bnc" id="L269" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L270">            productospr7.add(new Producto(i, pr7));</span>
+        }
+<span class="nc" id="L272">        pr7.setListaProductos(productospr7);</span>
+
+        /////////////////Producto 8
+<span class="nc" id="L275">        Map&lt;String, String&gt; esppr8 = new HashMap();</span>
+<span class="nc" id="L276">        List&lt;Producto&gt; prodpr8 = new ArrayList();</span>
+<span class="nc" id="L277">        List&lt;Categoria&gt; catpr8 = new ArrayList();</span>
+<span class="nc" id="L278">        List&lt;Producto&gt; productospr8 = new ArrayList();</span>
+<span class="nc" id="L279">        esppr8.put(&quot;Dimensiones&quot;, &quot;12.4 cm x 7.0 cm x 1.3 cm&quot;);</span>
+<span class="nc" id="L280">        esppr8.put(&quot;Peso&quot;, &quot;26 g&quot;);</span>
+<span class="nc" id="L281">        catpr8.add(ManejadorCategorias.getInstance().getCategoria(&quot;Protectores&quot;));</span>
+<span class="nc" id="L282">        EspecificacionProducto pr8 = new EspecificacionProducto(&quot;PMH&quot;, &quot;Protector de aluminio para HTC&quot;, &quot;El mejor protector de aluminio para HTC Desire HD&quot;, esppr8, (float) 3.4, p5, catpr8, prodpr8, new ArrayList());</span>
+<span class="nc" id="L283">        controlarProducto.elegirEspProducto(&quot;PMH&quot;);</span>
+<span class="nc" id="L284">        productospr8 = new ArrayList();</span>
+<span class="nc bnc" id="L285" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L286">            productospr8.add(new Producto(i, pr8));</span>
+        }
+<span class="nc" id="L288">        pr8.setListaProductos(productospr8);</span>
+
+        /////////////////Producto 9
+<span class="nc" id="L291">        Map&lt;String, String&gt; esppr9 = new HashMap();</span>
+<span class="nc" id="L292">        List&lt;Producto&gt; prodpr9 = new ArrayList();</span>
+<span class="nc" id="L293">        List&lt;Categoria&gt; catpr9 = new ArrayList();</span>
+<span class="nc" id="L294">        List&lt;Producto&gt; productospr9 = new ArrayList();</span>
+<span class="nc" id="L295">        esppr9.put(&quot;Capacidad&quot;, &quot;16 GB&quot;);</span>
+<span class="nc" id="L296">        esppr9.put(&quot;Peso&quot;, &quot;652 g&quot;);</span>
+<span class="nc" id="L297">        esppr9.put(&quot;Pantalla&quot;, &quot;9.7”&quot;);</span>
+<span class="nc" id="L298">        esppr9.put(&quot;Procesador&quot;, &quot;A6X&quot;);</span>
+<span class="nc" id="L299">        catpr9.add(ManejadorCategorias.getInstance().getCategoria(&quot;Apple&quot;));</span>
+<span class="nc" id="L300">        catpr9.add(ManejadorCategorias.getInstance().getCategoria(&quot;iOS&quot;));</span>
+<span class="nc" id="L301">        EspecificacionProducto pr9 = new EspecificacionProducto(&quot;IRD&quot;, &quot;iPad Retina Display&quot;, &quot;La última tableta de Apple con pantalla Retina&quot;, esppr9, (float) 499.0, p1, catpr9, prodpr9, new ArrayList());</span>
+<span class="nc" id="L302">        controlarProducto.elegirEspProducto(&quot;IRD&quot;);</span>
+<span class="nc" id="L303">        productospr9 = new ArrayList();</span>
+<span class="nc bnc" id="L304" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L305">            productospr9.add(new Producto(i, pr9));</span>
+        }
+<span class="nc" id="L307">        pr9.setListaProductos(productospr9);</span>
+
+        /////////////////Producto 10
+<span class="nc" id="L310">        Map&lt;String, String&gt; esppr10 = new HashMap();</span>
+<span class="nc" id="L311">        List&lt;Producto&gt; prodpr10 = new ArrayList();</span>
+<span class="nc" id="L312">        List&lt;Categoria&gt; catpr10 = new ArrayList();</span>
+<span class="nc" id="L313">        List&lt;Producto&gt; productospr10 = new ArrayList();</span>
+<span class="nc" id="L314">        esppr10.put(&quot;Capacidad&quot;, &quot;16 GB&quot;);</span>
+<span class="nc" id="L315">        esppr10.put(&quot;Peso&quot;, &quot;308 g&quot;);</span>
+<span class="nc" id="L316">        esppr10.put(&quot;Pantalla&quot;, &quot;7.9”&quot;);</span>
+<span class="nc" id="L317">        esppr10.put(&quot;Procesador&quot;, &quot;A5&quot;);</span>
+<span class="nc" id="L318">        catpr10.add(ManejadorCategorias.getInstance().getCategoria(&quot;Apple&quot;));</span>
+<span class="nc" id="L319">        catpr10.add(ManejadorCategorias.getInstance().getCategoria(&quot;iOS&quot;));</span>
+<span class="nc" id="L320">        EspecificacionProducto pr10 = new EspecificacionProducto(&quot;IM&quot;, &quot;iPad Mini&quot;, &quot;La primera tableta chica de Apple&quot;, esppr10, (float) 329.0, p1, catpr10, prodpr10, new ArrayList());</span>
+<span class="nc" id="L321">        controlarProducto.elegirEspProducto(&quot;IM&quot;);</span>
+<span class="nc" id="L322">        productospr10 = new ArrayList();</span>
+<span class="nc bnc" id="L323" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L324">            productospr10.add(new Producto(i, pr10));</span>
+        }
+<span class="nc" id="L326">        pr10.setListaProductos(productospr10);</span>
+
+        /////////////////Producto 11
+<span class="nc" id="L329">        Map&lt;String, String&gt; esppr11 = new HashMap();</span>
+<span class="nc" id="L330">        List&lt;Producto&gt; prodpr11 = new ArrayList();</span>
+<span class="nc" id="L331">        List&lt;Categoria&gt; catpr11 = new ArrayList();</span>
+<span class="nc" id="L332">        List&lt;Producto&gt; productospr11 = new ArrayList();</span>
+<span class="nc" id="L333">        esppr11.put(&quot;Dimensiones&quot;, &quot;7.5 cm x 4.2 cm x 1.8 cm&quot;);</span>
+<span class="nc" id="L334">        esppr11.put(&quot;Peso&quot;, &quot;111 g&quot;);</span>
+<span class="nc" id="L335">        catpr11.add(ManejadorCategorias.getInstance().getCategoria(&quot;Xbox&quot;));</span>
+<span class="nc" id="L336">        EspecificacionProducto pr11 = new EspecificacionProducto(&quot;RIX&quot;, &quot;Receptor inalámbrico para Xbox&quot;, &quot;Receptor inalámbrico de color negro para controles de Xbox 360&quot;, esppr11, (float) 10.99, p4, catpr11, prodpr11, new ArrayList());</span>
+<span class="nc" id="L337">        controlarProducto.elegirEspProducto(&quot;RIX&quot;);</span>
+<span class="nc" id="L338">        productospr11 = new ArrayList();</span>
+<span class="nc bnc" id="L339" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L340">            productospr11.add(new Producto(i, pr11));</span>
+        }
+<span class="nc" id="L342">        pr11.setListaProductos(productospr11);</span>
+
+        /////////////////Producto 12
+<span class="nc" id="L345">        Map&lt;String, String&gt; esppr12 = new HashMap();</span>
+<span class="nc" id="L346">        List&lt;Producto&gt; prodpr12 = new ArrayList();</span>
+<span class="nc" id="L347">        List&lt;Categoria&gt; catpr12 = new ArrayList();</span>
+<span class="nc" id="L348">        List&lt;Producto&gt; productospr12 = new ArrayList();</span>
+<span class="nc" id="L349">        esppr12.put(&quot;Garantía&quot;, &quot;3 meses&quot;);</span>
+<span class="nc" id="L350">        esppr12.put(&quot;Dimensiones&quot;, &quot;5.91 in x 4.33 in x 1.77 in&quot;);</span>
+<span class="nc" id="L351">        esppr12.put(&quot;Peso&quot;, &quot;7.83 oz&quot;);</span>
+<span class="nc" id="L352">        catpr12.add(ManejadorCategorias.getInstance().getCategoria(&quot;Xbox&quot;));</span>
+<span class="nc" id="L353">        EspecificacionProducto pr12 = new EspecificacionProducto(&quot;CIX&quot;, &quot;Control inalámbrico para Xbox&quot;, &quot;Control inalámbrico de 2.4 GHz para Xbox 360 &quot;, esppr12, (float) 27.27, p4, catpr12, prodpr12, new ArrayList());</span>
+<span class="nc" id="L354">        controlarProducto.elegirEspProducto(&quot;CIX&quot;);</span>
+<span class="nc" id="L355">        productospr12 = new ArrayList();</span>
+<span class="nc bnc" id="L356" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L357">            productospr12.add(new Producto(i, pr12));</span>
+        }
+<span class="nc" id="L359">        pr12.setListaProductos(productospr12);</span>
+
+        /////////////////Producto 13
+<span class="nc" id="L362">        Map&lt;String, String&gt; esppr13 = new HashMap();</span>
+<span class="nc" id="L363">        List&lt;Producto&gt; prodpr13 = new ArrayList();</span>
+<span class="nc" id="L364">        List&lt;Categoria&gt; catpr13 = new ArrayList();</span>
+<span class="nc" id="L365">        List&lt;Producto&gt; productospr13 = new ArrayList();</span>
+<span class="nc" id="L366">        esppr13.put(&quot;Dimensiones&quot;, &quot;0 in x 0 in x 0 in&quot;);</span>
+<span class="nc" id="L367">        esppr13.put(&quot;Peso&quot;, &quot;7.83 oz&quot;);</span>
+<span class="nc" id="L368">        catpr13.add(ManejadorCategorias.getInstance().getCategoria(&quot;Playstation&quot;));</span>
+<span class="nc" id="L369">        EspecificacionProducto pr13 = new EspecificacionProducto(&quot;CHP&quot;, &quot;Cable HDMI para PS3&quot;, &quot;Es un cable HDMI para PS3&quot;, esppr13, (float) 7.99, p3, catpr13, prodpr13, new ArrayList());</span>
+<span class="nc" id="L370">        controlarProducto.elegirEspProducto(&quot;CHP&quot;);</span>
+<span class="nc" id="L371">        productospr13 = new ArrayList();</span>
+<span class="nc bnc" id="L372" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L373">            productospr13.add(new Producto(i, pr13));</span>
+        }
+<span class="nc" id="L375">        pr13.setListaProductos(productospr13);</span>
+
+        /////////////////Producto 14
+<span class="nc" id="L378">        Map&lt;String, String&gt; esppr14 = new HashMap();</span>
+<span class="nc" id="L379">        List&lt;Producto&gt; prodpr14 = new ArrayList();</span>
+<span class="nc" id="L380">        List&lt;Categoria&gt; catpr14 = new ArrayList();</span>
+<span class="nc" id="L381">        List&lt;Producto&gt; productospr14 = new ArrayList();</span>
+<span class="nc" id="L382">        esppr14.put(&quot;Dimensiones&quot;, &quot;16.0 cm x 9.5 cm x 5.0 cm&quot;);</span>
+<span class="nc" id="L383">        esppr14.put(&quot;Peso&quot;, &quot;184 g&quot;);</span>
+<span class="nc" id="L384">        catpr14.add(ManejadorCategorias.getInstance().getCategoria(&quot;Playstation&quot;));</span>
+<span class="nc" id="L385">        EspecificacionProducto pr14 = new EspecificacionProducto(&quot;CP3&quot;, &quot;Control para PS3&quot;, &quot;Control inalámbrico Dualshock 3 de color azul para Playstation 3&quot;, esppr14, (float) 30.8, p3, catpr14, prodpr14, new ArrayList());</span>
+<span class="nc" id="L386">        controlarProducto.elegirEspProducto(&quot;CP3&quot;);</span>
+<span class="nc" id="L387">        productospr14 = new ArrayList();</span>
+<span class="nc bnc" id="L388" title="All 2 branches missed.">        for (Integer i = 0; i &lt; 10; i++) {</span>
+<span class="nc" id="L389">            productospr14.add(new Producto(i, pr14));</span>
+        }
+<span class="nc" id="L391">        pr14.setListaProductos(productospr14);</span>
+
+<span class="nc bnc" id="L393" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr1.getNroReferencia())) {</span>
+<span class="nc" id="L394">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr1);</span>
+        }
+<span class="nc bnc" id="L396" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr2.getNroReferencia())) {</span>
+<span class="nc" id="L397">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr2);</span>
+        }
+<span class="nc bnc" id="L399" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr3.getNroReferencia())) {</span>
+<span class="nc" id="L400">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr3);</span>
+        }
+<span class="nc bnc" id="L402" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr4.getNroReferencia())) {</span>
+<span class="nc" id="L403">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr4);</span>
+        }
+<span class="nc bnc" id="L405" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr5.getNroReferencia())) {</span>
+<span class="nc" id="L406">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr5);</span>
+        }
+<span class="nc bnc" id="L408" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr6.getNroReferencia())) {</span>
+<span class="nc" id="L409">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr6);</span>
+        }
+<span class="nc bnc" id="L411" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr7.getNroReferencia())) {</span>
+<span class="nc" id="L412">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr7);</span>
+        }
+<span class="nc bnc" id="L414" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr8.getNroReferencia())) {</span>
+<span class="nc" id="L415">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr8);</span>
+        }
+<span class="nc bnc" id="L417" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr9.getNroReferencia())) {</span>
+<span class="nc" id="L418">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr9);</span>
+        }
+<span class="nc bnc" id="L420" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr10.getNroReferencia())) {</span>
+<span class="nc" id="L421">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr10);</span>
+        }
+<span class="nc bnc" id="L423" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr11.getNroReferencia())) {</span>
+<span class="nc" id="L424">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr11);</span>
+        }
+<span class="nc bnc" id="L426" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr12.getNroReferencia())) {</span>
+<span class="nc" id="L427">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr12);</span>
+        }
+<span class="nc bnc" id="L429" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr13.getNroReferencia())) {</span>
+<span class="nc" id="L430">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr13);</span>
+        }
+<span class="nc bnc" id="L432" title="All 2 branches missed.">        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr14.getNroReferencia())) {</span>
+<span class="nc" id="L433">            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr14);</span>
+        }
+
+<span class="nc bnc" id="L436" title="All 2 branches missed.">        if (ManejadorOrdenes.getInstance().obtenerOrdenes().isEmpty()) {</span>
+<span class="nc" id="L437">            controlarOrden.elegirCliente(&quot;Dan&quot;);</span>
+<span class="nc" id="L438">            controlarOrden.elegirEspecificacionProducto(&quot;IPH5&quot;);</span>
+<span class="nc" id="L439">            controlarOrden.elegirProducto(1);</span>
+<span class="nc" id="L440">            controlarOrden.generarItemOrden();</span>
+<span class="nc" id="L441">            controlarOrden.elegirEspecificacionProducto(&quot;IRD&quot;);</span>
+<span class="nc" id="L442">            controlarOrden.elegirProducto(1);</span>
+<span class="nc" id="L443">            controlarOrden.elegirProducto(2);</span>
+<span class="nc" id="L444">            controlarOrden.elegirEspecificacionProducto(&quot;IM&quot;);</span>
+<span class="nc" id="L445">            controlarOrden.elegirProducto(1);</span>
+<span class="nc" id="L446">            controlarOrden.elegirProducto(2);</span>
+<span class="nc" id="L447">            controlarOrden.generarItemOrden();</span>
+<span class="nc" id="L448">            DataOrdenCompra dataOrden = new DataOrdenCompra(1);</span>
+<span class="nc" id="L449">            dataOrden.setFecha(getDateFromString(&quot;12/8/2013&quot;));</span>
+<span class="nc" id="L450">            controlarOrden.guardarOrden(dataOrden);</span>
+
+<span class="nc" id="L452">            controlarOrden.elegirCliente(&quot;Dan&quot;);</span>
+<span class="nc" id="L453">            controlarOrden.elegirEspecificacionProducto(&quot;NEX4&quot;);</span>
+<span class="nc" id="L454">            controlarOrden.elegirProducto(1);</span>
+<span class="nc" id="L455">            controlarOrden.elegirProducto(2);</span>
+<span class="nc" id="L456">            controlarOrden.elegirProducto(3);</span>
+<span class="nc" id="L457">            controlarOrden.generarItemOrden();</span>
+<span class="nc" id="L458">            DataOrdenCompra dataOrden2 = new DataOrdenCompra(2);</span>
+<span class="nc" id="L459">            dataOrden2.setFecha(getDateFromString(&quot;19/8/2013&quot;));</span>
+<span class="nc" id="L460">            controlarOrden.guardarOrden(dataOrden2);</span>
+
+<span class="nc" id="L462">            controlarOrden.elegirCliente(&quot;Phil&quot;);</span>
+<span class="nc" id="L463">            controlarOrden.elegirEspecificacionProducto(&quot;CHP&quot;);</span>
+<span class="nc" id="L464">            controlarOrden.elegirProducto(1);</span>
+<span class="nc" id="L465">            controlarOrden.elegirProducto(2);</span>
+<span class="nc" id="L466">            controlarOrden.generarItemOrden();</span>
+<span class="nc" id="L467">            controlarOrden.elegirEspecificacionProducto(&quot;CP3&quot;);</span>
+<span class="nc" id="L468">            controlarOrden.elegirProducto(1);</span>
+<span class="nc" id="L469">            controlarOrden.elegirProducto(2);</span>
+<span class="nc" id="L470">            controlarOrden.elegirProducto(3);</span>
+<span class="nc" id="L471">            controlarOrden.generarItemOrden();</span>
+<span class="nc" id="L472">            DataOrdenCompra dataOrden3 = new DataOrdenCompra(3);</span>
+<span class="nc" id="L473">            dataOrden3.setFecha(getDateFromString(&quot;19/8/2013&quot;));</span>
+<span class="nc" id="L474">            controlarOrden.guardarOrden(dataOrden3);</span>
+
+<span class="nc" id="L476">            controlarOrden.elegirCliente(&quot;BruceS&quot;);</span>
+<span class="nc" id="L477">            controlarOrden.elegirEspecificacionProducto(&quot;CIX&quot;);</span>
+<span class="nc" id="L478">            controlarOrden.elegirProducto(1);</span>
+<span class="nc" id="L479">            controlarOrden.elegirProducto(2);</span>
+<span class="nc" id="L480">            controlarOrden.elegirProducto(3);</span>
+<span class="nc" id="L481">            controlarOrden.elegirProducto(4);</span>
+<span class="nc" id="L482">            controlarOrden.generarItemOrden();</span>
+<span class="nc" id="L483">            DataOrdenCompra dataOrden4 = new DataOrdenCompra(4);</span>
+<span class="nc" id="L484">            dataOrden4.setFecha(getDateFromString(&quot;22/8/2013&quot;));</span>
+<span class="nc" id="L485">            controlarOrden.guardarOrden(dataOrden4);</span>
+
+<span class="nc" id="L487">            controlarOrden.elegirCliente(&quot;JeffW&quot;);</span>
+<span class="nc" id="L488">            controlarOrden.elegirEspecificacionProducto(&quot;PCG&quot;);</span>
+<span class="nc" id="L489">            controlarOrden.elegirProducto(1);</span>
+<span class="nc" id="L490">            controlarOrden.generarItemOrden();</span>
+<span class="nc" id="L491">            DataOrdenCompra dataOrden5 = new DataOrdenCompra(5);</span>
+<span class="nc" id="L492">            dataOrden5.setFecha(getDateFromString(&quot;25/8/2013&quot;));</span>
+<span class="nc" id="L493">            controlarOrden.guardarOrden(dataOrden5);</span>
+        }
+<span class="nc" id="L495">    }</span>
+
+    public static String formatString(String s) {
+
+<span class="nc bnc" id="L499" title="All 2 branches missed.">        if (s != null) {</span>
+
+<span class="nc" id="L501">            return s.trim();</span>
+        }
+<span class="nc" id="L503">        return &quot;&quot;;</span>
+    }
+
+    /**
+     * @return Regresa la fecha en formato string 
+    *
+     */
+    public static String formatDate(Date s) {
+<span class="nc bnc" id="L511" title="All 2 branches missed.">        if (s != null) {</span>
+<span class="nc" id="L512">            DateFormat dateFormat = new SimpleDateFormat(Constantes.DATE_FORMAT);</span>
+
+<span class="nc" id="L514">            return dateFormat.format(s);</span>
+        }
+<span class="nc" id="L516">        return &quot;&quot;;</span>
+    }
+
+    public static String formatDate(Calendar s) {
+<span class="nc bnc" id="L520" title="All 2 branches missed.">        if (s != null) {</span>
+<span class="nc" id="L521">            DateFormat dateFormat = new SimpleDateFormat(Constantes.DATE_FORMAT);</span>
+
+<span class="nc" id="L523">            return dateFormat.format(s);</span>
+        }
+<span class="nc" id="L525">        return &quot;&quot;;</span>
+    }
+
+    public static Date getDateFromString(String value) {
+        try {
+<span class="nc" id="L530">            return new SimpleDateFormat(Constantes.DATE_FORMAT).parse(value);</span>
+<span class="nc" id="L531">        } catch (ParseException ex) {</span>
+<span class="nc" id="L532">            return null;</span>
+        }
+    }
+
+    public static String md5(String input) {
+
+<span class="nc" id="L538">        String md5 = null;</span>
+
+<span class="nc bnc" id="L540" title="All 2 branches missed.">        if (null == input) {</span>
+<span class="nc" id="L541">            return null;</span>
+        }
+
+        try {
+
+            //Create MessageDigest object for MD5
+<span class="nc" id="L547">            MessageDigest digest = MessageDigest.getInstance(&quot;MD5&quot;);</span>
+
+            //Update input string in message digest
+<span class="nc" id="L550">            digest.update(input.getBytes(), 0, input.length());</span>
+
+            //Converts message digest value in base 16 (hex)
+<span class="nc" id="L553">            md5 = new BigInteger(1, digest.digest()).toString(16);</span>
+
+<span class="nc" id="L555">        } catch (NoSuchAlgorithmException e) {</span>
+
+<span class="nc" id="L557">            e.printStackTrace();</span>
+<span class="nc" id="L558">        }</span>
+<span class="nc" id="L559">        return md5;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

@@ -32,6 +32,7 @@ public class ControladorUsuariosTest extends TestCase{
         cal.set(1960, 11, 1);
         DataCliente cliente1 = new DataCliente("dduck", "pasaguord1", "Daffy", "Duck", "dduck@gmail.com", cal);
         controlarUsuario.ingresarDatosCliente(cliente1);
+        controlarUsuario.elegirCliente("dduck");
         
         controlarUsuario.guardarUsuario();
         
@@ -41,13 +42,14 @@ public class ControladorUsuariosTest extends TestCase{
         assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getApellido(), "Duck");
         assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getFechaNacimiento().compareTo(cal), 0);
         assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").validarDatosUsuario(), true);
-        
-        controlarUsuario.eliminarUsuario("dduck");
+        assertTrue (controlarUsuario.esCliente("dduck"));
+        assertTrue (!isNull (controlarUsuario.listarClientes()));
 
         //agrego un usuario proveedor
-        DataProveedor proveedor1 = new DataProveedor ("pperez", "pasagourd2","Pedro", "Perez", "perez@gmail.com", cal, "Pcel", "www.pcel.com");
+        DataProveedor proveedor1 = new DataProveedor ("pperez", "pasagourd2","Pedro", "Perez", "perez@gmail.com", cal, "Pcel", "www.pcel.com");        
         controlarUsuario.ingresarDatosProveedor(proveedor1);
-        controlarUsuario.guardarUsuario();        
+        controlarUsuario.guardarUsuario(); 
+        controlarUsuario.elegirProveedor("pperez");
         
         assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getNickname(), "pperez");
         assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getEmail(), "perez@gmail.com");
@@ -56,42 +58,25 @@ public class ControladorUsuariosTest extends TestCase{
         assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getFechaNacimiento().compareTo(cal), 0);
         assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getNombreCompania(), "Pcel");
         assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getLinkSitio(), "www.pcel.com");
-        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").validarDatosUsuario(), true);        
+        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").validarDatosUsuario(), true);    
+        assertTrue (controlarUsuario.esProveedor("pperez"));
+        assertTrue (!isNull (controlarUsuario.listarProveedores()));
+
 
         controlarUsuario.eliminarUsuario("pperez");
         
-        //probar fotos cuando se pueda
         
         //crear usuario con nickname repetido
         DataCliente cliente2 = new DataCliente("dduck", "pasaguord3", "Darwin", "Duck", "darwinduck@gmail.com", cal);
-        controlarUsuario.ingresarDatosCliente(cliente2);
-        controlarUsuario.guardarUsuario();        
-        
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").validarDatosUsuario(), true);        
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getNickname(), "dduck");
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getEmail(), "darwinduck@gmail.com");        
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getNombre(), "Darwin");
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getApellido(), "Duck");
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("dduck").getFechaNacimiento().compareTo(cal), 0);
-        
-        controlarUsuario.eliminarUsuario("dduck");
+        assertTrue (!controlarUsuario.validarDatosUsuario());
 
-        
-        
+       
         //crear usuario con email repetido
         
         DataCliente cliente3 = new DataCliente("darwind", "pasaguord4", "Darwin", "Duck", "dduck@gmail.com", cal);
-        controlarUsuario.ingresarDatosCliente(cliente3);
-        controlarUsuario.guardarUsuario();        
+        assertTrue (!controlarUsuario.validarDatosUsuario());
         
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("darwind").validarDatosUsuario(), true);         
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("darwind").getNickname(), "darwind");
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("darwind").getEmail(), "dduck@gmail.com");        
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("darwind").getNombre(), "Darwin");
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("darwind").getApellido(), "Duck");
-        assertEquals (ManejadorUsuarios.getInstance().getCliente("darwind").getFechaNacimiento().compareTo(cal), 0);        
-
-        controlarUsuario.eliminarUsuario("darwind");
+        controlarUsuario.eliminarUsuario("dduck");
     }  
     
     public void testVerInformacionCliente () {

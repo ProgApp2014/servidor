@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Cliente.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProgServer&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador.Clases</a> &gt; <span class="el_source">Cliente.java</span></div><h1>Cliente.java</h1><pre class="source lang-java linenums">package Controlador.Clases;
+
+import Controlador.DataTypes.DataCliente;
+import java.io.Serializable;
+import java.util.Calendar;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+@Entity
+@DiscriminatorValue(&quot;Cliente&quot;)
+public class Cliente extends Usuario implements Serializable{
+    private static final long serialVersionUID = 1L;
+   
+<span class="fc" id="L20">    public Cliente() {</span>
+<span class="fc" id="L21">    }</span>
+    
+    public Cliente(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento) {
+<span class="nc" id="L24">        super(nickname, password, nombre, apellido, email, fechaNacimiento);</span>
+<span class="nc" id="L25">    }</span>
+    
+    public Cliente(DataCliente dc) {
+<span class="fc" id="L28">        super(dc.getNickname(), dc.getPassword(), dc.getNombre(), dc.getApellido(), dc.getEmail(), dc.getFechaNacimiento());</span>
+<span class="fc" id="L29">        this.setImagen(dc.getImagen());</span>
+        
+<span class="fc" id="L31">    }</span>
+    
+    public ClienteCompraProducto obtenerClienteCompraProducto() {
+<span class="nc" id="L34">        return null;</span>
+    }
+    
+    @Override
+    public String toString() {
+<span class="fc" id="L39">        return this.getNickname() + &quot;  --  &quot; + this.getNombre() + &quot;  --  &quot; + this.getApellido() + &quot; -- &quot; + this.getImagen();</span>
+    }
+    
+    @Override
+    public int hashCode() {
+<span class="nc" id="L44">        int hash = 0;</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        hash += (getNickname() != null ? getNickname().hashCode() : 0);</span>
+<span class="nc" id="L46">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        if (!(object instanceof Cliente)) {</span>
+<span class="nc" id="L52">            return false;</span>
+        }
+<span class="nc" id="L54">        Cliente other = (Cliente) object;</span>
+<span class="nc bnc" id="L55" title="All 8 branches missed.">        return (this.getNickname() != null || other.getNickname() == null) &amp;&amp; (this.getNickname() == null || this.getNickname().equals(other.getNickname()));</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

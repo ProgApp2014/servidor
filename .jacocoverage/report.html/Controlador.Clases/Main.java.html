@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProgServer&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador.Clases</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">package Controlador.Clases;
+
+import Controlador.DataTypes.DataCategoria;
+import Controlador.DataTypes.DataCliente;
+import Controlador.DataTypes.DataEspecificacionProducto;
+import Controlador.DataTypes.DataOrdenCompra;
+import Controlador.DataTypes.DataProducto;
+import Controlador.DataTypes.DataProveedor;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+<span class="nc" id="L19">public class Main {</span>
+
+    public static Integer idUsuariosControlador;
+    public static Integer idProductosControlador;
+    public static Integer idOrdenesControlador;
+    public static IControladorUsuarios controlarUsuario;
+    public static IControladorProductos controlarProducto;
+    public static IControladorOrdenes controlarOrden;
+
+    public static void main(String args[]) {
+
+        try {
+<span class="nc" id="L31">            idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();</span>
+<span class="nc" id="L32">            idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();</span>
+<span class="nc" id="L33">            idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();</span>
+<span class="nc" id="L34">        } catch (Exception e) {</span>
+<span class="nc" id="L35">            Writer writer = new StringWriter();</span>
+<span class="nc" id="L36">            PrintWriter printWriter = new PrintWriter(writer);</span>
+<span class="nc" id="L37">            e.printStackTrace(printWriter);</span>
+<span class="nc" id="L38">            String s = writer.toString();</span>
+<span class="nc" id="L39">            System.out.println(s);</span>
+<span class="nc" id="L40">        }</span>
+
+<span class="nc" id="L42">        controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);</span>
+<span class="nc" id="L43">        controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);</span>
+<span class="nc" id="L44">        controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);</span>
+<span class="nc" id="L45">        System.out.println(&quot;ACA &quot;+ManejadorEspProductos.getInstance().buscarEspProductos(&quot;Ne&quot;));</span>
+<span class="nc" id="L46">        System.out.println(&quot;ACA &quot;+ManejadorEspProductos.getInstance().buscarEspProductosSeparados(&quot;Ne&quot;));</span>
+
+//
+////        casoDeUso1(controlarUsuario);
+////        casoDeUso2(controlarProducto);
+////        casoDeUso3(controlarProducto);
+////        casoDeUso4(controlarOrden);
+////        casoDeUso5(controlarUsuario);
+////        casoDeUso6(controlarUsuario);
+////        casoDeUso7(controlarProducto);
+////        casoDeUso8(controlarProducto);
+////        casoDeUso9(controlarOrden);
+////        casoDeUso10(controlarOrden);
+<span class="nc" id="L59">    }</span>
+
+//    public static void casoDeUso1(IControladorUsuarios controlarUsuario) {
+//        System.out.println(&quot;**************************** Registrar Usuario ****************************&quot;);
+//
+//        String tipoUsuario;
+//        Scanner eTipoUsuario = new Scanner(System.in);
+//        tipoUsuario = eTipoUsuario.nextLine();
+//        
+//        Calendar cal = Calendar.getInstance();
+//        cal.set(1987, 02, 22);
+//                
+//        switch (tipoUsuario) {
+//            case &quot;c&quot;:
+//                DataCliente cliente = new DataCliente(&quot;botta&quot;, &quot;Jorge&quot;, &quot;Susundey&quot;, &quot;abotta@mail.com&quot;, cal);
+//                controlarUsuario.ingresarDatosCliente(cliente);
+//                break;
+//            case &quot;p&quot;:
+//                DataProveedor proveedor = new DataProveedor(&quot;prov4&quot;, &quot;Proveedor 4&quot;, &quot;&quot;, &quot;prov4@mail.com&quot;, cal, &quot;apple&quot;, &quot;www.apple.com&quot;);
+//                controlarUsuario.ingresarDatosProveedor(proveedor);
+//                break;
+//        }
+//
+//        if (controlarUsuario.validarDatosUsuario()) {
+//            System.out.println(&quot;Ya existe el usuario&quot;);
+//        } else {
+//            controlarUsuario.guardarUsuario();
+//        }
+//    }
+//
+//    public static void casoDeUso2(IControladorProductos controlarProducto) {
+//        System.out.println(&quot;**************************** Registrar Producto ****************************&quot;);
+//
+//        controlarProducto.listarProveedores().stream().forEach((proveedor) -&gt; {
+//            System.out.println(proveedor);
+//        });
+//
+//        String nicknameProveedor = &quot;prov2&quot;;//leer el nickname del proveedor elegido
+//        controlarProducto.elegirProveedor(nicknameProveedor);
+//
+//        //leer datos de nueva especificacion
+//        DataEspecificacionProducto espProducto = new DataEspecificacionProducto(&quot;prod1&quot;, &quot;Producto a&quot;, &quot;descripcion 1&quot;, Collections.synchronizedMap(new HashMap()), (float) 12.0, controlarProducto.listarProveedores().get(0), new ArrayList&lt;&gt;(), new ArrayList&lt;&gt;(), Collections.synchronizedMap(new HashMap()));
+//        controlarProducto.ingresarDatosProductos(espProducto);
+//        controlarProducto.ingresarEspecificacion(&quot;Color&quot;, &quot;Verde&quot;);
+//        controlarProducto.ingresarEspecificacion(&quot;Peso&quot;, &quot;1kg&quot;);
+//        controlarProducto.agregarMultiplesProductosAutogenerados(10);
+//        controlarProducto.ingresarDatosUnidad(new DataProducto(11, &quot;idesp1&quot;, espProducto));
+//        controlarProducto.listarCategorias();
+//        controlarProducto.agregarCategoriaAEspecificacion(&quot;cat1&quot;);
+//        controlarProducto.agregarImagen(&quot;peteco&quot;);
+//        if (controlarProducto.controlarErrores()) {
+//            controlarProducto.guardarProducto();
+//        }
+//    }
+//
+//    public static void casoDeUso3(IControladorProductos controlarProducto) {
+//        System.out.println(&quot;**************************** Alta de categoría ****************************&quot;);
+//
+//        DataCategoria padre = new DataCategoria(ManejadorCategorias.getInstance().getCategoria(&quot;cat1&quot;), true);
+//        DataCategoria categoria = new DataCategoria(&quot;cat6&quot;, padre);
+//        controlarProducto.ingresarDatosCategoria(categoria);
+//        controlarProducto.guardarCategoria();
+//    }
+//
+//    public static void casoDeUso4(IControladorOrdenes controlarOrden) {
+//        System.out.println(&quot;**************************** Generar orden de compra ****************************&quot;);
+//
+//        //Listar clientes
+//        controlarOrden.listarClientes().stream().forEach((cliente) -&gt; {
+//            System.out.println(cliente);
+//        });
+//
+//        //Cliente Seleccionado
+//        controlarOrden.elegirCliente(&quot;abotta&quot;);
+//
+//        //Listar categorias
+//        controlarOrden.listarCategorias().stream().forEach((categoria) -&gt; {
+//            System.out.println(categoria);
+//        });
+//
+//        //Categoria Seleccionado
+//        controlarOrden.elegirCategoria(&quot;cat1&quot;);
+//
+//        //Listar especificaciones de categoria seleccionada
+//        controlarOrden.listarEspecificacionProductos().stream().forEach((espProducto) -&gt; {
+//            System.out.println(espProducto);
+//        });
+//
+//        //Especificacion Producto seleccionado
+//        controlarOrden.elegirEspecificacionProducto(&quot;a1&quot;);
+//
+//        //Listar productos de la especificacion seleccionada
+//        /*controlarOrden.listarProductos().stream().forEach((producto) -&gt; {
+//         System.out.println(producto);
+//         });*/
+//        //Producto seleccionado
+//        controlarOrden.elegirProducto(1);
+//        controlarOrden.elegirProducto(3);
+//
+//        //Generar item Orden
+//        controlarOrden.generarItemOrden();
+//
+//        //Guardar Orden
+//        DataOrdenCompra dataOrden = new DataOrdenCompra(1);
+//        controlarOrden.guardarOrden(dataOrden);
+//
+//        System.out.println(&quot;Orden de Compra: &quot;);
+//        System.out.println(ManejadorOrdenes.getInstance().obtenerOrdenes().get(1));
+//    }
+//
+//    public static void casoDeUso5(IControladorUsuarios controlarUsuario) {
+//        System.out.println(&quot;**************************** Ver informacion del cliente ****************************&quot;);
+//
+//        //Listar clientes
+//        controlarUsuario.listarClientes().stream().forEach((cliente) -&gt; {
+//            System.out.println(cliente);
+//        });
+//
+//        //Cliente Seleccionado
+//        controlarUsuario.elegirCliente(&quot;abotta&quot;);
+//
+//        //Mostrar Datos Cliente
+//        DataCliente dataCliente = controlarUsuario.mostrarDatosCliente();
+//        System.out.println(&quot;Mostrar Datos del cliente: &quot; + dataCliente);
+//
+//        //Listar ordenes del cliente elegido
+//        controlarUsuario.listarOrdenesCliente().stream().forEach((orden) -&gt; {
+//            System.out.println(orden);
+//        });
+//    }
+//
+//    public static void casoDeUso6(IControladorUsuarios controlarUsuario) {
+//        System.out.println(&quot;**************************** Ver informacion del proveedor ****************************&quot;);
+//
+//        //Listar proveedores
+//        controlarUsuario.listarProveedores().stream().forEach((cliente) -&gt; {
+//            System.out.println(cliente);
+//        });
+//
+//        //Proveedor Seleccionado
+//        controlarUsuario.elegirProveedor(&quot;prov1&quot;);
+//
+//        //Mostrar Datos Cliente
+//        DataProveedor dataProveedor = controlarUsuario.mostrarDatosProveedor();
+//        System.out.println(&quot;Mostrar Datos del proveedor: &quot; + dataProveedor);
+//    }
+//
+//    public static void casoDeUso7(IControladorProductos controlarProducto) {
+//        System.out.println(&quot;**************************** Ver informacion del producto ****************************&quot;);
+//
+//        //Listar categorias
+//        controlarProducto.listarCategorias().stream().forEach((categoria) -&gt; {
+//            System.out.println(categoria);
+//        });
+//
+//        //Categoria Seleccionado
+//        controlarProducto.elegirCategoria(&quot;cat3&quot;);
+//
+//        //Listar productos categoria seleccionada
+//        controlarProducto.listarProductosCategoria().stream().forEach((producto) -&gt; {
+//            System.out.println(producto);
+//        });
+//
+//        //Mostrar Datos Cliente
+//        DataEspecificacionProducto dataProducto = controlarProducto.mostrarDatosProducto(&quot;a3&quot;);
+//        System.out.println(&quot;Mostrar Datos del producto: &quot; + dataProducto);
+//    }
+//
+//    public static void casoDeUso8(IControladorProductos controlarProducto) {
+//        System.out.println(&quot;**************************** Modificar datos del Producto ****************************&quot;);
+//
+//        //Listar categorias
+//        controlarProducto.listarCategorias().stream().forEach((categoria) -&gt; {
+//            System.out.println(categoria);
+//        });
+//
+//        //Categoria Seleccionado
+//        controlarProducto.elegirCategoria(&quot;cat3&quot;);
+//
+//        //Listar productos categoria seleccionada
+//        controlarProducto.listarProductosCategoria().stream().forEach((producto) -&gt; {
+//            System.out.println(producto);
+//        });
+//
+//        controlarProducto.elegirEspProducto(&quot;a3&quot;);
+//        DataEspecificacionProducto dataProducto = controlarProducto.mostrarDatosProducto(&quot;a3&quot;);
+//        controlarProducto.modificarDatosEspecificacionProducto(dataProducto);
+//        controlarProducto.listarCategoriasAModificar();
+//        controlarProducto.agregarCategoriaAEspecificacion(&quot;cat5&quot;);
+//        controlarProducto.borrarCategoriaAEspecificacion(&quot;cat5&quot;);
+//        if (controlarProducto.validarInfo()) {
+//            controlarProducto.guardarEspProductoModificado();
+//        }
+//    }
+//
+//    public static void casoDeUso9(IControladorOrdenes controlarOrden) {
+//        System.out.println(&quot;**************************** Cancelar Orden de Compra ****************************&quot;);
+//
+//        //Listar ordenes
+//        controlarOrden.listarOrdenes().stream().forEach((orden) -&gt; {
+//            System.out.println(orden);
+//        });
+//
+//        //Orden Seleccionada
+//        controlarOrden.elegirOrden(1);
+//
+//        String confirmaEliminar;
+//        Scanner eConfirmaEliminar = new Scanner(System.in);
+//        System.out.println(&quot;Eliminar? (s o n)&quot;);
+//        confirmaEliminar = eConfirmaEliminar.nextLine();
+//
+//        switch (confirmaEliminar) {
+//            case &quot;s&quot;:
+//                controlarOrden.borrarOrdenCompra();
+//                break;
+//        }
+//    }
+//
+//    public static void casoDeUso10(IControladorOrdenes controlarOrden) {
+//        System.out.println(&quot;**************************** Ver informacion de Orden de Compra ****************************&quot;);
+//
+//        //Listar ordenes
+//        controlarOrden.listarOrdenes().stream().forEach((orden) -&gt; {
+//            System.out.println(orden);
+//        });
+//
+//        //Orden Seleccionada
+//        controlarOrden.elegirOrden(1);
+//
+//        //Mostrar Datos Cliente
+//        DataOrdenCompra dataOrden = controlarOrden.mostrarDatosOrden();
+//        System.out.println(&quot;Mostrar Datos de la Orden: &quot; + dataOrden);
+//    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

@@ -9,13 +9,13 @@ public class DataComentario {
     private DataEspecificacionProducto especificacionProducto;
     private String comentario;
     
-<span class="nc" id="L12">    public DataComentario(Comentario c) {</span>
-<span class="nc" id="L13">        this.id = c.getId();</span>
-<span class="nc bnc" id="L14" title="All 2 branches missed.">        this.padre = c.getPadre() == null?null:new DataComentario(c.getPadre());</span>
-<span class="nc" id="L15">        this.cliente = new DataCliente(c.getCliente());</span>
-<span class="nc" id="L16">        this.especificacionProducto = new DataEspecificacionProducto(c.getEspecificacionProducto(),false);</span>
-<span class="nc" id="L17">        this.comentario = c.getComentario();</span>
-<span class="nc" id="L18">    }</span>
+<span class="fc" id="L12">    public DataComentario(Comentario c) {</span>
+<span class="fc" id="L13">        this.id = c.getId();</span>
+<span class="pc bpc" id="L14" title="1 of 2 branches missed.">        this.padre = c.getPadre() == null?null:new DataComentario(c.getPadre());</span>
+<span class="fc" id="L15">        this.cliente = new DataCliente(c.getCliente());</span>
+<span class="fc" id="L16">        this.especificacionProducto = new DataEspecificacionProducto(c.getEspecificacionProducto(),false);</span>
+<span class="fc" id="L17">        this.comentario = c.getComentario();</span>
+<span class="fc" id="L18">    }</span>
     
 <span class="nc" id="L20">    public DataComentario(DataCliente cliente, DataEspecificacionProducto especificacionProducto, String comentario, Integer id, DataComentario padre) {</span>
 <span class="nc" id="L21">        this.id = id;</span>

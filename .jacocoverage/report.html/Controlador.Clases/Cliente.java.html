@@ -21,8 +21,8 @@ public class Cliente extends Usuario implements Serializable{
 <span class="fc" id="L21">    }</span>
     
     public Cliente(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento) {
-<span class="nc" id="L24">        super(nickname, password, nombre, apellido, email, fechaNacimiento);</span>
-<span class="nc" id="L25">    }</span>
+<span class="fc" id="L24">        super(nickname, password, nombre, apellido, email, fechaNacimiento);</span>
+<span class="fc" id="L25">    }</span>
     
     public Cliente(DataCliente dc) {
 <span class="fc" id="L28">        super(dc.getNickname(), dc.getPassword(), dc.getNombre(), dc.getApellido(), dc.getEmail(), dc.getFechaNacimiento());</span>
@@ -41,9 +41,9 @@ public class Cliente extends Usuario implements Serializable{
     
     @Override
     public int hashCode() {
-<span class="nc" id="L44">        int hash = 0;</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">        hash += (getNickname() != null ? getNickname().hashCode() : 0);</span>
-<span class="nc" id="L46">        return hash;</span>
+<span class="fc" id="L44">        int hash = 0;</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        hash += (getNickname() != null ? getNickname().hashCode() : 0);</span>
+<span class="fc" id="L46">        return hash;</span>
     }
 
     @Override

@@ -22,10 +22,10 @@ public class Proveedor extends Usuario implements Serializable{
 <span class="fc" id="L22">    }</span>
 
     public Proveedor(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento, String nombreCompania, String linkSitio) {
-<span class="nc" id="L25">        super(nickname, password, nombre, apellido, email, fechaNacimiento);</span>
-<span class="nc" id="L26">        this.nombreCompania = nombreCompania;</span>
-<span class="nc" id="L27">        this.linkSitio = linkSitio; </span>
-<span class="nc" id="L28">    }</span>
+<span class="fc" id="L25">        super(nickname, password, nombre, apellido, email, fechaNacimiento);</span>
+<span class="fc" id="L26">        this.nombreCompania = nombreCompania;</span>
+<span class="fc" id="L27">        this.linkSitio = linkSitio; </span>
+<span class="fc" id="L28">    }</span>
     
     public Proveedor(DataProveedor dp) {
 <span class="fc" id="L31">        super(dp.getNickname(), dp.getPassword(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento());</span>
@@ -61,9 +61,9 @@ public class Proveedor extends Usuario implements Serializable{
     
     @Override
     public int hashCode() {
-<span class="nc" id="L64">        int hash = 0;</span>
-<span class="nc bnc" id="L65" title="All 2 branches missed.">        hash += (getNickname() != null ? getNickname().hashCode() : 0);</span>
-<span class="nc" id="L66">        return hash;</span>
+<span class="fc" id="L64">        int hash = 0;</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        hash += (getNickname() != null ? getNickname().hashCode() : 0);</span>
+<span class="fc" id="L66">        return hash;</span>
     }
 
     @Override

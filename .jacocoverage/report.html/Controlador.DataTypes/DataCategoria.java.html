@@ -11,20 +11,20 @@ public class DataCategoria {
     private DataCategoria padre;
     private Map&lt;String,DataEspecificacionProducto&gt; listaProductos;
     
-<span class="nc" id="L14">    public DataCategoria(Categoria c, boolean conProductos) {</span>
-<span class="nc" id="L15">        this.nombre = c.getNombre();</span>
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        if(c.getPadre() == null){</span>
-<span class="nc" id="L17">            this.padre = null;</span>
+<span class="fc" id="L14">    public DataCategoria(Categoria c, boolean conProductos) {</span>
+<span class="fc" id="L15">        this.nombre = c.getNombre();</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        if(c.getPadre() == null){</span>
+<span class="fc" id="L17">            this.padre = null;</span>
         }else{
-<span class="nc" id="L19">            this.padre = c.getDataPadre();</span>
+<span class="fc" id="L19">            this.padre = c.getDataPadre();</span>
         }
-<span class="nc" id="L21">        this.listaProductos = new HashMap();</span>
-<span class="nc bnc" id="L22" title="All 2 branches missed.">        if(conProductos){</span>
-<span class="nc" id="L23">            c.getListaProductos().entrySet().forEach((producto) -&gt; {</span>
-<span class="nc" id="L24">               this.listaProductos.put(producto.getKey(),new DataEspecificacionProducto(producto.getValue(),true));</span>
-<span class="nc" id="L25">            });</span>
+<span class="fc" id="L21">        this.listaProductos = new HashMap();</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if(conProductos){</span>
+<span class="fc" id="L23">            c.getListaProductos().entrySet().forEach((producto) -&gt; {</span>
+<span class="fc" id="L24">               this.listaProductos.put(producto.getKey(),new DataEspecificacionProducto(producto.getValue(),true));</span>
+<span class="fc" id="L25">            });</span>
         }
-<span class="nc" id="L27">    }</span>
+<span class="fc" id="L27">    }</span>
        
 <span class="fc" id="L29">    public DataCategoria(String nombre, DataCategoria padre) {</span>
 <span class="fc" id="L30">        this.nombre = nombre;</span>

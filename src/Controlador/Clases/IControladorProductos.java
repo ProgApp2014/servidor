@@ -49,7 +49,7 @@ public interface IControladorProductos {
     public void eliminarEspecificacionProducto (String nroRef);
     public void agregarComentario(String nickname, String nroRef, Integer padre, String Comentario);
     public List<DataEspecificacionProducto> buscarProductos(String keyword);
-    public Map<String,List<DataEspecificacionProducto>> buscarProductosSeparados(String keyword);
+    public Map<String,List<DataEspecificacionProducto>> buscarProductosSeparados(String keyword, String Orden);
     public Boolean puedeComentar(String nickname, String nroRef);
     public List<DataComentario> listarComentarios(String nroRef);
     public List<DataProducto> listarProductosEnEspecificacion();

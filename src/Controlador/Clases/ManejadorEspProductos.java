@@ -87,9 +87,10 @@ public class ManejadorEspProductos {
         return listEspProd;
     }
     
-    public Map<String,List<EspecificacionProducto>> buscarEspProductosSeparados(String keyword){
+    public Map<String,List<EspecificacionProducto>> buscarEspProductosSeparados(String keyword, String Orden){
         Map<String,List<EspecificacionProducto>> result = new HashMap();
-        Query query = entityManager.createQuery("SELECT DISTINCT e FROM EspecificacionProducto e where upper(e.nombre) LIKE :x", EspecificacionProducto.class);
+        String orderBy = Orden.equals("nombre") ? " ORDER BY upper(e.nombre) ASC" : Orden.equals("precio") ? " ORDER BY e.precio DESC" : "";
+        Query query = entityManager.createQuery("SELECT DISTINCT e FROM EspecificacionProducto e where upper(e.nombre) LIKE :x"+orderBy, EspecificacionProducto.class);
         query.setParameter("x", '%' + keyword.toUpperCase() + '%');
         List<EspecificacionProducto> listEspProd = query.getResultList();
         result.put("productos", listEspProd);
@@ -99,7 +100,7 @@ public class ManejadorEspProductos {
             EspecificacionProducto current = (EspecificacionProducto)it.next();
             idObtenidas.add(current.getNroReferencia());
         }
-        query = entityManager.createQuery("SELECT DISTINCT e FROM EspecificacionProducto e JOIN e.categorias c where upper(c.nombre) LIKE :y AND e.nroReferencia NOT IN :ids", EspecificacionProducto.class);
+        query = entityManager.createQuery("SELECT DISTINCT e FROM EspecificacionProducto e JOIN e.categorias c where upper(c.nombre) LIKE :y AND e.nroReferencia NOT IN :ids"+orderBy, EspecificacionProducto.class);
         query.setParameter("y", '%' + keyword.toUpperCase() + '%');
         query.setParameter("ids", idObtenidas);
         result.put("categorias", query.getResultList());

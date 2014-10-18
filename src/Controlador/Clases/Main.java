@@ -43,7 +43,7 @@ public class Main {
         controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
         controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);
         System.out.println("ACA "+ManejadorEspProductos.getInstance().buscarEspProductos("Ne"));
-        System.out.println("ACA "+ManejadorEspProductos.getInstance().buscarEspProductosSeparados("Ne"));
+        System.out.println("ACA "+controlarProducto.buscarProductosSeparados("app","nombre"));
 
 //
 ////        casoDeUso1(controlarUsuario);

@@ -328,9 +328,11 @@ public class ControladorProductos implements IControladorProductos{
     }
     
     @Override
-    public Map<String,List<DataEspecificacionProducto>> buscarProductosSeparados(String keyword){
+    public Map<String,List<DataEspecificacionProducto>> buscarProductosSeparados(String keyword,String Orden){
         Map<String,List<DataEspecificacionProducto>> result = new HashMap();
-        Map<String,List<EspecificacionProducto>> resultadosBusqueda = ManejadorEspProductos.getInstance().buscarEspProductosSeparados(keyword);
+        Map<String,List<EspecificacionProducto>> resultadosBusqueda = ManejadorEspProductos.getInstance().buscarEspProductosSeparados(keyword,Orden);
+        if(Orden.equals("ventas"))
+            ordenarPorVentas(resultadosBusqueda);
         resultadosBusqueda.keySet().forEach((tipo) -> {
             List<DataEspecificacionProducto> aAgregar = new ArrayList();
             Iterator it = resultadosBusqueda.get(tipo).iterator();
@@ -340,6 +342,37 @@ public class ControladorProductos implements IControladorProductos{
             }
             result.put(tipo,aAgregar);
         });
+        return result;
+    }
+    
+    static Map<String,List<EspecificacionProducto>> ordenarPorVentas(Map<String,List<EspecificacionProducto>> arreglo) { 
+        Map<String,List<EspecificacionProducto>> result = new HashMap();
+        List<EspecificacionProducto> listaPorProducto = arreglo.get("productos");
+        for(int i = 0; i < listaPorProducto.size() - 1; i++) { 
+            for(int j = 0; j < listaPorProducto.size() - 1; j++) { 
+                DataEspecificacionProducto current = new DataEspecificacionProducto(listaPorProducto.get(j),true);
+                DataEspecificacionProducto next = new DataEspecificacionProducto(listaPorProducto.get(j+1),true);
+                if ((current.getProductos().size() - current.getStock()) < (next.getProductos().size() - next.getStock())) { 
+                    EspecificacionProducto tmp = listaPorProducto.get(j+1); 
+                    listaPorProducto.set(j+1, listaPorProducto.get(j)); 
+                    listaPorProducto.set(j,tmp); 
+                } 
+            } 
+        } 
+        result.put("productos", listaPorProducto);
+        List<EspecificacionProducto> listaPorCategoria = arreglo.get("categorias");
+        for(int i = 0; i < listaPorCategoria.size() - 1; i++) { 
+            for(int j = 0; j < listaPorCategoria.size() - 1; j++) { 
+                DataEspecificacionProducto current = new DataEspecificacionProducto(listaPorCategoria.get(j),true);
+                DataEspecificacionProducto next = new DataEspecificacionProducto(listaPorCategoria.get(j+1),true);
+                if ((current.getProductos().size() - current.getStock()) < (next.getProductos().size() - next.getStock())) { 
+                    EspecificacionProducto tmp = listaPorCategoria.get(j+1); 
+                    listaPorCategoria.set(j+1, listaPorCategoria.get(j)); 
+                    listaPorCategoria.set(j,tmp); 
+                } 
+            } 
+        } 
+        result.put("categorias", listaPorCategoria);
         return result;
     }
     

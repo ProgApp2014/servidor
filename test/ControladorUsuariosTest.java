@@ -11,17 +11,17 @@ import Controlador.DataTypes.DataCliente;
 import Controlador.DataTypes.DataProveedor;
 import java.util.Calendar;
 import static java.util.Objects.isNull;
-import junit.framework.TestCase;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 /**
  *
  * @author mauro
  */
-public class ControladorUsuariosTest extends TestCase{
+public class ControladorUsuariosTest{
 
-    
+    @Test
     public void testAltadeUsuario () {
 
         //agrego un usuario cliente
@@ -79,6 +79,7 @@ public class ControladorUsuariosTest extends TestCase{
         controlarUsuario.eliminarUsuario("dduck");
     }  
     
+    @Test
     public void testVerInformacionCliente () {
     
         //cargar clientes
@@ -109,6 +110,7 @@ public class ControladorUsuariosTest extends TestCase{
                 
     }
     
+    @Test
     public void testVerInformacionProveedor () {
     
         //cargar clientes
@@ -132,9 +134,9 @@ public class ControladorUsuariosTest extends TestCase{
         controlarUsuario.guardarUsuario();
         
 
-          assertTrue (!isNull (ManejadorUsuarios.getInstance().getProveedor("jotarod")));
-          assertTrue (!isNull (ManejadorUsuarios.getInstance().getProveedor("nmar")));
-          assertTrue (!isNull (ManejadorUsuarios.getInstance().getProveedor("sdum")));
+        assertTrue (!isNull (ManejadorUsuarios.getInstance().getProveedor("jotarod")));
+        assertTrue (!isNull (ManejadorUsuarios.getInstance().getProveedor("nmar")));
+        assertTrue (!isNull (ManejadorUsuarios.getInstance().getProveedor("sdum")));
         
         controlarUsuario.eliminarUsuario("jotarod");
         controlarUsuario.eliminarUsuario("nmar");

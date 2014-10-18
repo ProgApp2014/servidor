@@ -17,10 +17,13 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import static java.util.Objects.isNull;
-import junit.framework.TestCase;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
+import org.junit.Test;
 
-public class ControladorOrdenesTest extends TestCase{
+public class ControladorOrdenesTest{
     
+    @Test
     public void testGenerarOrdenTest() {
         Integer idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
         IControladorOrdenes controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);
@@ -89,6 +92,7 @@ public class ControladorOrdenesTest extends TestCase{
         
      }
     
+    @Test
     public void testCancelarOrden () {
         Integer idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
         IControladorOrdenes controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);
@@ -150,6 +154,7 @@ public class ControladorOrdenesTest extends TestCase{
         controlarUsuario.eliminarUsuario("jrod");
     }
     
+    @Test
     public void testVerInformacionOrden () {
         Integer idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
         IControladorOrdenes controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);

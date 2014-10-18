@@ -14,14 +14,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import static java.util.Objects.isNull;
-import junit.framework.TestCase;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
+import org.junit.Test;
 
 /**
  *
  * @author mauro
  */
-public class ControladorProductoTest extends TestCase{
+public class ControladorProductoTest{
 
+    @Test
     public void testAltaDeCategoria() {
         Integer idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
         IControladorProductos controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
@@ -57,6 +60,7 @@ public class ControladorProductoTest extends TestCase{
 
     }
 
+    @Test
     public void testRegistrarProducto() {
 
         Integer idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
@@ -112,7 +116,8 @@ public class ControladorProductoTest extends TestCase{
 
     }
 
-      public void testVerInformaciondeProducto() {
+    @Test
+    public void testVerInformaciondeProducto() {
 
         Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
         IControladorUsuarios controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);

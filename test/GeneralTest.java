@@ -59,7 +59,7 @@ public class GeneralTest{
         assertFalse (controlarProducto.validarInfo());        
         
         assertTrue(!isNull(controlarProducto.buscarProductos("Apple")));
-        assertTrue (!isNull(controlarProducto.buscarProductosSeparados("Apple")));
+        assertTrue (!isNull(controlarProducto.buscarProductosSeparados("Apple","nombre")));
 
         //COMO BORRO LAS ORDENES DE COMPRA???
 

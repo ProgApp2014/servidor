@@ -139,9 +139,9 @@ import static java.util.Objects.isNull;
     
     @Override
     public DataEspecificacionProducto mostrarDatosProducto(String numRef){
-<span class="fc" id="L142">        EspecificacionProducto productoElegido = ManejadorEspProductos.getInstance().getEspecificacionProducto(numRef);</span>
-<span class="fc" id="L143">        DataEspecificacionProducto dataProducto = new DataEspecificacionProducto(productoElegido,true);</span>
-<span class="fc" id="L144">        return dataProducto;</span>
+<span class="nc" id="L142">        EspecificacionProducto productoElegido = ManejadorEspProductos.getInstance().getEspecificacionProducto(numRef);</span>
+<span class="nc" id="L143">        DataEspecificacionProducto dataProducto = new DataEspecificacionProducto(productoElegido,true);</span>
+<span class="nc" id="L144">        return dataProducto;</span>
     }
     
     @Override
@@ -162,11 +162,11 @@ import static java.util.Objects.isNull;
         }    
 <span class="pc bpc" id="L163" title="1 of 2 branches missed.">        if(categoriasElegidas.isEmpty())</span>
 <span class="nc" id="L164">            return false;</span>
-<span class="fc bfc" id="L165" title="All 2 branches covered.">        for(Entry&lt;String,EspecificacionProducto&gt; iter : ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().entrySet()){</span>
-<span class="pc bpc" id="L166" title="1 of 2 branches missed.">            if(iter.getValue().getNombre().equals(nuevoEspProducto.getNombre())){</span>
+<span class="pc bpc" id="L165" title="1 of 2 branches missed.">        for(Entry&lt;String,EspecificacionProducto&gt; iter : ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().entrySet()){</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if(iter.getValue().getNombre().equals(nuevoEspProducto.getNombre())){</span>
 <span class="nc" id="L167">                return false;</span>
             }
-<span class="fc" id="L169">        }</span>
+<span class="nc" id="L169">        }</span>
 <span class="fc" id="L170">        return true;</span>
     }
     
@@ -211,7 +211,7 @@ import static java.util.Objects.isNull;
 <span class="fc" id="L211">    }</span>
     @Override 
     public Boolean categoryAlreadyExist(String categoria){
-<span class="pc bpc" id="L214" title="1 of 2 branches missed.">        return  ManejadorCategorias.getInstance().getCategoria(categoria) != null;</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">        return  ManejadorCategorias.getInstance().getCategoria(categoria) != null;</span>
     
     }
     @Override
@@ -328,48 +328,81 @@ import static java.util.Objects.isNull;
     }
     
     @Override
-    public Map&lt;String,List&lt;DataEspecificacionProducto&gt;&gt; buscarProductosSeparados(String keyword){
+    public Map&lt;String,List&lt;DataEspecificacionProducto&gt;&gt; buscarProductosSeparados(String keyword,String Orden){
 <span class="fc" id="L332">        Map&lt;String,List&lt;DataEspecificacionProducto&gt;&gt; result = new HashMap();</span>
-<span class="fc" id="L333">        Map&lt;String,List&lt;EspecificacionProducto&gt;&gt; resultadosBusqueda = ManejadorEspProductos.getInstance().buscarEspProductosSeparados(keyword);</span>
-<span class="fc" id="L334">        resultadosBusqueda.keySet().forEach((tipo) -&gt; {</span>
-<span class="fc" id="L335">            List&lt;DataEspecificacionProducto&gt; aAgregar = new ArrayList();</span>
-<span class="fc" id="L336">            Iterator it = resultadosBusqueda.get(tipo).iterator();</span>
-<span class="fc bfc" id="L337" title="All 2 branches covered.">            while(it.hasNext()){</span>
-<span class="fc" id="L338">                EspecificacionProducto current = (EspecificacionProducto)it.next();</span>
-<span class="fc" id="L339">                aAgregar.add(new DataEspecificacionProducto(current,false));</span>
-<span class="fc" id="L340">            }</span>
-<span class="fc" id="L341">            result.put(tipo,aAgregar);</span>
-<span class="fc" id="L342">        });</span>
-<span class="fc" id="L343">        return result;</span>
+<span class="fc" id="L333">        Map&lt;String,List&lt;EspecificacionProducto&gt;&gt; resultadosBusqueda = ManejadorEspProductos.getInstance().buscarEspProductosSeparados(keyword,Orden);</span>
+<span class="pc bpc" id="L334" title="1 of 2 branches missed.">        if(Orden.equals(&quot;ventas&quot;))</span>
+<span class="nc" id="L335">            ordenarPorVentas(resultadosBusqueda);</span>
+<span class="fc" id="L336">        resultadosBusqueda.keySet().forEach((tipo) -&gt; {</span>
+<span class="fc" id="L337">            List&lt;DataEspecificacionProducto&gt; aAgregar = new ArrayList();</span>
+<span class="fc" id="L338">            Iterator it = resultadosBusqueda.get(tipo).iterator();</span>
+<span class="fc bfc" id="L339" title="All 2 branches covered.">            while(it.hasNext()){</span>
+<span class="fc" id="L340">                EspecificacionProducto current = (EspecificacionProducto)it.next();</span>
+<span class="fc" id="L341">                aAgregar.add(new DataEspecificacionProducto(current,false));</span>
+<span class="fc" id="L342">            }</span>
+<span class="fc" id="L343">            result.put(tipo,aAgregar);</span>
+<span class="fc" id="L344">        });</span>
+<span class="fc" id="L345">        return result;</span>
+    }
+    
+    static Map&lt;String,List&lt;EspecificacionProducto&gt;&gt; ordenarPorVentas(Map&lt;String,List&lt;EspecificacionProducto&gt;&gt; arreglo) { 
+<span class="nc" id="L349">        Map&lt;String,List&lt;EspecificacionProducto&gt;&gt; result = new HashMap();</span>
+<span class="nc" id="L350">        List&lt;EspecificacionProducto&gt; listaPorProducto = arreglo.get(&quot;productos&quot;);</span>
+<span class="nc bnc" id="L351" title="All 2 branches missed.">        for(int i = 0; i &lt; listaPorProducto.size() - 1; i++) { </span>
+<span class="nc bnc" id="L352" title="All 2 branches missed.">            for(int j = 0; j &lt; listaPorProducto.size() - 1; j++) { </span>
+<span class="nc" id="L353">                DataEspecificacionProducto current = new DataEspecificacionProducto(listaPorProducto.get(j),true);</span>
+<span class="nc" id="L354">                DataEspecificacionProducto next = new DataEspecificacionProducto(listaPorProducto.get(j+1),true);</span>
+<span class="nc bnc" id="L355" title="All 2 branches missed.">                if ((current.getProductos().size() - current.getStock()) &lt; (next.getProductos().size() - next.getStock())) { </span>
+<span class="nc" id="L356">                    EspecificacionProducto tmp = listaPorProducto.get(j+1); </span>
+<span class="nc" id="L357">                    listaPorProducto.set(j+1, listaPorProducto.get(j)); </span>
+<span class="nc" id="L358">                    listaPorProducto.set(j,tmp); </span>
+                } 
+            } 
+        } 
+<span class="nc" id="L362">        result.put(&quot;productos&quot;, listaPorProducto);</span>
+<span class="nc" id="L363">        List&lt;EspecificacionProducto&gt; listaPorCategoria = arreglo.get(&quot;categorias&quot;);</span>
+<span class="nc bnc" id="L364" title="All 2 branches missed.">        for(int i = 0; i &lt; listaPorCategoria.size() - 1; i++) { </span>
+<span class="nc bnc" id="L365" title="All 2 branches missed.">            for(int j = 0; j &lt; listaPorCategoria.size() - 1; j++) { </span>
+<span class="nc" id="L366">                DataEspecificacionProducto current = new DataEspecificacionProducto(listaPorCategoria.get(j),true);</span>
+<span class="nc" id="L367">                DataEspecificacionProducto next = new DataEspecificacionProducto(listaPorCategoria.get(j+1),true);</span>
+<span class="nc bnc" id="L368" title="All 2 branches missed.">                if ((current.getProductos().size() - current.getStock()) &lt; (next.getProductos().size() - next.getStock())) { </span>
+<span class="nc" id="L369">                    EspecificacionProducto tmp = listaPorCategoria.get(j+1); </span>
+<span class="nc" id="L370">                    listaPorCategoria.set(j+1, listaPorCategoria.get(j)); </span>
+<span class="nc" id="L371">                    listaPorCategoria.set(j,tmp); </span>
+                } 
+            } 
+        } 
+<span class="nc" id="L375">        result.put(&quot;categorias&quot;, listaPorCategoria);</span>
+<span class="nc" id="L376">        return result;</span>
     }
     
     @Override
     public Boolean puedeComentar(String nickname, String nroRef){
-<span class="nc" id="L348">        Iterator it = ManejadorOrdenes.getInstance().obtenerOrdenes().values().iterator();</span>
-<span class="nc bnc" id="L349" title="All 2 branches missed.">        while(it.hasNext()){</span>
-<span class="nc" id="L350">            OrdenCompra current = (OrdenCompra) it.next();</span>
-<span class="nc bnc" id="L351" title="All 2 branches missed.">            if (current.getCliente().getNickname().equals(nickname)) {</span>
-<span class="nc" id="L352">                Iterator it2 = current.getClienteCompraProducto().iterator();</span>
-<span class="nc bnc" id="L353" title="All 2 branches missed.">                while(it2.hasNext()){</span>
-<span class="nc" id="L354">                    ClienteCompraProducto current2 = (ClienteCompraProducto)it2.next();</span>
-<span class="nc bnc" id="L355" title="All 2 branches missed.">                    if(current2.getProducto().getEspecificacionProducto().getNroReferencia().equals(nroRef)){</span>
-<span class="nc" id="L356">                        return true;</span>
+<span class="nc" id="L381">        Iterator it = ManejadorOrdenes.getInstance().obtenerOrdenes().values().iterator();</span>
+<span class="nc bnc" id="L382" title="All 2 branches missed.">        while(it.hasNext()){</span>
+<span class="nc" id="L383">            OrdenCompra current = (OrdenCompra) it.next();</span>
+<span class="nc bnc" id="L384" title="All 2 branches missed.">            if (current.getCliente().getNickname().equals(nickname)) {</span>
+<span class="nc" id="L385">                Iterator it2 = current.getClienteCompraProducto().iterator();</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">                while(it2.hasNext()){</span>
+<span class="nc" id="L387">                    ClienteCompraProducto current2 = (ClienteCompraProducto)it2.next();</span>
+<span class="nc bnc" id="L388" title="All 2 branches missed.">                    if(current2.getProducto().getEspecificacionProducto().getNroReferencia().equals(nroRef)){</span>
+<span class="nc" id="L389">                        return true;</span>
                     }
-<span class="nc" id="L358">                }</span>
+<span class="nc" id="L391">                }</span>
             }
-<span class="nc" id="L360">        }</span>
-<span class="nc" id="L361">        return false;</span>
+<span class="nc" id="L393">        }</span>
+<span class="nc" id="L394">        return false;</span>
     }
     @Override
     public List&lt;DataComentario&gt; listarComentarios(String nroRef){
-<span class="fc" id="L365">        List&lt;DataComentario&gt; dataComentario = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L366">        EspecificacionProducto espElegida = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);</span>
-<span class="fc" id="L367">        Iterator it = espElegida.getComentarios().iterator();</span>
-<span class="fc bfc" id="L368" title="All 2 branches covered.">        while(it.hasNext()){</span>
-<span class="fc" id="L369">            Comentario current = (Comentario) it.next();</span>
-<span class="fc" id="L370">            dataComentario.add(new DataComentario(current));</span>
-<span class="fc" id="L371">        }</span>
-<span class="fc" id="L372">        return dataComentario;</span>
+<span class="fc" id="L398">        List&lt;DataComentario&gt; dataComentario = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L399">        EspecificacionProducto espElegida = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);</span>
+<span class="fc" id="L400">        Iterator it = espElegida.getComentarios().iterator();</span>
+<span class="fc bfc" id="L401" title="All 2 branches covered.">        while(it.hasNext()){</span>
+<span class="fc" id="L402">            Comentario current = (Comentario) it.next();</span>
+<span class="fc" id="L403">            dataComentario.add(new DataComentario(current));</span>
+<span class="fc" id="L404">        }</span>
+<span class="fc" id="L405">        return dataComentario;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

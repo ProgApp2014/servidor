@@ -206,11 +206,11 @@ public class EspecificacionProducto implements Serializable{
 
     @Override
     public boolean equals(Object object) {
-<span class="nc bnc" id="L209" title="All 2 branches missed.">        if (!(object instanceof EspecificacionProducto)) {</span>
+<span class="pc bpc" id="L209" title="1 of 2 branches missed.">        if (!(object instanceof EspecificacionProducto)) {</span>
 <span class="nc" id="L210">            return false;</span>
         }
-<span class="nc" id="L212">        EspecificacionProducto other = (EspecificacionProducto) object;</span>
-<span class="nc bnc" id="L213" title="All 8 branches missed.">        return (this.nroReferencia != null || other.nroReferencia == null) &amp;&amp; (this.nroReferencia == null || this.nroReferencia.equals(other.nroReferencia));</span>
+<span class="fc" id="L212">        EspecificacionProducto other = (EspecificacionProducto) object;</span>
+<span class="pc bpc" id="L213" title="5 of 8 branches missed.">        return (this.nroReferencia != null || other.nroReferencia == null) &amp;&amp; (this.nroReferencia == null || this.nroReferencia.equals(other.nroReferencia));</span>
     }
     
 }

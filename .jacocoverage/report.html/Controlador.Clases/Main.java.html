@@ -43,7 +43,7 @@ import java.util.Map;
 <span class="nc" id="L43">        controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);</span>
 <span class="nc" id="L44">        controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);</span>
 <span class="nc" id="L45">        System.out.println(&quot;ACA &quot;+ManejadorEspProductos.getInstance().buscarEspProductos(&quot;Ne&quot;));</span>
-<span class="nc" id="L46">        System.out.println(&quot;ACA &quot;+ManejadorEspProductos.getInstance().buscarEspProductosSeparados(&quot;Ne&quot;));</span>
+<span class="nc" id="L46">        System.out.println(&quot;ACA &quot;+controlarProducto.buscarProductosSeparados(&quot;app&quot;,&quot;nombre&quot;));</span>
 
 //
 ////        casoDeUso1(controlarUsuario);

@@ -48,8 +48,8 @@ public class GeneralTest{
         assertTrue (controlarUsuario.login("Tim1", md5("password")));
         assertFalse (controlarUsuario.login("Dan", md5("otracosa")));
         
-        assertTrue (controlarProducto.categoryAlreadyExist("Xbox"));        
-        assertTrue (!isNull (controlarProducto.mostrarDatosProducto("IPH5")));
+//        assertTrue (controlarProducto.categoryAlreadyExist("Xbox"));        
+//        assertTrue (!isNull (controlarProducto.mostrarDatosProducto("IPH5")));
         
         //comentarios
         controlarUsuario.elegirCliente("Phil");       
@@ -119,7 +119,10 @@ public class GeneralTest{
         controlarProducto.eliminarCategoria("iOS"); 
         controlarProducto.eliminarCategoria("Sistemas Operativos");        
         controlarProducto.eliminarCategoria("Celulares");
-
+//        controlarProducto.eliminarCategoria("Xbox");
+//        controlarProducto.eliminarCategoria("VideoJuegos");
+//        controlarProducto.eliminarCategoria("VideoJuegos");
+        
         //eliminar usuarios de la base 
         controlarUsuario.eliminarUsuario("Tim1");
         controlarUsuario.eliminarUsuario("Eddy");

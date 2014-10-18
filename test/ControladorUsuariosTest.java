@@ -46,24 +46,24 @@ public class ControladorUsuariosTest{
         assertTrue (!isNull (controlarUsuario.listarClientes()));
 
         //agrego un usuario proveedor
-        DataProveedor proveedor1 = new DataProveedor ("pperez", "pasagourd2","Pedro", "Perez", "perez@gmail.com", cal, "Pcel", "www.pcel.com");        
+        DataProveedor proveedor1 = new DataProveedor ("pmarmol", "pasagourd2","Pablo", "Marmol", "marmol@gmail.com", cal, "Xcel", "www.xcel.com");        
         controlarUsuario.ingresarDatosProveedor(proveedor1);
         controlarUsuario.guardarUsuario(); 
-        controlarUsuario.elegirProveedor("pperez");
+        controlarUsuario.elegirProveedor("pmarmol");
         
-        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getNickname(), "pperez");
-        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getEmail(), "perez@gmail.com");
-        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getNombre(), "Pedro");
-        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getApellido(), "Perez");
-        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getFechaNacimiento().compareTo(cal), 0);
-        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getNombreCompania(), "Pcel");
-        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").getLinkSitio(), "www.pcel.com");
-        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pperez").validarDatosUsuario(), true);    
-        assertTrue (controlarUsuario.esProveedor("pperez"));
+        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pmarmol").getNickname(), "pmarmol");
+        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pmarmol").getEmail(), "marmol@gmail.com");
+        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pmarmol").getNombre(), "Pablo");
+        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pmarmol").getApellido(), "Marmol");
+        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pmarmol").getFechaNacimiento().compareTo(cal), 0);
+        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pmarmol").getNombreCompania(), "Xcel");
+        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pmarmol").getLinkSitio(), "www.xcel.com");
+        assertEquals (ManejadorUsuarios.getInstance().getProveedor("pmarmol").validarDatosUsuario(), true);    
+        assertTrue (controlarUsuario.esProveedor("pmarmol"));
         assertTrue (!isNull (controlarUsuario.listarProveedores()));
 
 
-        controlarUsuario.eliminarUsuario("pperez");
+        controlarUsuario.eliminarUsuario("pmarmol");
         
         
         //crear usuario con nickname repetido

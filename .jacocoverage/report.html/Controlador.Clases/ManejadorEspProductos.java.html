@@ -87,24 +87,25 @@ public class ManejadorEspProductos {
 <span class="fc" id="L87">        return listEspProd;</span>
     }
     
-    public Map&lt;String,List&lt;EspecificacionProducto&gt;&gt; buscarEspProductosSeparados(String keyword){
+    public Map&lt;String,List&lt;EspecificacionProducto&gt;&gt; buscarEspProductosSeparados(String keyword, String Orden){
 <span class="fc" id="L91">        Map&lt;String,List&lt;EspecificacionProducto&gt;&gt; result = new HashMap();</span>
-<span class="fc" id="L92">        Query query = entityManager.createQuery(&quot;SELECT DISTINCT e FROM EspecificacionProducto e where upper(e.nombre) LIKE :x&quot;, EspecificacionProducto.class);</span>
-<span class="fc" id="L93">        query.setParameter(&quot;x&quot;, '%' + keyword.toUpperCase() + '%');</span>
-<span class="fc" id="L94">        List&lt;EspecificacionProducto&gt; listEspProd = query.getResultList();</span>
-<span class="fc" id="L95">        result.put(&quot;productos&quot;, listEspProd);</span>
-<span class="fc" id="L96">        List&lt;String&gt; idObtenidas = new ArrayList();</span>
-<span class="fc" id="L97">        Iterator it = listEspProd.iterator();</span>
-<span class="pc bpc" id="L98" title="1 of 2 branches missed.">        while(it.hasNext()){</span>
-<span class="nc" id="L99">            EspecificacionProducto current = (EspecificacionProducto)it.next();</span>
-<span class="nc" id="L100">            idObtenidas.add(current.getNroReferencia());</span>
-<span class="nc" id="L101">        }</span>
-<span class="fc" id="L102">        query = entityManager.createQuery(&quot;SELECT DISTINCT e FROM EspecificacionProducto e JOIN e.categorias c where upper(c.nombre) LIKE :y AND e.nroReferencia NOT IN :ids&quot;, EspecificacionProducto.class);</span>
-<span class="fc" id="L103">        query.setParameter(&quot;y&quot;, '%' + keyword.toUpperCase() + '%');</span>
-<span class="fc" id="L104">        query.setParameter(&quot;ids&quot;, idObtenidas);</span>
-<span class="fc" id="L105">        result.put(&quot;categorias&quot;, query.getResultList());</span>
+<span class="pc bpc" id="L92" title="3 of 4 branches missed.">        String orderBy = Orden.equals(&quot;nombre&quot;) ? &quot; ORDER BY upper(e.nombre) ASC&quot; : Orden.equals(&quot;precio&quot;) ? &quot; ORDER BY e.precio DESC&quot; : &quot;&quot;;</span>
+<span class="fc" id="L93">        Query query = entityManager.createQuery(&quot;SELECT DISTINCT e FROM EspecificacionProducto e where upper(e.nombre) LIKE :x&quot;+orderBy, EspecificacionProducto.class);</span>
+<span class="fc" id="L94">        query.setParameter(&quot;x&quot;, '%' + keyword.toUpperCase() + '%');</span>
+<span class="fc" id="L95">        List&lt;EspecificacionProducto&gt; listEspProd = query.getResultList();</span>
+<span class="fc" id="L96">        result.put(&quot;productos&quot;, listEspProd);</span>
+<span class="fc" id="L97">        List&lt;String&gt; idObtenidas = new ArrayList();</span>
+<span class="fc" id="L98">        Iterator it = listEspProd.iterator();</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">        while(it.hasNext()){</span>
+<span class="nc" id="L100">            EspecificacionProducto current = (EspecificacionProducto)it.next();</span>
+<span class="nc" id="L101">            idObtenidas.add(current.getNroReferencia());</span>
+<span class="nc" id="L102">        }</span>
+<span class="fc" id="L103">        query = entityManager.createQuery(&quot;SELECT DISTINCT e FROM EspecificacionProducto e JOIN e.categorias c where upper(c.nombre) LIKE :y AND e.nroReferencia NOT IN :ids&quot;+orderBy, EspecificacionProducto.class);</span>
+<span class="fc" id="L104">        query.setParameter(&quot;y&quot;, '%' + keyword.toUpperCase() + '%');</span>
+<span class="fc" id="L105">        query.setParameter(&quot;ids&quot;, idObtenidas);</span>
+<span class="fc" id="L106">        result.put(&quot;categorias&quot;, query.getResultList());</span>
         
-<span class="fc" id="L107">        return result;</span>
+<span class="fc" id="L108">        return result;</span>
     }
     
 }

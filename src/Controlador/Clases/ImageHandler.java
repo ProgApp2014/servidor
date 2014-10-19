@@ -37,14 +37,14 @@ public class ImageHandler {
      * @return The full name of the created file 
      * @throws ImageHanlderException if something go wrong 
      */
-    public String saveInputStream(InputStream inputStream) throws ImageHanlderException {
+    public String saveInputStream(InputStream inputStream,String fileNameTmp) throws ImageHanlderException {
         try {
             Date d = new Date();
             Timestamp t;
             t = new Timestamp(d.getTime());
             t = new Timestamp(d.getTime());
-            String fileName = IMAGE_FOLDER + "Image" + t.toString();
-            File img = new File(fileName);
+            String fileName =  t.toString()+fileNameTmp;
+            File img = new File(IMAGE_FOLDER+fileName);
             FileOutputStream ot = new FileOutputStream(img);
             int read = 0;
             byte[] bytes = new byte[1024];

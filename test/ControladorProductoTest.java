@@ -25,7 +25,7 @@ import org.junit.Test;
 public class ControladorProductoTest{
 
     @Test
-    public void testAltaDeCategoria() {
+    public void AltaDeCategoriaTest() {
         Integer idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
         IControladorProductos controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
 
@@ -61,115 +61,115 @@ public class ControladorProductoTest{
     }
 
     @Test
-    public void testRegistrarProducto() {
+    public void RegistrarProductoTest() {
 
         Integer idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
         IControladorProductos controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
         Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
         IControladorUsuarios controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);
 
-        Calendar cal = Calendar.getInstance();
-        cal.set(1960, 11, 1);
-        DataProveedor proveedor1 = new DataProveedor("pperez", "pass " ,"Pedro", "Perez", "perez@gmail.com", cal, "Pcel", "www.pcel.com");
-        controlarUsuario.ingresarDatosProveedor(proveedor1);
-        controlarUsuario.guardarUsuario();
-        DataEspecificacionProducto espProducto = new DataEspecificacionProducto("nroref10", "nombre_prod", "nuevo", new HashMap <>() , (float) 2500.0, proveedor1, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-                                                                                                     //descripcion  especificacion   precio                       imagenes         categorias          productos         comentario
-        //Crear producto id=1 y especificacion espProducto
-        Boolean ordenado = true;
-        DataProducto producto1 = new DataProducto(1,"idSpec", ordenado, espProducto);
-
-        controlarProducto.ingresarDatosProductos(espProducto);
+        
+        Calendar cal5 = Calendar.getInstance();
+        cal5.set(1930, 11, 1);
+        controlarUsuario.ingresarDatosProveedor(new DataProveedor("cxav", "pass25" ,"Charles", "Xavier", "xxavier@gmail.com", cal5, "Xcel", "www.xcel.com"));
+        controlarUsuario.guardarUsuario();        
+ 
+        DataCategoria category = new DataCategoria("category", null);
+        controlarProducto.ingresarDatosCategoria(category);
+        controlarProducto.guardarCategoria();
+        
+        //leer datos de nueva especificacion de IngresarDatosUnidad
         controlarProducto.elegirProveedor("pperez");
+        DataProveedor proveedor1 = new DataProveedor(ManejadorUsuarios.getInstance().getProveedor("cxav"));
+        DataEspecificacionProducto espProducto = new DataEspecificacionProducto("esp10", "nombre_prod", "nuevo", new HashMap <>() , (float) 2500.0, proveedor1, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        controlarProducto.ingresarDatosProductos(espProducto);
         controlarProducto.ingresarEspecificacion("estado", "nuevo");
         controlarProducto.ingresarEspecificacion("color", "gris");
         controlarProducto.ingresarEspecificacion("altura", "1 metro");
-        DataCategoria categoria = new DataCategoria("cate", null);
-        controlarProducto.ingresarDatosCategoria(categoria);
-        controlarProducto.guardarCategoria();
-        controlarProducto.agregarCategoriaAEspecificacion("cate");
-        controlarProducto.agregarImagen("img1");
+        Boolean es_bool = false;
+        DataProducto producto1 = new DataProducto(1, "specif",es_bool, espProducto);
         controlarProducto.ingresarDatosUnidad(producto1);
+        controlarProducto.agregarCategoriaAEspecificacion("category");
+        controlarProducto.agregarImagen("peteco");
+        //controlarProducto.guardarProducto();        
         if (controlarProducto.controlarErrores()) {
             controlarProducto.guardarProducto();
-        }
+        }        
+
 
         assertTrue(!isNull(controlarProducto.getId()));
-        assertTrue(!isNull(controlarProducto.controlarErrores()));
         assertTrue(!isNull(controlarProducto.elegirTipoProducto()));
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref10").getListaProductos().get(0).getIdEspecifico(), "idSpec");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref10").getListaProductos().get(0).getEspecificacionProducto().getDescripcion(), "nuevo");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref10").getListaProductos().get(0).getEspecificacionProducto().getNombre(), "nombre_prod");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref10").getListaProductos().get(0).getEspecificacionProducto().getNroReferencia(), "nroref10");
-        assertTrue((ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref10").getListaProductos().get(0).getEspecificacionProducto().getPrecio() == (float) 2500.0));
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref10").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getLinkSitio(), "www.pcel.com");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref10").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getNombreCompania(), "Pcel");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref10").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getNombre(), "Pedro");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref10").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getApellido(), "Perez");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref10").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getNickname(), "pperez");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("esp10").getListaProductos().get(0).getIdEspecifico(), "specif");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("esp10").getListaProductos().get(0).getEspecificacionProducto().getDescripcion(), "nuevo");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("esp10").getListaProductos().get(0).getEspecificacionProducto().getNombre(), "nombre_prod");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("esp10").getListaProductos().get(0).getEspecificacionProducto().getNroReferencia(), "esp10");
+        assertTrue((ManejadorEspProductos.getInstance().getEspecificacionProducto("esp10").getListaProductos().get(0).getEspecificacionProducto().getPrecio() == (float) 2500.0));
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("esp10").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getLinkSitio(), "www.xcel.com");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("esp10").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getNombreCompania(), "Xcel");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("esp10").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getNombre(), "Charles");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("esp10").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getApellido(), "Xavier");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("esp10").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getNickname(), "cxav");
 
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref10").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getFechaNacimiento().compareTo(cal), 0);
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("esp10").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getFechaNacimiento().compareTo(cal5), 0);
 
-        controlarProducto.eliminarEspecificacionProducto("nroref10");        
-        controlarProducto.eliminarCategoria("cate");
-        controlarUsuario.eliminarUsuario("pperez");        
+        controlarProducto.eliminarEspecificacionProducto("esp10");        
+        controlarProducto.eliminarCategoria("category");
+        controlarUsuario.eliminarUsuario("cxav");        
 
     }
 
     @Test
-    public void testVerInformaciondeProducto() {
+    public void VerInformaciondeProductoTest() {
 
         Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
         IControladorUsuarios controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);
         Integer idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
         IControladorProductos controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);  
-        
-        //creamos el proveedor
+
         Calendar cal2 = Calendar.getInstance();
-        cal2.set(1992, 10, 04);
-        DataProveedor proveedor2 =new DataProveedor("gclaud", "pass2" ,"Gallo", "Claudio", "gclaudio@mail.com", cal2, "Alpiste", "www.alpiste.com");
-        controlarUsuario.ingresarDatosProveedor(proveedor2);
-        controlarUsuario.guardarUsuario();
-
-        //creamos la especificacion de producto
-        DataEspecificacionProducto espProducto2 = new DataEspecificacionProducto("nroref20", "nombre_prod2", "usado", new HashMap <>() , (float) 12.0, proveedor2, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        cal2.set(1992, 10, 04);        
+        controlarUsuario.ingresarDatosProveedor(new DataProveedor("gclaud", "pass2" ,"Gallo", "Claudio", "gclaudio@mail.com", cal2, "Alpiste", "www.alpiste.com"));
+        controlarUsuario.guardarUsuario();        
+ 
+        DataCategoria categoria2 = new DataCategoria("cate25", null);
+        controlarProducto.ingresarDatosCategoria(categoria2);
+        controlarProducto.guardarCategoria();
         
-        //creamos el producto
-        Boolean orden = true;
-        DataProducto producto2 = new DataProducto(2,"idSpec2", orden, espProducto2);
-
-        controlarProducto.ingresarDatosProductos(espProducto2);
+        //leer datos de nueva especificacion de IngresarDatosUnidad
         controlarProducto.elegirProveedor("gclaud");
+        DataProveedor proveedor2 = new DataProveedor(ManejadorUsuarios.getInstance().getProveedor("gclaud"));
+        DataEspecificacionProducto espProducto2 = new DataEspecificacionProducto("nroref201", "nombre_prod2", "usado", new HashMap <>() , (float) 12.0, proveedor2, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        controlarProducto.ingresarDatosProductos(espProducto2);
         controlarProducto.ingresarEspecificacion("estado", "nuevo");
         controlarProducto.ingresarEspecificacion("color", "gris");
         controlarProducto.ingresarEspecificacion("altura", "1 metro");
-        DataCategoria categoria2 = new DataCategoria("cate2", null);
-        controlarProducto.ingresarDatosCategoria(categoria2);
-        controlarProducto.guardarCategoria();
-        controlarProducto.agregarCategoriaAEspecificacion("cate2");
-        controlarProducto.agregarImagen("img2");
+        Boolean es_bool = false;
+        DataProducto producto2 = new DataProducto(2,"idSpec2", es_bool, espProducto2);
         controlarProducto.ingresarDatosUnidad(producto2);
+        controlarProducto.agregarCategoriaAEspecificacion("cate25");
+        controlarProducto.agregarImagen("new_peteco");        
         if (controlarProducto.controlarErrores()) {
             controlarProducto.guardarProducto();
         }
         
+        
         //pruebas
         assertTrue(!isNull(controlarProducto.controlarErrores()));
         assertTrue(!isNull(ManejadorProductos.getInstance().obtenerProductos()));
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref20").getListaProductos().get(0).getIdEspecifico(), "idSpec2");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref20").getListaProductos().get(0).getEspecificacionProducto().getDescripcion(), "usado");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref20").getListaProductos().get(0).getEspecificacionProducto().getNombre(), "nombre_prod2");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref20").getListaProductos().get(0).getEspecificacionProducto().getNroReferencia(), "nroref20");
-        assertTrue((ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref20").getListaProductos().get(0).getEspecificacionProducto().getPrecio() == (float) 12.0));
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref20").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getLinkSitio(), "www.alpiste.com");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref20").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getNombreCompania(), "Alpiste");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref20").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getNombre(), "Gallo");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref20").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getApellido(), "Claudio");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref20").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getNickname(), "gclaud");
-        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref20").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getFechaNacimiento().compareTo(cal2), 0);
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref201").getListaProductos().get(0).getIdEspecifico(), "idSpec2");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref201").getListaProductos().get(0).getEspecificacionProducto().getDescripcion(), "usado");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref201").getListaProductos().get(0).getEspecificacionProducto().getNombre(), "nombre_prod2");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref201").getListaProductos().get(0).getEspecificacionProducto().getNroReferencia(), "nroref201");
+        assertTrue((ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref201").getListaProductos().get(0).getEspecificacionProducto().getPrecio() == (float) 12.0));
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref201").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getLinkSitio(), "www.alpiste.com");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref201").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getNombreCompania(), "Alpiste");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref201").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getNombre(), "Gallo");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref201").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getApellido(), "Claudio");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref201").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getNickname(), "gclaud");
+        assertEquals(ManejadorEspProductos.getInstance().getEspecificacionProducto("nroref201").getListaProductos().get(0).getEspecificacionProducto().getDataProveedor().getFechaNacimiento().compareTo(cal2), 0);
 
-        controlarProducto.eliminarEspecificacionProducto("nroref20");
-        controlarProducto.eliminarCategoria("cate2");
+        controlarProducto.eliminarEspecificacionProducto("nroref201");
+        controlarProducto.eliminarCategoria("cate25");
         controlarUsuario.eliminarUsuario("gclaud");
       }
 
@@ -190,7 +190,7 @@ public class ControladorProductoTest{
 //        //creamos la especificacion de producto
 //        DataEspecificacionProducto espProducto3 = new DataEspecificacionProducto("nroref3", "nombre_prod3", "mordido", new HashMap <>() , (float) 12.0, proveedor3, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());  
 //        //creamos el producto
-//        Boolean orden3 = true;
+//        Boolean orden3 = false;
 //        DataProducto producto3 = new DataProducto(1,"idSpec3", orden3, espProducto3);
 //
 //        controlarProducto.ingresarDatosProductos(espProducto3);
@@ -256,7 +256,7 @@ public class ControladorProductoTest{
 //        controlarProducto.ingresarDatosProductos(espProducto);
 //        controlarProducto.ingresarEspecificacion("estado", "nuevo");
 //        controlarProducto.ingresarEspecificacion("color", "gris");
-//        Boolean algo =true;
+//        Boolean algo =false;
 //        DataProducto prodUnidad = new DataProducto(5, "idesp1", algo, espProducto);
 //        controlarProducto.ingresarDatosUnidad(prodUnidad);
 //        controlarProducto.agregarCategoriaAEspecificacion("kat");

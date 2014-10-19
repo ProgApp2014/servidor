@@ -40,9 +40,11 @@ public class DataEspecificacionProducto {
                productos.add(new DataProducto(producto));
             });
             this.comentarios = new ArrayList();
-            ep.getComentarios().forEach((comentario) -> {
-               comentarios.add(new DataComentario(comentario));
-            });
+            if(ep.getComentarios() != null  && !ep.getComentarios().isEmpty()){
+                ep.getComentarios().forEach((comentario) -> {
+                   comentarios.add(new DataComentario(comentario));
+                });
+            }
         }else{
             this.categorias = new ArrayList<DataCategoria>();
             this.productos = new ArrayList();

@@ -6,9 +6,18 @@ import Controlador.Clases.Fabrica;
 import Controlador.Clases.IControladorOrdenes;
 import Controlador.Clases.IControladorProductos;
 import Controlador.Clases.IControladorUsuarios;
+import Controlador.Clases.OrdenCompra;
 import static Controlador.Clases.Utils.md5;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Calendar;
 import static java.util.Objects.isNull;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import static junit.framework.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -17,50 +26,68 @@ import static junit.framework.Assert.assertFalse;
 public class GeneralTest{
     
     @Test
-    public void utilesTest(){
-        
-        Integer idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
-        IControladorOrdenes controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);
-        Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
-        IControladorUsuarios controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);
-        Integer idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
-        IControladorProductos controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
-        
-        Utils.generarDatosDePrueba();
-        
-        
-        assertTrue(!isNull(controlarOrden.listarOrdenes()));
-        assertTrue(!isNull(controlarOrden.listarClientes()));
-        assertTrue(!isNull(controlarOrden.listarCategorias()));
+    public void utilesTest() throws Exception{
+        try{
+            Integer idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
+            IControladorOrdenes controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);
+            Integer idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
+            IControladorUsuarios controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);
+            Integer idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
+            IControladorProductos controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
 
-        controlarUsuario.elegirCliente("Dan");
-        controlarUsuario.mostrarDatosCliente(); 
-        controlarUsuario.getErrors();        
-        assertTrue (controlarUsuario.esCliente("Dan"));
-        assertTrue (!controlarUsuario.esCliente("Tim1"));
-        controlarUsuario.elegirProveedor("Tim1");
-        controlarUsuario.mostrarDatosProveedor();
-        assertTrue (controlarUsuario.esProveedor("Tim1"));
-        assertTrue (!controlarUsuario.esProveedor("Dan"));
-        assertTrue (!isNull(controlarUsuario.listarProductosProveedor()));
-        
-        assertTrue (controlarUsuario.login("Dan", md5("password")));
-        assertTrue (controlarUsuario.login("Tim1", md5("password")));
-        assertFalse (controlarUsuario.login("Dan", md5("otracosa")));
-        
-//        assertTrue (controlarProducto.categoryAlreadyExist("Xbox"));        
-//        assertTrue (!isNull (controlarProducto.mostrarDatosProducto("IPH5")));
-        
-        //comentarios
-        controlarUsuario.elegirCliente("Phil");       
-        controlarProducto.agregarComentario("Phil", "CHP", 0, "aca estoy comentando algo");
-        controlarProducto.listarComentarios("CHP");
-        
-        assertFalse (controlarProducto.validarInfo());        
-        
-        assertTrue(!isNull(controlarProducto.buscarProductos("Apple")));
-        assertTrue (!isNull(controlarProducto.buscarProductosSeparados("Apple","nombre")));
+            Utils.generarDatosDePrueba();
 
+
+            assertTrue(!isNull(controlarOrden.listarOrdenes()));
+            assertTrue(!isNull(controlarOrden.listarClientes()));
+            assertTrue(!isNull(controlarOrden.listarCategorias()));
+
+            controlarUsuario.elegirCliente("Dan");
+            controlarUsuario.mostrarDatosCliente(); 
+            controlarUsuario.getErrors();        
+            assertTrue (controlarUsuario.esCliente("Dan"));
+            assertTrue (!controlarUsuario.esCliente("Tim1"));
+            controlarUsuario.elegirProveedor("Tim1");
+            controlarUsuario.mostrarDatosProveedor();
+            assertTrue (controlarUsuario.esProveedor("Tim1"));
+            assertTrue (!controlarUsuario.esProveedor("Dan"));
+            assertTrue (!isNull(controlarUsuario.listarProductosProveedor()));
+
+            assertTrue (controlarUsuario.login("Dan", md5("password")));
+            assertTrue (controlarUsuario.login("Tim1", md5("password")));
+            assertFalse (controlarUsuario.login("Dan", md5("otracosa")));
+
+    //        assertTrue (controlarProducto.categoryAlreadyExist("Xbox"));        
+    //        assertTrue (!isNull (controlarProducto.mostrarDatosProducto("IPH5")));
+            assertTrue(controlarProducto.puedeComentar("Dan", "IPH5"));
+            //comentarios
+            controlarUsuario.elegirCliente("Phil");       
+            controlarProducto.agregarComentario("Phil", "CHP", null, "aca estoy comentando algo");
+            controlarProducto.agregarComentario("Phil", "CHP", controlarProducto.listarComentarios("CHP").get(0).getId(), "respondiendo mi propio comentario");
+            controlarProducto.listarComentarios("CHP");
+            controlarProducto.agregarImagen("esunaruta");
+            controlarProducto.borrarImagen("esunaruta");
+            assertTrue(!isNull(controlarUsuario.listarOrdenesCliente()));
+            assertEquals(Utils.formatString(" pa borrar "),"pa borrar");
+            assertEquals(Utils.formatString(null),"");
+            
+//            Calendar cal = Calendar.getInstance();
+//            cal.set(1960, 11, 1);
+//            Utils.formatDate(cal);
+            
+            assertFalse (controlarProducto.validarInfo());        
+
+            assertTrue(!isNull(controlarProducto.buscarProductos("Apple")));
+            assertTrue (!isNull(controlarProducto.buscarProductosSeparados("ne","ventas")));
+            assertTrue (!isNull(controlarProducto.buscarProductosSeparados("app","ventas")));
+            GeneralTest.deleteAllData();
+        }catch(Exception e){
+            GeneralTest.deleteAllData();
+            StringWriter errors = new StringWriter();
+            e.printStackTrace(new PrintWriter(errors));
+            throw new Exception(e.getMessage() + " " + errors.toString());
+        }
+        /*
         //COMO BORRO LAS ORDENES DE COMPRA???
 
 //        Integer orden1 = controlarOrden.getUltimaOrdenGuardada();
@@ -132,9 +159,35 @@ public class GeneralTest{
         controlarUsuario.eliminarUsuario("Dan");
         controlarUsuario.eliminarUsuario("Phil");
         controlarUsuario.eliminarUsuario("BruceS");
-        controlarUsuario.eliminarUsuario("JeffW");
-
+        controlarUsuario.eliminarUsuario("JeffW");*/
         
     }
 
+    public static void deleteAllData(){
+        EntityManagerFactory EntityManagerFactory = Persistence.createEntityManagerFactory("ProgramacionAppPU");
+        EntityManager entityManager = EntityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.createQuery("DELETE FROM ClienteCompraProducto").executeUpdate();
+        entityManager.createQuery("DELETE FROM OrdenCompra").executeUpdate();
+        entityManager.createQuery("DELETE FROM Producto").executeUpdate();
+        entityManager.createQuery("DELETE FROM Comentario").executeUpdate();
+        entityManager.createQuery("DELETE FROM EspecificacionProducto").executeUpdate();
+        entityManager.createQuery("DELETE FROM Categoria").executeUpdate();
+        entityManager.createQuery("DELETE FROM Cliente").executeUpdate();
+        entityManager.createQuery("DELETE FROM Proveedor").executeUpdate();
+        entityManager.getTransaction().commit();
+        /*
+        delete from CATEGORIAESPECIFICACIONPROD ;
+delete from CLIENTECOMPRAPRODUCTO ;
+delete from COMENTARIO ;
+delete from ESPECIFICACIONES ;
+delete from IMAGENES ;
+delete from ORDENCOMPRA ;
+delete from PRODUCTO PRODUCTO ;
+delete from ESPECIFICACIONPRODUCTO ;
+delete from CATEGORIA ;
+delete from CLIENTE ;
+delete from PROVEEDOR ;
+delete from USUARIO */
+    }
 }

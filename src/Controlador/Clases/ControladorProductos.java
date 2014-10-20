@@ -144,6 +144,12 @@ public class ControladorProductos implements IControladorProductos {
     }
 
     @Override
+    public Boolean verificarEspecificacionProducto(String numRef) {
+        return ManejadorEspProductos.getInstance().getEspecificacionProducto(numRef) != null;
+
+    }
+
+    @Override
     public void listarImagenesDisco() {
 
     }

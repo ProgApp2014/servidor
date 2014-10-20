@@ -53,5 +53,6 @@ public interface IControladorProductos {
     public Boolean puedeComentar(String nickname, String nroRef);
     public List<DataComentario> listarComentarios(String nroRef);
     public List<DataProducto> listarProductosEnEspecificacion();
+    public Boolean verificarEspecificacionProducto(String numRef);
 }
     

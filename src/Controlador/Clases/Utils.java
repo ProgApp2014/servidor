@@ -436,14 +436,14 @@ public class Utils {
         if (ManejadorOrdenes.getInstance().obtenerOrdenes().isEmpty()) {
             controlarOrden.elegirCliente("Dan");
             controlarOrden.elegirEspecificacionProducto("IPH5");
-            controlarOrden.elegirProducto(1);
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPH5").getListaProductos().get(0).getId());
             controlarOrden.generarItemOrden();
             controlarOrden.elegirEspecificacionProducto("IRD");
-            controlarOrden.elegirProducto(1);
-            controlarOrden.elegirProducto(2);
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IRD").getListaProductos().get(0).getId());
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IRD").getListaProductos().get(1).getId());
             controlarOrden.elegirEspecificacionProducto("IM");
-            controlarOrden.elegirProducto(1);
-            controlarOrden.elegirProducto(2);
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IM").getListaProductos().get(0).getId());
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IM").getListaProductos().get(1).getId());
             controlarOrden.generarItemOrden();
             DataOrdenCompra dataOrden = new DataOrdenCompra(1);
             dataOrden.setFecha(getDateFromString("12/8/2013"));
@@ -451,9 +451,9 @@ public class Utils {
 
             controlarOrden.elegirCliente("Dan");
             controlarOrden.elegirEspecificacionProducto("NEX4");
-            controlarOrden.elegirProducto(1);
-            controlarOrden.elegirProducto(2);
-            controlarOrden.elegirProducto(3);
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("NEX4").getListaProductos().get(0).getId());
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("NEX4").getListaProductos().get(1).getId());
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("NEX4").getListaProductos().get(2).getId());
             controlarOrden.generarItemOrden();
             DataOrdenCompra dataOrden2 = new DataOrdenCompra(2);
             dataOrden2.setFecha(getDateFromString("19/8/2013"));
@@ -461,13 +461,13 @@ public class Utils {
 
             controlarOrden.elegirCliente("Phil");
             controlarOrden.elegirEspecificacionProducto("CHP");
-            controlarOrden.elegirProducto(1);
-            controlarOrden.elegirProducto(2);
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("CHP").getListaProductos().get(0).getId());
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("CHP").getListaProductos().get(1).getId());
             controlarOrden.generarItemOrden();
             controlarOrden.elegirEspecificacionProducto("CP3");
-            controlarOrden.elegirProducto(1);
-            controlarOrden.elegirProducto(2);
-            controlarOrden.elegirProducto(3);
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("CP3").getListaProductos().get(0).getId());
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("CP3").getListaProductos().get(1).getId());
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("CP3").getListaProductos().get(2).getId());
             controlarOrden.generarItemOrden();
             DataOrdenCompra dataOrden3 = new DataOrdenCompra(3);
             dataOrden3.setFecha(getDateFromString("19/8/2013"));
@@ -475,10 +475,10 @@ public class Utils {
 
             controlarOrden.elegirCliente("BruceS");
             controlarOrden.elegirEspecificacionProducto("CIX");
-            controlarOrden.elegirProducto(1);
-            controlarOrden.elegirProducto(2);
-            controlarOrden.elegirProducto(3);
-            controlarOrden.elegirProducto(4);
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("CIX").getListaProductos().get(0).getId());
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("CIX").getListaProductos().get(1).getId());
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("CIX").getListaProductos().get(2).getId());
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("CIX").getListaProductos().get(3).getId());
             controlarOrden.generarItemOrden();
             DataOrdenCompra dataOrden4 = new DataOrdenCompra(4);
             dataOrden4.setFecha(getDateFromString("22/8/2013"));
@@ -486,7 +486,7 @@ public class Utils {
 
             controlarOrden.elegirCliente("JeffW");
             controlarOrden.elegirEspecificacionProducto("PCG");
-            controlarOrden.elegirProducto(1);
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("PCG").getListaProductos().get(0).getId());
             controlarOrden.generarItemOrden();
             DataOrdenCompra dataOrden5 = new DataOrdenCompra(5);
             dataOrden5.setFecha(getDateFromString("25/8/2013"));

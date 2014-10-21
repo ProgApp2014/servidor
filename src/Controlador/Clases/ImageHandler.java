@@ -54,7 +54,7 @@ public class ImageHandler {
                 return IMAGE_FOLDER;
             }
         }
-        return dynamicFolder+IMAGE_NAME;
+        return dynamicFolder+IMAGE_NAME+ File.separator;
 
     }
 

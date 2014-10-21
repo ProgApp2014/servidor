@@ -15,6 +15,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class Main {
 
@@ -27,24 +30,27 @@ public class Main {
 
     public static void main(String args[]) {
 
-        try {
-            idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
-            idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
-            idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
-        } catch (Exception e) {
-            Writer writer = new StringWriter();
-            PrintWriter printWriter = new PrintWriter(writer);
-            e.printStackTrace(printWriter);
-            String s = writer.toString();
-            System.out.println(s);
-        }
+//        idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
+//        idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
+//        idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
+//
+//        controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);
+//        controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
+//        controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador); 
 
-        controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);
-        controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
-        controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador);
-        System.out.println("ACA "+ManejadorEspProductos.getInstance().buscarEspProductos("Ne"));
-        System.out.println("ACA "+controlarProducto.buscarProductosSeparados("app","nombre"));
-
+//        EntityManagerFactory EntityManagerFactory = Persistence.createEntityManagerFactory("ProgramacionAppPU");
+//        EntityManager entityManager = EntityManagerFactory.createEntityManager();
+//        entityManager.getTransaction().begin();
+//        entityManager.createQuery("DELETE FROM ClienteCompraProducto").executeUpdate();
+//        entityManager.createQuery("DELETE FROM OrdenCompra").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Producto").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Comentario").executeUpdate();
+//        entityManager.createQuery("DELETE FROM EspecificacionProducto").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Categoria").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Cliente").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Proveedor").executeUpdate();
+//        entityManager.getTransaction().commit();
+//        Utils.generarDatosDePrueba();
 //
 ////        casoDeUso1(controlarUsuario);
 ////        casoDeUso2(controlarProducto);
@@ -289,5 +295,4 @@ public class Main {
 //        DataOrdenCompra dataOrden = controlarOrden.mostrarDatosOrden();
 //        System.out.println("Mostrar Datos de la Orden: " + dataOrden);
 //    }
-
 }

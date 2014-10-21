@@ -5,6 +5,7 @@
  */
 package Controlador.Clases;
 
+import static Controlador.Clases.Main.controlarProducto;
 import Controlador.DataTypes.DataOrdenCompra;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -20,8 +21,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -491,9 +494,40 @@ public class Utils {
             DataOrdenCompra dataOrden5 = new DataOrdenCompra(5);
             dataOrden5.setFecha(getDateFromString("25/8/2013"));
             controlarOrden.guardarOrden(dataOrden5);
+         
+            Comentario com1 = agregarComentario("Dan", "IPH5", null, "El mejor iPhone hasta el momento. Es la mejor compra que he hecho en años. Le pasa el trapo a todos los teléfonos Android.","19/9/2013");
+            Comentario com2 = agregarComentario("Phil", "IPH5", com1.getId(), "Me parece que tu comentario es un poco desubicado. Hay muy buenos teléfonos que creo que mejoran las prestaciones de este, como el Samsung Galaxy S4.","19/9/2013");
+            Comentario com3 = agregarComentario("Dan", "IPH5", com2.getId(), "No creo, supe tener un Galaxy S2 y lo tenía que reiniciar todos los días. Nunca más vuelvo a Android.","20/9/2013");
+            agregarComentario("Phil", "IPH5", com3.getId(), "El mejor iPhone hasta el momento. Es la mejor compra que he hech","20/9/2013");
+           
+            agregarComentario("BruceS", "CIX", null, "¡Excelente control! Puedo disfrutar de mi GTA V sin la molestia de cables.","25/9/2013");
+            agregarComentario("BruceS", "CIX", null, "Retracto lo que escribí antes....se me rompió a los 3 dias. Me han estafado.","28/9/2013");
+            agregarComentario("Jeff", "PCG", null, "Cumple su cometido. No he notado ninguna rayita nueva en mi Samsung.","25/9/2013");
+             
         }
     }
-
+    private static Comentario agregarComentario(String nickname, String nroRef, Integer padre, String Comentario,String fecha){
+        EspecificacionProducto aModificar = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);
+        List<Comentario> comentarios = aModificar.getComentarios();
+        Comentario comentarioAAgregar = new Comentario();
+        comentarioAAgregar.setCliente(ManejadorUsuarios.getInstance().getCliente(nickname));
+        comentarioAAgregar.setEspecificacionProducto(aModificar);
+        comentarioAAgregar.setFecha(getDateFromString(fecha));
+        Iterator it = comentarios.iterator();
+        while (it.hasNext()) {
+            Comentario current = (Comentario) it.next();
+            System.out.println(current.getId()+' ');
+            System.out.println(padre );
+            if (Objects.equals(current.getId(), padre)) {
+                comentarioAAgregar.setPadre(current);
+            }
+        }
+        comentarioAAgregar.setComentario(Comentario);
+        comentarios.add(comentarioAAgregar);
+        ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).setComentarios(comentarios);
+        ManejadorEspProductos.getInstance().modificarProducto(aModificar);
+        return aModificar.getComentarios().get(aModificar.getComentarios().size()-1);
+    }
     public static String formatString(String s) {
 
         if (s != null) {

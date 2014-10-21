@@ -6,6 +6,9 @@ import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProducto;
 import Controlador.DataTypes.DataProveedor;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -15,6 +18,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -27,9 +33,11 @@ public class Main {
     public static IControladorUsuarios controlarUsuario;
     public static IControladorProductos controlarProducto;
     public static IControladorOrdenes controlarOrden;
+    private static BufferedImage image;
 
     public static void main(String args[]) {
-
+         
+       
 //        idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
 //        idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
 //        idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
@@ -50,7 +58,7 @@ public class Main {
 //        entityManager.createQuery("DELETE FROM Cliente").executeUpdate();
 //        entityManager.createQuery("DELETE FROM Proveedor").executeUpdate();
 //        entityManager.getTransaction().commit();
-      // Utils.generarDatosDePrueba();
+//      Utils.generarDatosDePrueba();
 //
 ////        casoDeUso1(controlarUsuario);
 ////        casoDeUso2(controlarProducto);

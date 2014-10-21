@@ -516,8 +516,7 @@ public class Utils {
         Iterator it = comentarios.iterator();
         while (it.hasNext()) {
             Comentario current = (Comentario) it.next();
-            System.out.println(current.getId()+' ');
-            System.out.println(padre );
+            
             if (Objects.equals(current.getId(), padre)) {
                 comentarioAAgregar.setPadre(current);
             }

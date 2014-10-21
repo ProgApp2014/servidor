@@ -502,7 +502,7 @@ public class Utils {
            
             agregarComentario("BruceS", "CIX", null, "¡Excelente control! Puedo disfrutar de mi GTA V sin la molestia de cables.","25/9/2013");
             agregarComentario("BruceS", "CIX", null, "Retracto lo que escribí antes....se me rompió a los 3 dias. Me han estafado.","28/9/2013");
-            agregarComentario("Jeff", "PCG", null, "Cumple su cometido. No he notado ninguna rayita nueva en mi Samsung.","25/9/2013");
+            agregarComentario("JeffW", "PCG", null, "Cumple su cometido. No he notado ninguna rayita nueva en mi Samsung.","25/9/2013");
              
         }
     }

@@ -50,7 +50,7 @@ public class Main {
 //        entityManager.createQuery("DELETE FROM Cliente").executeUpdate();
 //        entityManager.createQuery("DELETE FROM Proveedor").executeUpdate();
 //        entityManager.getTransaction().commit();
-//        Utils.generarDatosDePrueba();
+      // Utils.generarDatosDePrueba();
 //
 ////        casoDeUso1(controlarUsuario);
 ////        casoDeUso2(controlarProducto);

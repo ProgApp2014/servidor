@@ -11,6 +11,8 @@ public class DataComentario {
     
     public DataComentario(Comentario c) {
         this.id = c.getId();
+//        System.out.println(c.getId()+"  cliente "+c.getCliente());
+//        System.out.println(c.getId()+"  Padre "+(c.getPadre()!=null?c.getPadre().getId():""));
         this.padre = c.getPadre() == null?null:new DataComentario(c.getPadre());
         this.cliente = new DataCliente(c.getCliente());
         this.especificacionProducto = new DataEspecificacionProducto(c.getEspecificacionProducto(),false);

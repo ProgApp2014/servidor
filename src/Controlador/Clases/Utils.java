@@ -84,11 +84,11 @@ public class Utils {
         cal9.set(1964, 11, 27);
         Cliente c4 = new Cliente("JeffW", md5("password"), "Jeff", "Wiliams", "jeff.williams@gmail.com", cal9);
 
-        p1.setImagen("/home/tecnoinf/Escritorio/imag/cook.jpg");
-        p2.setImagen("/home/tecnoinf/Escritorio/imag/cue.jpg");
-        p3.setImagen("/home/tecnoinf/Escritorio/imag/federighi.jpg");
-        p4.setImagen("/home/tecnoinf/Escritorio/imag/ive.jpg");
-        c2.setImagen("/home/tecnoinf/Escritorio/imag/schiller.jpg");
+        p1.setImagen("cook.jpg");
+        p2.setImagen("cue.jpg");
+        p3.setImagen("craigx.jpg");
+        p4.setImagen("john.jpg");
+        c2.setImagen("phil.jpg");
         if (!ManejadorUsuarios.getInstance().obtenerClientes().containsKey(p1.getNickname())) {
             ManejadorUsuarios.getInstance().agregarUsuario(p1);
         }
@@ -155,6 +155,9 @@ public class Utils {
         catpr1.add(ManejadorCategorias.getInstance().getCategoria("iOS"));
         catpr1.add(ManejadorCategorias.getInstance().getCategoria("Apple"));
         EspecificacionProducto pr1 = new EspecificacionProducto("IPH5", "iPhone 5", "El último celular de Apple", esppr1, (float) 199.0, p1, catpr1, prodpr1, new ArrayList());
+        List imgList = new ArrayList();
+        imgList.add("pr1.png");
+        pr1.setImagenes(imgList);
         controlarProducto.elegirEspProducto("IPH5");
         for (Integer i = 0; i < 10; i++) {
             productospr1.add(new Producto(i, pr1));
@@ -174,6 +177,9 @@ public class Utils {
         catpr2.add(ManejadorCategorias.getInstance().getCategoria("iOS"));
         catpr2.add(ManejadorCategorias.getInstance().getCategoria("Apple"));
         EspecificacionProducto pr2 = new EspecificacionProducto("IPH4", "iPhone 4S", "El siguiente celular al iPhone 4", esppr2, (float) 99.0, p1, catpr2, prodpr2, new ArrayList());
+        imgList = new ArrayList();
+        imgList.add("pr2.jpg");
+        pr2.setImagenes(imgList);
         controlarProducto.elegirEspProducto("IPH4");
         productospr2 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -193,6 +199,9 @@ public class Utils {
         catpr3.add(ManejadorCategorias.getInstance().getCategoria("Android"));
         catpr3.add(ManejadorCategorias.getInstance().getCategoria("Nexus"));
         EspecificacionProducto pr3 = new EspecificacionProducto("NEX4", "Nexus4", "El celular de Google", esppr3, (float) 299.0, p2, catpr3, prodpr3, new ArrayList());
+        imgList = new ArrayList();
+        imgList.add("pr3.jpg");
+        pr3.setImagenes(imgList);
         controlarProducto.elegirEspProducto("NEX4");
         productospr3 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -212,6 +221,9 @@ public class Utils {
         catpr4.add(ManejadorCategorias.getInstance().getCategoria("Android"));
         catpr4.add(ManejadorCategorias.getInstance().getCategoria("Galaxy S3"));
         EspecificacionProducto pr4 = new EspecificacionProducto("GA3", "Samsung Galaxy S3", "La versión S3 de la línea Samsung Galaxy", esppr4, (float) 415.0, p2, catpr4, prodpr4, new ArrayList());
+        imgList = new ArrayList();
+        imgList.add("pr4.jpg");
+        pr4.setImagenes(imgList);
         controlarProducto.elegirEspProducto("GA3");
         productospr4 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -231,6 +243,9 @@ public class Utils {
         catpr5.add(ManejadorCategorias.getInstance().getCategoria("Android"));
         catpr5.add(ManejadorCategorias.getInstance().getCategoria("Galaxy S4"));
         EspecificacionProducto pr5 = new EspecificacionProducto("GA4", "Samsung Galaxy S4", "La versión S4 de la línea Samsung Galaxy", esppr5, (float) 839.99, p2, catpr5, prodpr5, new ArrayList());
+        imgList = new ArrayList();
+        imgList.add("pr5.jpg");
+        pr5.setImagenes(imgList);
         controlarProducto.elegirEspProducto("GA4");
         productospr5 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -250,7 +265,9 @@ public class Utils {
         catpr6.add(ManejadorCategorias.getInstance().getCategoria("Android"));
         catpr6.add(ManejadorCategorias.getInstance().getCategoria("Galaxy Ace"));
         EspecificacionProducto pr6 = new EspecificacionProducto("AS5", "Galaxy Ace S5830", "La versión Ace de la línea Samsung Galaxy", esppr6, (float) 237.0, p2, catpr6, prodpr6, new ArrayList());
-
+        imgList = new ArrayList();
+        imgList.add("pr6.jpg");
+        pr6.setImagenes(imgList);
         controlarProducto.elegirEspProducto("AS5");
         productospr6 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -267,6 +284,9 @@ public class Utils {
         esppr7.put("Peso", "44 g");
         catpr7.add(ManejadorCategorias.getInstance().getCategoria("Protectores"));
         EspecificacionProducto pr7 = new EspecificacionProducto("PCG", "Protector de cuero para Galaxy", "Asombroso protector de cuero para Samsung Galaxy I900", esppr7, (float) 3.5, p2, catpr7, prodpr7, new ArrayList());
+        imgList = new ArrayList();
+        imgList.add("pr7.jpg");
+        pr7.setImagenes(imgList);
         controlarProducto.elegirEspProducto("PCG");
         productospr7 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -283,6 +303,9 @@ public class Utils {
         esppr8.put("Peso", "26 g");
         catpr8.add(ManejadorCategorias.getInstance().getCategoria("Protectores"));
         EspecificacionProducto pr8 = new EspecificacionProducto("PMH", "Protector de aluminio para HTC", "El mejor protector de aluminio para HTC Desire HD", esppr8, (float) 3.4, p5, catpr8, prodpr8, new ArrayList());
+        imgList = new ArrayList();
+        imgList.add("pr8.jpg");
+        pr8.setImagenes(imgList);
         controlarProducto.elegirEspProducto("PMH");
         productospr8 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -302,6 +325,9 @@ public class Utils {
         catpr9.add(ManejadorCategorias.getInstance().getCategoria("Apple"));
         catpr9.add(ManejadorCategorias.getInstance().getCategoria("iOS"));
         EspecificacionProducto pr9 = new EspecificacionProducto("IRD", "iPad Retina Display", "La última tableta de Apple con pantalla Retina", esppr9, (float) 499.0, p1, catpr9, prodpr9, new ArrayList());
+        imgList = new ArrayList();
+        imgList.add("pr9.jpg");
+        pr9.setImagenes(imgList);
         controlarProducto.elegirEspProducto("IRD");
         productospr9 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -321,6 +347,9 @@ public class Utils {
         catpr10.add(ManejadorCategorias.getInstance().getCategoria("Apple"));
         catpr10.add(ManejadorCategorias.getInstance().getCategoria("iOS"));
         EspecificacionProducto pr10 = new EspecificacionProducto("IM", "iPad Mini", "La primera tableta chica de Apple", esppr10, (float) 329.0, p1, catpr10, prodpr10, new ArrayList());
+        imgList = new ArrayList();
+        imgList.add("pr10.jpg");
+        pr10.setImagenes(imgList);
         controlarProducto.elegirEspProducto("IM");
         productospr10 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -337,6 +366,9 @@ public class Utils {
         esppr11.put("Peso", "111 g");
         catpr11.add(ManejadorCategorias.getInstance().getCategoria("Xbox"));
         EspecificacionProducto pr11 = new EspecificacionProducto("RIX", "Receptor inalámbrico para Xbox", "Receptor inalámbrico de color negro para controles de Xbox 360", esppr11, (float) 10.99, p4, catpr11, prodpr11, new ArrayList());
+        imgList = new ArrayList();
+        imgList.add("pr11.jpg");
+        pr11.setImagenes(imgList);
         controlarProducto.elegirEspProducto("RIX");
         productospr11 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -354,6 +386,9 @@ public class Utils {
         esppr12.put("Peso", "7.83 oz");
         catpr12.add(ManejadorCategorias.getInstance().getCategoria("Xbox"));
         EspecificacionProducto pr12 = new EspecificacionProducto("CIX", "Control inalámbrico para Xbox", "Control inalámbrico de 2.4 GHz para Xbox 360 ", esppr12, (float) 27.27, p4, catpr12, prodpr12, new ArrayList());
+        imgList = new ArrayList();
+        imgList.add("pr12.jpg");
+        pr12.setImagenes(imgList);
         controlarProducto.elegirEspProducto("CIX");
         productospr12 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -370,6 +405,9 @@ public class Utils {
         esppr13.put("Peso", "7.83 oz");
         catpr13.add(ManejadorCategorias.getInstance().getCategoria("Playstation"));
         EspecificacionProducto pr13 = new EspecificacionProducto("CHP", "Cable HDMI para PS3", "Es un cable HDMI para PS3", esppr13, (float) 7.99, p3, catpr13, prodpr13, new ArrayList());
+        imgList = new ArrayList();
+        imgList.add("pr13.jpg");
+        pr13.setImagenes(imgList);
         controlarProducto.elegirEspProducto("CHP");
         productospr13 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -386,6 +424,9 @@ public class Utils {
         esppr14.put("Peso", "184 g");
         catpr14.add(ManejadorCategorias.getInstance().getCategoria("Playstation"));
         EspecificacionProducto pr14 = new EspecificacionProducto("CP3", "Control para PS3", "Control inalámbrico Dualshock 3 de color azul para Playstation 3", esppr14, (float) 30.8, p3, catpr14, prodpr14, new ArrayList());
+        imgList = new ArrayList();
+        imgList.add("pr14.jpg");
+        pr14.setImagenes(imgList);
         controlarProducto.elegirEspProducto("CP3");
         productospr14 = new ArrayList();
         for (Integer i = 0; i < 10; i++) {
@@ -494,19 +535,20 @@ public class Utils {
             DataOrdenCompra dataOrden5 = new DataOrdenCompra(5);
             dataOrden5.setFecha(getDateFromString("25/8/2013"));
             controlarOrden.guardarOrden(dataOrden5);
-         
-            Comentario com1 = agregarComentario("Dan", "IPH5", null, "El mejor iPhone hasta el momento. Es la mejor compra que he hecho en años. Le pasa el trapo a todos los teléfonos Android.","19/9/2013");
-            Comentario com2 = agregarComentario("Phil", "IPH5", com1.getId(), "Me parece que tu comentario es un poco desubicado. Hay muy buenos teléfonos que creo que mejoran las prestaciones de este, como el Samsung Galaxy S4.","19/9/2013");
-            Comentario com3 = agregarComentario("Dan", "IPH5", com2.getId(), "No creo, supe tener un Galaxy S2 y lo tenía que reiniciar todos los días. Nunca más vuelvo a Android.","20/9/2013");
-            agregarComentario("Phil", "IPH5", com3.getId(), "El mejor iPhone hasta el momento. Es la mejor compra que he hech","20/9/2013");
-           
-            agregarComentario("BruceS", "CIX", null, "¡Excelente control! Puedo disfrutar de mi GTA V sin la molestia de cables.","25/9/2013");
-            agregarComentario("BruceS", "CIX", null, "Retracto lo que escribí antes....se me rompió a los 3 dias. Me han estafado.","28/9/2013");
-            agregarComentario("JeffW", "PCG", null, "Cumple su cometido. No he notado ninguna rayita nueva en mi Samsung.","25/9/2013");
-             
+
+            Comentario com1 = agregarComentario("Dan", "IPH5", null, "El mejor iPhone hasta el momento. Es la mejor compra que he hecho en años. Le pasa el trapo a todos los teléfonos Android.", "19/9/2013");
+            Comentario com2 = agregarComentario("Phil", "IPH5", com1.getId(), "Me parece que tu comentario es un poco desubicado. Hay muy buenos teléfonos que creo que mejoran las prestaciones de este, como el Samsung Galaxy S4.", "19/9/2013");
+            Comentario com3 = agregarComentario("Dan", "IPH5", com2.getId(), "No creo, supe tener un Galaxy S2 y lo tenía que reiniciar todos los días. Nunca más vuelvo a Android.", "20/9/2013");
+            agregarComentario("Phil", "IPH5", com3.getId(), "El mejor iPhone hasta el momento. Es la mejor compra que he hech", "20/9/2013");
+
+            agregarComentario("BruceS", "CIX", null, "¡Excelente control! Puedo disfrutar de mi GTA V sin la molestia de cables.", "25/9/2013");
+            agregarComentario("BruceS", "CIX", null, "Retracto lo que escribí antes....se me rompió a los 3 dias. Me han estafado.", "28/9/2013");
+            agregarComentario("JeffW", "PCG", null, "Cumple su cometido. No he notado ninguna rayita nueva en mi Samsung.", "25/9/2013");
+
         }
     }
-    private static Comentario agregarComentario(String nickname, String nroRef, Integer padre, String Comentario,String fecha){
+
+    private static Comentario agregarComentario(String nickname, String nroRef, Integer padre, String Comentario, String fecha) {
         EspecificacionProducto aModificar = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);
         List<Comentario> comentarios = aModificar.getComentarios();
         Comentario comentarioAAgregar = new Comentario();
@@ -516,7 +558,7 @@ public class Utils {
         Iterator it = comentarios.iterator();
         while (it.hasNext()) {
             Comentario current = (Comentario) it.next();
-            
+
             if (Objects.equals(current.getId(), padre)) {
                 comentarioAAgregar.setPadre(current);
             }
@@ -525,8 +567,9 @@ public class Utils {
         comentarios.add(comentarioAAgregar);
         ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).setComentarios(comentarios);
         ManejadorEspProductos.getInstance().modificarProducto(aModificar);
-        return aModificar.getComentarios().get(aModificar.getComentarios().size()-1);
+        return aModificar.getComentarios().get(aModificar.getComentarios().size() - 1);
     }
+
     public static String formatString(String s) {
 
         if (s != null) {
@@ -537,8 +580,8 @@ public class Utils {
     }
 
     /**
-     * @return Regresa la fecha en formato string 
-    *
+     * @return Regresa la fecha en formato string
+     *
      */
     public static String formatDate(Date s) {
         if (s != null) {

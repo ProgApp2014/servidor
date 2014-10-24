@@ -46,19 +46,19 @@ public class Main {
 //        controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
 //        controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador); 
 
-//        EntityManagerFactory EntityManagerFactory = Persistence.createEntityManagerFactory("ProgramacionAppPU");
-//        EntityManager entityManager = EntityManagerFactory.createEntityManager();
-//        entityManager.getTransaction().begin();
-//        entityManager.createQuery("DELETE FROM ClienteCompraProducto").executeUpdate();
-//        entityManager.createQuery("DELETE FROM OrdenCompra").executeUpdate();
-//        entityManager.createQuery("DELETE FROM Producto").executeUpdate();
-//        entityManager.createQuery("DELETE FROM Comentario").executeUpdate();
-//        entityManager.createQuery("DELETE FROM EspecificacionProducto").executeUpdate();
-//        entityManager.createQuery("DELETE FROM Categoria").executeUpdate();
-//        entityManager.createQuery("DELETE FROM Cliente").executeUpdate();
-//        entityManager.createQuery("DELETE FROM Proveedor").executeUpdate();
-//        entityManager.getTransaction().commit();
-//      Utils.generarDatosDePrueba();
+        EntityManagerFactory EntityManagerFactory = Persistence.createEntityManagerFactory("ProgramacionAppPU");
+        EntityManager entityManager = EntityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.createQuery("DELETE FROM ClienteCompraProducto").executeUpdate();
+        entityManager.createQuery("DELETE FROM OrdenCompra").executeUpdate();
+        entityManager.createQuery("DELETE FROM Producto").executeUpdate();
+        entityManager.createQuery("DELETE FROM Comentario").executeUpdate();
+        entityManager.createQuery("DELETE FROM EspecificacionProducto").executeUpdate();
+        entityManager.createQuery("DELETE FROM Categoria").executeUpdate();
+        entityManager.createQuery("DELETE FROM Cliente").executeUpdate();
+        entityManager.createQuery("DELETE FROM Proveedor").executeUpdate();
+        entityManager.getTransaction().commit();
+      Utils.generarDatosDePrueba();
 //
 ////        casoDeUso1(controlarUsuario);
 ////        casoDeUso2(controlarProducto);

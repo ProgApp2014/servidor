@@ -7,14 +7,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType; 
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataOrdenCompra {
     
     private Integer nroOrden;
     private Date fecha;
     private Float precioTotal;
     private List<DataClienteCompraProducto> clienteCompraProducto;
-    
+    public DataOrdenCompra(){}
     public DataOrdenCompra(OrdenCompra oc) {
         this.nroOrden = oc.getNroOrden();
         this.fecha = oc.getFecha();

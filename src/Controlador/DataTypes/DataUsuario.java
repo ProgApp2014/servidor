@@ -1,10 +1,14 @@
 package Controlador.DataTypes;
 
 import Controlador.Clases.Usuario;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType; 
 
-public class DataUsuario {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DataUsuario implements Serializable{
     
     private String nickname;
     private String password;
@@ -14,7 +18,9 @@ public class DataUsuario {
     private Calendar fechaNacimiento;
     private String imagen;
     
-    
+    public DataUsuario(){
+        
+    }
     public DataUsuario(Usuario u){
         
     }

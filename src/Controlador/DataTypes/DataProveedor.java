@@ -2,12 +2,16 @@ package Controlador.DataTypes;
 
 import Controlador.Clases.Proveedor;
 import java.util.Calendar;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType; 
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataProveedor extends DataUsuario{
     
     private String nombreCompania;
     private String linkSitio;
     
+    public DataProveedor(){}
     public DataProveedor(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento, String nombreCompania, String linkSitio) {
         super(nickname, password, nombre, apellido, email, fechaNacimiento);
         this.nombreCompania = nombreCompania;

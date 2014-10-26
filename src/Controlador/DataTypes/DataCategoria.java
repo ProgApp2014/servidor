@@ -1,16 +1,21 @@
 package Controlador.DataTypes;
 
 import Controlador.Clases.Categoria;
-import java.util.Collections;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType; 
 
-public class DataCategoria {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DataCategoria implements Serializable{
     
     private String nombre;
     private DataCategoria padre;
     private Map<String,DataEspecificacionProducto> listaProductos;
     
+    public DataCategoria(){
+    }
     public DataCategoria(Categoria c, boolean conProductos) {
         this.nombre = c.getNombre();
         if(c.getPadre() == null){

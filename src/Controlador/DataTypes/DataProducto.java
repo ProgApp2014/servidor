@@ -3,14 +3,17 @@ package Controlador.DataTypes;
 import Controlador.Clases.EspecificacionProducto;
 import Controlador.Clases.Producto;
 import Controlador.Clases.Proveedor;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType; 
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataProducto {
     
     private Integer id;
     private String idEspecifico;
     private Boolean enOrden;
     private DataEspecificacionProducto especificacionProducto;
-    
+    public DataProducto(){}
     public DataProducto(Producto p) {
         this.id = p.getId();
         this.idEspecifico = p.getIdEspecifico();

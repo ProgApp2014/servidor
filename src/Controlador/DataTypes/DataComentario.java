@@ -1,14 +1,17 @@
 package Controlador.DataTypes;
 
 import Controlador.Clases.Comentario;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType; 
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataComentario {
     private Integer id;
     private DataComentario padre;
     private DataCliente cliente;
     private DataEspecificacionProducto especificacionProducto;
     private String comentario;
-    
+    public DataComentario(){}
     public DataComentario(Comentario c) {
         this.id = c.getId();
 //        System.out.println(c.getId()+"  cliente "+c.getCliente());

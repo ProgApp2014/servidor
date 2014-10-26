@@ -1,29 +1,9 @@
 package Controlador.Clases;
 
-import Controlador.DataTypes.DataCategoria;
-import Controlador.DataTypes.DataCliente;
-import Controlador.DataTypes.DataEspecificacionProducto;
-import Controlador.DataTypes.DataOrdenCompra;
-import Controlador.DataTypes.DataProducto;
-import Controlador.DataTypes.DataProveedor;
+import Controlador.Middleware.ControladorOrdenesWS;
+import Controlador.Middleware.ControladorProductosWS;
+import Controlador.Middleware.ControladorUsuariosWS;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class Main {
 
@@ -46,19 +26,28 @@ public class Main {
 //        controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
 //        controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador); 
 
-        EntityManagerFactory EntityManagerFactory = Persistence.createEntityManagerFactory("ProgramacionAppPU");
-        EntityManager entityManager = EntityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        entityManager.createQuery("DELETE FROM ClienteCompraProducto").executeUpdate();
-        entityManager.createQuery("DELETE FROM OrdenCompra").executeUpdate();
-        entityManager.createQuery("DELETE FROM Producto").executeUpdate();
-        entityManager.createQuery("DELETE FROM Comentario").executeUpdate();
-        entityManager.createQuery("DELETE FROM EspecificacionProducto").executeUpdate();
-        entityManager.createQuery("DELETE FROM Categoria").executeUpdate();
-        entityManager.createQuery("DELETE FROM Cliente").executeUpdate();
-        entityManager.createQuery("DELETE FROM Proveedor").executeUpdate();
-        entityManager.getTransaction().commit();
-      Utils.generarDatosDePrueba();
+//        EntityManagerFactory EntityManagerFactory = Persistence.createEntityManagerFactory("ProgramacionAppPU");
+//        EntityManager entityManager = EntityManagerFactory.createEntityManager();
+//        entityManager.getTransaction().begin();
+//        entityManager.createQuery("DELETE FROM ClienteCompraProducto").executeUpdate();
+//        entityManager.createQuery("DELETE FROM OrdenCompra").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Producto").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Comentario").executeUpdate();
+//        entityManager.createQuery("DELETE FROM EspecificacionProducto").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Categoria").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Cliente").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Proveedor").executeUpdate();
+//        entityManager.getTransaction().commit();
+//      Utils.generarDatosDePrueba();
+            
+            ControladorOrdenesWS ordenesWS =  new ControladorOrdenesWS();
+            ControladorUsuariosWS usuariosWS = new ControladorUsuariosWS();
+            ControladorProductosWS productosWS = new ControladorProductosWS();
+            
+            ordenesWS.publicar();
+            usuariosWS.publicar();
+            productosWS.publicar();
+                    
 //
 ////        casoDeUso1(controlarUsuario);
 ////        casoDeUso2(controlarProducto);

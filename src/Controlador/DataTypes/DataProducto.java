@@ -6,7 +6,7 @@ import Controlador.Clases.Proveedor;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType; 
 
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class DataProducto {
     
     private Integer id;

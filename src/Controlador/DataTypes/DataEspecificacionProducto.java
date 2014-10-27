@@ -17,22 +17,32 @@ public class DataEspecificacionProducto {
     private String nroReferencia;
     private String nombre;
     private String descripcion;
-    private Map<String,String> especificacion;
+    private HashMap<String,String> especificacion;
     private Float precio;
     private DataProveedor proveedor;
-    private List<String> imagenes;
-    private List<DataCategoria> categorias;
-    private List<DataProducto> productos;
-    private List<DataComentario> comentarios;
+    private ArrayList<String> imagenes;
+    private ArrayList<DataCategoria> categorias;
+    private ArrayList<DataProducto> productos;
+    private ArrayList<DataComentario> comentarios;
     public DataEspecificacionProducto(){}
     public DataEspecificacionProducto(EspecificacionProducto ep, boolean conCategorias) {
         this.nroReferencia = ep.getNroReferencia();
         this.nombre = ep.getNombre();
         this.descripcion = ep.getDescripcion();
-        this.especificacion = ep.getEspecificacion();
+        this.especificacion = new HashMap<>();
+        
+        Iterator it = ep.getEspecificacion().keySet().iterator();
+        while(it.hasNext()){
+            String key =(String) it.next();
+            this.especificacion.put(key,ep.getEspecificacion().get(key));
+        }
+        
+        
         this.precio = ep.getPrecio();
         this.proveedor = ep.getDataProveedor();
-        this.imagenes = ep.getImagenes();
+        this.imagenes = new ArrayList<>();
+        this.imagenes.addAll(ep.getImagenes());
+        
         if(conCategorias){
             this.categorias = new ArrayList<>();
             ep.getCategorias().stream().forEach((valor) -> {
@@ -55,7 +65,7 @@ public class DataEspecificacionProducto {
         }
     }
     
-    public DataEspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String,String> especificacion, Float precio, DataProveedor proveedor, ArrayList<String> imagenes, ArrayList<DataCategoria> categorias,List<DataProducto> productos,List<DataComentario> comentarios) {
+    public DataEspecificacionProducto(String nroReferencia, String nombre, String descripcion, HashMap<String,String> especificacion, Float precio, DataProveedor proveedor, ArrayList<String> imagenes, ArrayList<DataCategoria> categorias,ArrayList<DataProducto> productos,ArrayList<DataComentario> comentarios) {
         this.nroReferencia = nroReferencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -64,8 +74,11 @@ public class DataEspecificacionProducto {
         this.proveedor = proveedor;
         this.imagenes = imagenes;
         this.categorias = categorias;
-        this.productos = productos;
-        this.comentarios = comentarios;
+        
+        this.productos = new ArrayList<>();
+        this.productos.addAll(productos);
+        this.comentarios = new ArrayList<>();
+        this.comentarios.addAll(comentarios);
     }
 
     public String getNroReferencia() {
@@ -92,11 +105,11 @@ public class DataEspecificacionProducto {
         this.descripcion = descripcion;
     }
 
-    public Map<String,String> getEspecificacion() {
+    public HashMap<String,String> getEspecificacion() {
         return especificacion;
     }
 
-    public void setEspecificacion(Map<String,String> especificacion) {
+    public void setEspecificacion(HashMap<String,String> especificacion) {
         this.especificacion = especificacion;
     }
 
@@ -116,36 +129,39 @@ public class DataEspecificacionProducto {
         this.proveedor = proveedor;
     }
 
-    public List<String> getImagenes() {
+    public ArrayList<String> getImagenes() {
         return imagenes;
     }
 
-    public void setImagenes(List<String> imagenes) {
+    public void setImagenes(ArrayList<String> imagenes) {
         this.imagenes = imagenes;
     }
     
-    public List<DataCategoria> getCategorias() {
+    public ArrayList<DataCategoria> getCategorias() {
         return categorias;
     }
 
-    public void setCategorias(List<DataCategoria> categorias) {
-        this.categorias = categorias;
+    public void setCategorias(ArrayList<DataCategoria> categorias) {
+        this.categorias = new ArrayList<>();
+        this.categorias.addAll(categorias);
     }
     
-    public List<DataProducto> getProductos() {
+    public ArrayList<DataProducto> getProductos() {
         return productos;
     }
 
-    public void setProductos(List<DataProducto> productos) {
-        this.productos = productos;
+    public void setProductos(ArrayList<DataProducto> productos) {
+        this.productos = new ArrayList<>();
+        this.productos.addAll(productos);
     }
     
-    public List<DataComentario> getComentarios() {
+    public ArrayList<DataComentario> getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(List<DataComentario> comentarios) {
-        this.comentarios = comentarios;
+    public void setComentarios(ArrayList<DataComentario> comentarios) {
+        this.comentarios = new ArrayList<>();
+        this.comentarios.addAll(comentarios);
     }
     
     public int getStock(){

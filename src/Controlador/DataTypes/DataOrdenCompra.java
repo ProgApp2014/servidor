@@ -16,7 +16,7 @@ public class DataOrdenCompra {
     private Integer nroOrden;
     private Date fecha;
     private Float precioTotal;
-    private List<DataClienteCompraProducto> clienteCompraProducto;
+    private ArrayList<DataClienteCompraProducto> clienteCompraProducto;
     public DataOrdenCompra(){}
     public DataOrdenCompra(OrdenCompra oc) {
         this.nroOrden = oc.getNroOrden();
@@ -35,18 +35,20 @@ public class DataOrdenCompra {
         this.precioTotal = 0.0f;
     }
     
-    public DataOrdenCompra(Integer nroOrden, Date fecha, Float precioTotal, List<DataClienteCompraProducto> clienteCompraProducto) {
+    public DataOrdenCompra(Integer nroOrden, Date fecha, Float precioTotal, ArrayList<DataClienteCompraProducto> clienteCompraProducto) {
         this.nroOrden = nroOrden;
         this.fecha = fecha;
         this.precioTotal = precioTotal;
-        this.clienteCompraProducto = clienteCompraProducto;
+        this.clienteCompraProducto = new ArrayList<>();
+        this.clienteCompraProducto.addAll(clienteCompraProducto);
     }
     
-    public DataOrdenCompra(Integer nroOrden, List<DataClienteCompraProducto> clienteCompraProducto) {
+    public DataOrdenCompra(Integer nroOrden, ArrayList<DataClienteCompraProducto> clienteCompraProducto) {
         this.nroOrden = nroOrden;
         this.fecha = new Date();
         this.precioTotal = 0.0f;
-        this.clienteCompraProducto = clienteCompraProducto;
+        this.clienteCompraProducto = new ArrayList<>();
+        this.clienteCompraProducto.addAll(clienteCompraProducto);
     }
 
     public Integer getNroOrden() {
@@ -71,12 +73,13 @@ public class DataOrdenCompra {
         return formatted;
     }
     
-    public List<DataClienteCompraProducto> getClienteCompraProducto() {
+    public ArrayList<DataClienteCompraProducto> getClienteCompraProducto() {
         return clienteCompraProducto;
     }
 
-    public void setClienteCompraProducto(List<DataClienteCompraProducto> clienteCompraProducto) {
-        this.clienteCompraProducto = clienteCompraProducto;
+    public void setClienteCompraProducto(ArrayList<DataClienteCompraProducto> clienteCompraProducto) {
+        this.clienteCompraProducto = new ArrayList<>();
+        this.clienteCompraProducto.addAll(clienteCompraProducto);
     }
     
     public Float getPrecioTotal() {

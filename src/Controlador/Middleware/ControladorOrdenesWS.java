@@ -37,10 +37,15 @@ public class ControladorOrdenesWS {
     }
 
     @WebMethod
-    public ArrayList<DataCliente> listarClientes(Integer idOrdenesControlador) {
+    public  DataCliente[] listarClientes(Integer idOrdenesControlador) {
         List<DataCliente> l = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador).listarClientes();
-        ArrayList<DataCliente> ll = new ArrayList<DataCliente>();
-        ll.addAll(l);
+         DataCliente[] ll = new DataCliente[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataCliente) it.next();
+            index++;
+        }
         return ll;
 
     }

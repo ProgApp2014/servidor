@@ -12,7 +12,7 @@ public class DataCategoria implements Serializable{
     
     private String nombre;
     private DataCategoria padre;
-    private Map<String,DataEspecificacionProducto> listaProductos;
+    private HashMap<String,DataEspecificacionProducto> listaProductos;
     
     public DataCategoria(){
     }
@@ -52,12 +52,12 @@ public class DataCategoria implements Serializable{
         this.padre = padre;
     }
     
-    public Map<String,DataEspecificacionProducto> getListaProductos() {
+    public HashMap<String,DataEspecificacionProducto> getListaProductos() {
         return this.listaProductos;
     }
     
-    public void setListaProductos(Map<String,DataEspecificacionProducto> productos) {
-        this.listaProductos = productos;
+    public void setListaProductos(HashMap<String,DataEspecificacionProducto> productos) {
+        this.listaProductos =   productos;
     }
     
     @Override

@@ -11,7 +11,9 @@ public class DataProveedor extends DataUsuario{
     private String nombreCompania;
     private String linkSitio;
     
-    public DataProveedor(){}
+    public DataProveedor(){
+    
+    }
     public DataProveedor(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento, String nombreCompania, String linkSitio) {
         super(nickname, password, nombre, apellido, email, fechaNacimiento);
         this.nombreCompania = nombreCompania;

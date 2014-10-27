@@ -89,10 +89,15 @@ public class ControladorUsuariosWS {
     }
 
     @WebMethod
-    public ArrayList<DataOrdenCompra> listarOrdenesCliente(Integer idUsuariosControlador) {
+    public DataOrdenCompra[] listarOrdenesCliente(Integer idUsuariosControlador) {
         List<DataOrdenCompra> l = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador).listarOrdenesCliente();
-        ArrayList<DataOrdenCompra> ll = new ArrayList<DataOrdenCompra>();
-        ll.addAll(l);
+        DataOrdenCompra[] ll = new DataOrdenCompra[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataOrdenCompra) it.next();
+            index++;
+        }
         return ll;
 
     }

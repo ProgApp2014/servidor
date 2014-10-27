@@ -6,6 +6,7 @@ import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProveedor;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -21,7 +22,6 @@ public class ControladorUsuariosWS {
     private Endpoint endpoint = null;
 
     //Constructor
-
     public ControladorUsuariosWS() {
     }
 
@@ -63,10 +63,15 @@ public class ControladorUsuariosWS {
     }
 
     @WebMethod
-    public ArrayList<DataCliente> listarClientes(Integer idUsuariosControlador) {
+    public DataCliente[] listarClientes(Integer idUsuariosControlador) {
         List<DataCliente> l = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador).listarClientes();
-        ArrayList<DataCliente> ll = new ArrayList<DataCliente>();
-        ll.addAll(l);
+        DataCliente[] ll = new DataCliente[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataCliente) it.next();
+            index++;
+        }
         return ll;
     }
 
@@ -93,10 +98,15 @@ public class ControladorUsuariosWS {
     }
 
     @WebMethod
-    public ArrayList<DataProveedor> listarProveedores(Integer idUsuariosControlador) {
+    public DataProveedor[] listarProveedores(Integer idUsuariosControlador) {
         List<DataProveedor> l = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador).listarProveedores();
-        ArrayList<DataProveedor> ll = new ArrayList<DataProveedor>();
-        ll.addAll(l);
+        DataProveedor[] ll = new DataProveedor[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataProveedor) it.next();
+            index++;
+        }
         return ll;
 
     }
@@ -136,10 +146,15 @@ public class ControladorUsuariosWS {
     }
 
     @WebMethod
-    public ArrayList<DataEspecificacionProducto> listarProductosProveedor(Integer idUsuariosControlador) {
+    public DataEspecificacionProducto[] listarProductosProveedor(Integer idUsuariosControlador) {
         List<DataEspecificacionProducto> l = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador).listarProductosProveedor();
-        ArrayList<DataEspecificacionProducto> ll = new ArrayList<DataEspecificacionProducto>();
-        ll.addAll(l);
+        DataEspecificacionProducto[] ll = new DataEspecificacionProducto[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataEspecificacionProducto) it.next();
+            index++;
+        }
         return ll;
     }
 }

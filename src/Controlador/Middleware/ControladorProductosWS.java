@@ -4,6 +4,7 @@ import Controlador.Clases.*;
 import Controlador.DataTypes.DataCategoria;
 import Controlador.DataTypes.DataComentario;
 import Controlador.DataTypes.DataEspecificacionProducto;
+import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProducto;
 import Controlador.DataTypes.DataProveedor;
 import java.util.ArrayList;
@@ -46,11 +47,16 @@ public class ControladorProductosWS {
     }
 
     @WebMethod
-    public ArrayList<DataProveedor> listarProveedores(Integer idProductosControlador) {
+    public DataProveedor[] listarProveedores(Integer idProductosControlador) {
 
         List<DataProveedor> l = Fabrica.getInstance().getControladorProductos(idProductosControlador).listarProveedores();
-        ArrayList<DataProveedor> ll = new ArrayList<DataProveedor>();
-        ll.addAll(l);
+         DataProveedor[] ll = new DataProveedor[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataProveedor) it.next();
+            index++;
+        }
         return ll;
     }
 
@@ -83,10 +89,15 @@ public class ControladorProductosWS {
     }
 
     @WebMethod
-    public ArrayList<DataCategoria> listarCategorias(Integer idProductosControlador) {
+    public DataCategoria[] listarCategorias(Integer idProductosControlador) {
         List<DataCategoria> l = Fabrica.getInstance().getControladorProductos(idProductosControlador).listarCategorias();
-        ArrayList<DataCategoria> ll = new ArrayList<DataCategoria>();
-        ll.addAll(l);
+         DataCategoria[] ll = new DataCategoria[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataCategoria) it.next();
+            index++;
+        }
         return ll;
     }
 
@@ -96,10 +107,15 @@ public class ControladorProductosWS {
     }
 
     @WebMethod
-    public ArrayList<DataEspecificacionProducto> listarProductosCategoria(Integer idProductosControlador) {
+    public DataEspecificacionProducto[] listarProductosCategoria(Integer idProductosControlador) {
         List<DataEspecificacionProducto> l = Fabrica.getInstance().getControladorProductos(idProductosControlador).listarProductosCategoria();
-        ArrayList<DataEspecificacionProducto> ll = new ArrayList<DataEspecificacionProducto>();
-        ll.addAll(l);
+        DataEspecificacionProducto[] ll = new DataEspecificacionProducto[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataEspecificacionProducto) it.next();
+            index++;
+        }
         return ll;
     }
 
@@ -186,11 +202,16 @@ public class ControladorProductosWS {
     }
 
     @WebMethod
-    public ArrayList<String> listarImagenesAModificar(Integer idProductosControlador) {
+    public String[] listarImagenesAModificar(Integer idProductosControlador) {
 
         List<String> l = Fabrica.getInstance().getControladorProductos(idProductosControlador).listarImagenesAModificar();
-        ArrayList<String> ll = new ArrayList<String>();
-        ll.addAll(l);
+        String[] ll = new String[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (String) it.next();
+            index++;
+        }
         return ll;
     }
 
@@ -200,10 +221,15 @@ public class ControladorProductosWS {
     }
 
     @WebMethod
-    public ArrayList<DataCategoria> listarCategoriasAModificar(Integer idProductosControlador) {
+    public DataCategoria[] listarCategoriasAModificar(Integer idProductosControlador) {
         List<DataCategoria> l = Fabrica.getInstance().getControladorProductos(idProductosControlador).listarCategoriasAModificar();
-        ArrayList<DataCategoria> ll = new ArrayList<DataCategoria>();
-        ll.addAll(l);
+        DataCategoria[] ll = new DataCategoria[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataCategoria) it.next();
+            index++;
+        }
         return ll;
     }
 
@@ -223,10 +249,15 @@ public class ControladorProductosWS {
     }
 
     @WebMethod
-    public ArrayList<DataEspecificacionProducto> buscarProductos(String keyword, Integer idProductosControlador) {
+    public DataEspecificacionProducto[] buscarProductos(String keyword, Integer idProductosControlador) {
         List<DataEspecificacionProducto> l = Fabrica.getInstance().getControladorProductos(idProductosControlador).buscarProductos(keyword);
-        ArrayList<DataEspecificacionProducto> ll = new ArrayList<DataEspecificacionProducto>();
-        ll.addAll(l);
+        DataEspecificacionProducto[] ll = new DataEspecificacionProducto[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataEspecificacionProducto) it.next();
+            index++;
+        }
         return ll;
     }
 
@@ -253,10 +284,15 @@ public class ControladorProductosWS {
     }
 
     @WebMethod
-    public ArrayList<DataComentario> listarComentarios(String nroRef, Integer idProductosControlador) {
+    public DataComentario[] listarComentarios(String nroRef, Integer idProductosControlador) {
         List<DataComentario> l = Fabrica.getInstance().getControladorProductos(idProductosControlador).listarComentarios(nroRef);
-        ArrayList<DataComentario> ll = new ArrayList<DataComentario>();
-        ll.addAll(l);
+        DataComentario[] ll = new DataComentario[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataComentario) it.next();
+            index++;
+        }
         return ll;
     }
 

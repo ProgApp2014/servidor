@@ -4,6 +4,7 @@ import Controlador.Clases.*;
 import Controlador.DataTypes.DataCategoria;
 import Controlador.DataTypes.DataComentario;
 import Controlador.DataTypes.DataEspecificacionProducto;
+import Controlador.DataTypes.DataMapEspProductos;
 import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProducto;
 import Controlador.DataTypes.DataProveedor;
@@ -50,7 +51,7 @@ public class ControladorProductosWS {
     public DataProveedor[] listarProveedores(Integer idProductosControlador) {
 
         List<DataProveedor> l = Fabrica.getInstance().getControladorProductos(idProductosControlador).listarProveedores();
-         DataProveedor[] ll = new DataProveedor[l.size()];
+        DataProveedor[] ll = new DataProveedor[l.size()];
         Iterator it = l.iterator();
         int index = 0;
         while (it.hasNext()) {
@@ -91,7 +92,7 @@ public class ControladorProductosWS {
     @WebMethod
     public DataCategoria[] listarCategorias(Integer idProductosControlador) {
         List<DataCategoria> l = Fabrica.getInstance().getControladorProductos(idProductosControlador).listarCategorias();
-         DataCategoria[] ll = new DataCategoria[l.size()];
+        DataCategoria[] ll = new DataCategoria[l.size()];
         Iterator it = l.iterator();
         int index = 0;
         while (it.hasNext()) {
@@ -262,20 +263,28 @@ public class ControladorProductosWS {
     }
 
     @WebMethod
-    public HashMap<String, ArrayList<DataEspecificacionProducto>> buscarProductosSeparados(String keyword, String Orden, Integer idProductosControlador) {
+    public DataMapEspProductos[] buscarProductosSeparados(String keyword, String Orden, Integer idProductosControlador) {
         Map<String, List<DataEspecificacionProducto>> l = Fabrica.getInstance().getControladorProductos(idProductosControlador).buscarProductosSeparados(keyword, Orden);
-        HashMap<String, ArrayList<DataEspecificacionProducto>> ll = new HashMap<String, ArrayList<DataEspecificacionProducto>>();
+        DataMapEspProductos[] ll = new DataMapEspProductos[l.keySet().size()];
         Iterator it = l.keySet().iterator();
-        while(it.hasNext()){
+        int i = 0;
+        while (it.hasNext()) {
             String key = (String) it.next();
-            
-            ArrayList<DataEspecificacionProducto> value = new ArrayList<DataEspecificacionProducto>();
-            value.addAll(l.get(key));
-            ll.put(key, value);
-        
+            DataMapEspProductos dep = new DataMapEspProductos();
+            DataEspecificacionProducto[] esp = new DataEspecificacionProducto[l.get(key).size()];
+            int index = 0;
+            dep.setCategoria(key);
+            Iterator itEsp = l.get(key).iterator();
+            while (itEsp.hasNext()) {
+                esp[index] = (DataEspecificacionProducto) itEsp.next();
+                index++;
+            };
+            dep.setList(esp);
+            ll[i] = dep;
+            i++;
         }
-        return ll; 
-                
+        return ll;
+
     }
 
     @WebMethod

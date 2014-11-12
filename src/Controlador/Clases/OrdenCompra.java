@@ -46,7 +46,7 @@ public class OrdenCompra implements Serializable {
     
     public OrdenCompra(DataOrdenCompra doc) {
         this.nroOrden = doc.getNroOrden();
-        this.fecha = doc.getFecha();
+        this.fecha = doc.getFecha().getTime();
     }
     
     public OrdenCompra() {}

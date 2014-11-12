@@ -1,6 +1,7 @@
 package Controlador.DataTypes;
 
 import Controlador.Clases.Comentario;
+import java.util.Calendar;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType; 
 
@@ -11,6 +12,7 @@ public class DataComentario {
     private DataCliente cliente;
     private DataEspecificacionProducto especificacionProducto;
     private String comentario;
+    private Calendar fecha;
     public DataComentario(){}
     public DataComentario(Comentario c) {
         this.id = c.getId();
@@ -20,7 +22,12 @@ public class DataComentario {
         this.cliente = new DataCliente(c.getCliente());
         this.especificacionProducto = new DataEspecificacionProducto(c.getEspecificacionProducto(),false);
         this.comentario = c.getComentario();
+        this.fecha =  Calendar.getInstance();
+        this.fecha.setTime(c.getFecha());
+                
     }
+
+   
     
     public DataComentario(DataCliente cliente, DataEspecificacionProducto especificacionProducto, String comentario, Integer id, DataComentario padre) {
         this.id = id;
@@ -52,6 +59,13 @@ public class DataComentario {
     
     public void setCliente(DataCliente cliente) {
         this.cliente = cliente;
+    }
+     public Calendar getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Calendar fecha) {
+        this.fecha = fecha;
     }
     
     public DataEspecificacionProducto getEspecificacionProducto() {

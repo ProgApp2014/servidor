@@ -83,4 +83,13 @@ public class ManejadorOrdenes {
         entityManager.getTransaction().commit();
     }
     
+    public void modificarOrden(OrdenCompra ordenAModificar){
+        if(entityManager.find(OrdenCompra.class, ordenAModificar.getNroOrden()) == null){
+           throw new IllegalArgumentException("Unknown Order id");
+       }
+       entityManager.getTransaction().begin();
+       entityManager.merge(ordenAModificar);
+       entityManager.getTransaction().commit();
+    }
+    
 }

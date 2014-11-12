@@ -11,6 +11,8 @@
     <class>Controlador.Clases.OrdenCompra</class>
     <class>Controlador.Clases.ClienteCompraProducto</class>
     <class>Controlador.Clases.Comentario</class>
+    <class>Controlador.Clases.Reclamo</class>
+    <class>Controlador.Clases.EstadosOrdenes</class>
     <properties>
       <!--<property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.logging.file" value="test.log"/>-->

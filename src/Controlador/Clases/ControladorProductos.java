@@ -416,4 +416,18 @@ public class ControladorProductos implements IControladorProductos {
         }
         return dataComentario;
     }
+    
+    /*@Override
+    public void agregarReclamo(String nickname, String nroRef, String rec) {
+        EspecificacionProducto aModificar = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);
+        List<Reclamo> reclamo = aModificar.getReclamo();
+        Reclamo reclamoAAgregar = new Reclamo();
+        reclamoAAgregar.setCliente(ManejadorUsuarios.getInstance().getCliente(nickname));
+        reclamoAAgregar.setEspecificacionProducto(aModificar);
+       
+        reclamoAAgregar.setReclamo(rec);
+        reclamo.add(reclamoAAgregar);
+        ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).setReclamo(reclamo);
+        ManejadorEspProductos.getInstance().modificarProducto(aModificar);
+    }*/
 }

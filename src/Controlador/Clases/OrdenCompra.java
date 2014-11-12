@@ -1,6 +1,7 @@
 package Controlador.Clases;
 
 import Controlador.DataTypes.DataClienteCompraProducto;
+import Controlador.DataTypes.DataEstadosOrdenes;
 import Controlador.DataTypes.DataOrdenCompra;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,22 +32,36 @@ public class OrdenCompra implements Serializable {
     @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.REMOVE,CascadeType.PERSIST},mappedBy="Orden")
     @JoinColumn(name="ORDEN_ID")
     private List<ClienteCompraProducto> clienteCompraProducto;
+    @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL},mappedBy="orden")
+    @JoinColumn(name="ID")
+    private List<EstadosOrdenes> estados;
     
     public OrdenCompra(Integer nroOrden, List<ClienteCompraProducto> clienteCompraProducto) {
         this.nroOrden = nroOrden;
         this.fecha = new Date();
         this.clienteCompraProducto = clienteCompraProducto;
+        this.estados = new ArrayList();
     }
     
-    public OrdenCompra(Integer nroOrden, Date fecha, List<ClienteCompraProducto> clienteCompraProducto) {
+    public OrdenCompra(Integer nroOrden, Date fecha, List<ClienteCompraProducto> clienteCompraProducto, List<EstadosOrdenes> estados) {
         this.nroOrden = nroOrden;
         this.fecha = fecha;
         this.clienteCompraProducto = clienteCompraProducto;
+        this.estados = new ArrayList();
+        Iterator it = estados.iterator();
+        while(it.hasNext()){
+            this.estados.add(new EstadosOrdenes((DataEstadosOrdenes)it.next()));
+        }
     }
     
     public OrdenCompra(DataOrdenCompra doc) {
         this.nroOrden = doc.getNroOrden();
         this.fecha = doc.getFecha();
+        this.estados = new ArrayList();
+        Iterator it = doc.getEstados().iterator();
+        while(it.hasNext()){
+            this.estados.add(new EstadosOrdenes((DataEstadosOrdenes)it.next()));
+        }
     }
     
     public OrdenCompra() {}
@@ -81,6 +96,14 @@ public class OrdenCompra implements Serializable {
     
     public void setPrecioTotal(Float pt) {
         this.precioTotal = pt;
+    }
+    
+    public List<EstadosOrdenes> getEstados() {
+        return estados;
+    }
+    
+    public void setEstados(List<EstadosOrdenes> estados) {
+        this.estados = estados;
     }
     
     public Cliente getCliente(){

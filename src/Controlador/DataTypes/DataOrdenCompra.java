@@ -1,6 +1,7 @@
 package Controlador.DataTypes;
 
 import Controlador.Clases.ClienteCompraProducto;
+import Controlador.Clases.EstadosOrdenes;
 import Controlador.Clases.OrdenCompra;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,8 +18,9 @@ public class DataOrdenCompra {
     private Date fecha;
     private Float precioTotal;
     private ArrayList<DataClienteCompraProducto> clienteCompraProducto;
+    private ArrayList<DataEstadosOrdenes> estados;
     public DataOrdenCompra(){}
-    public DataOrdenCompra(OrdenCompra oc) {
+    public DataOrdenCompra(OrdenCompra oc, Boolean conEstados) {
         this.nroOrden = oc.getNroOrden();
         this.fecha = oc.getFecha();
         this.precioTotal = oc.getPrecioTotal();
@@ -27,28 +29,42 @@ public class DataOrdenCompra {
         while(it.hasNext()){
             clienteCompraProducto.add(new DataClienteCompraProducto((ClienteCompraProducto)it.next()));
         }
+        estados = new ArrayList();
+        if(conEstados){
+            Iterator it2 = oc.getEstados().iterator();
+            while(it2.hasNext()){
+                estados.add(new DataEstadosOrdenes((EstadosOrdenes)it2.next()));
+            }
+        }
+        
+        
     }
     
     public DataOrdenCompra(Integer nroOrden) {
         this.nroOrden = nroOrden;
         this.fecha = new Date();
         this.precioTotal = 0.0f;
+        this.estados = new ArrayList();
     }
     
-    public DataOrdenCompra(Integer nroOrden, Date fecha, Float precioTotal, ArrayList<DataClienteCompraProducto> clienteCompraProducto) {
+    public DataOrdenCompra(Integer nroOrden, Date fecha, Float precioTotal, ArrayList<DataClienteCompraProducto> clienteCompraProducto, ArrayList<DataEstadosOrdenes> estados) {
         this.nroOrden = nroOrden;
         this.fecha = fecha;
         this.precioTotal = precioTotal;
         this.clienteCompraProducto = new ArrayList<>();
         this.clienteCompraProducto.addAll(clienteCompraProducto);
+        this.estados = new ArrayList<>();
+        this.estados.addAll(estados);
     }
     
-    public DataOrdenCompra(Integer nroOrden, ArrayList<DataClienteCompraProducto> clienteCompraProducto) {
+    public DataOrdenCompra(Integer nroOrden, ArrayList<DataClienteCompraProducto> clienteCompraProducto, ArrayList<DataEstadosOrdenes> estados) {
         this.nroOrden = nroOrden;
         this.fecha = new Date();
         this.precioTotal = 0.0f;
         this.clienteCompraProducto = new ArrayList<>();
         this.clienteCompraProducto.addAll(clienteCompraProducto);
+        this.estados = new ArrayList<>();
+        this.estados.addAll(estados);
     }
 
     public Integer getNroOrden() {
@@ -88,6 +104,15 @@ public class DataOrdenCompra {
     
     public void setPrecioTotal(Float pt) {
         this.precioTotal = pt;
+    }
+    
+    public ArrayList<DataEstadosOrdenes> getEstados() {
+        return estados;
+    }
+
+    public void setEstados(ArrayList<DataEstadosOrdenes> estados) {
+        this.estados = new ArrayList<>();
+        this.estados.addAll(estados);
     }
     
     @Override

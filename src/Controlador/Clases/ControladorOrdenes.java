@@ -182,9 +182,11 @@ public class ControladorOrdenes implements IControladorOrdenes{
         
         
         List<EstadosOrdenes> estadoNuevaOrden = new ArrayList();
+        System.out.println("ALGO1!!!!!!!!!!!!");
         estadoNuevaOrden.add(new EstadosOrdenes(null,orden,0));
+        System.out.println("ALGO2!!!!!!!!!!!!");
         orden.setEstados(estadoNuevaOrden);
-        
+        System.out.println("ALGO3!!!!!!!!!!!!");
         ManejadorOrdenes.getInstance().modificarOrden(orden);
         
         ultimaOrdenGuardada = orden.getNroOrden();

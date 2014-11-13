@@ -70,11 +70,14 @@ public class EspecificacionProducto implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, mappedBy = "especificacionProducto")
     @JoinColumn(name = "ID")
     private List<Comentario> comentarios;
+    @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL},mappedBy="especificacionProducto")    
+    @JoinColumn(name="ID")
+    private List<Reclamo> reclamo;
 
     public EspecificacionProducto() {
     }
 
-    public EspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String, String> especificacion, Float precio, Proveedor proveedor, List<Categoria> categorias, List<Producto> listaProductos, List<Comentario> comentarios) {
+    public EspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String, String> especificacion, Float precio, Proveedor proveedor, List<Categoria> categorias, List<Producto> listaProductos, List<Comentario> comentarios, List<Reclamo> reclamo) {
         this.nroReferencia = nroReferencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -84,6 +87,7 @@ public class EspecificacionProducto implements Serializable {
         this.categorias = categorias;
         this.listaProductos = listaProductos;
         this.comentarios = comentarios;
+        this.reclamo = reclamo;
         this.imagenes = new ArrayList<String>();
     }
 
@@ -108,6 +112,7 @@ public class EspecificacionProducto implements Serializable {
         while (itC.hasNext()) {
             this.comentarios.add((Comentario) itC.next());
         }
+        this.reclamo = new ArrayList();
     }
 
     public String getNroReferencia() {
@@ -156,6 +161,14 @@ public class EspecificacionProducto implements Serializable {
 
     public void setComentarios(List<Comentario> comentarios) {
         this.comentarios = comentarios;
+    }
+
+    public List<Reclamo> getReclamo() {
+        return reclamo;
+    }
+    
+    public void setReclamo(List<Reclamo> reclamo){
+        this.reclamo = reclamo;
     }
 
     public Float getPrecio() {

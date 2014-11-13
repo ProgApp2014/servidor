@@ -35,7 +35,7 @@ public class EstadosOrdenes implements Serializable{
     
     private Integer estado;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecha;
     
     public EstadosOrdenes(){

@@ -1,12 +1,18 @@
 package Controlador.DataTypes;
 
 import Controlador.Clases.Reclamo;
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
-public class DataReclamo {
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
+public class DataReclamo implements Serializable {
     private Integer id;
     private DataCliente cliente;
     private DataEspecificacionProducto especificacionProducto;
     private String reclamo;
+    
+    public DataReclamo() {}
     
     public DataReclamo(Reclamo r) {
         this.id = r.getId();

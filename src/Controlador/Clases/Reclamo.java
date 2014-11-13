@@ -1,3 +1,9 @@
+
+
+/**
+ *
+ * @author mauro
+ */
 package Controlador.Clases;
 
 import java.io.Serializable;
@@ -17,7 +23,7 @@ public class Reclamo  implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecha;
     
     @ManyToOne

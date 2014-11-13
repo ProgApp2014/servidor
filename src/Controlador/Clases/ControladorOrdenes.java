@@ -6,6 +6,7 @@ import Controlador.DataTypes.DataClienteCompraProducto;
 import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProducto;
+import Controlador.DataTypes.EstadoOrden;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -182,7 +183,7 @@ public class ControladorOrdenes implements IControladorOrdenes{
         
         
         List<EstadosOrdenes> estadoNuevaOrden = new ArrayList();
-        estadoNuevaOrden.add(new EstadosOrdenes(null,orden,0));
+        estadoNuevaOrden.add(new EstadosOrdenes(null,orden,EstadoOrden.ORDEN_RECIBIDA.getValue()));
         orden.setEstados(estadoNuevaOrden);
         ManejadorOrdenes.getInstance().modificarOrden(orden);
         

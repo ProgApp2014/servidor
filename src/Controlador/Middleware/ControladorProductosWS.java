@@ -309,6 +309,11 @@ public class ControladorProductosWS {
     public void agregarComentario(String nickname, String nroRef, Integer padre, String Comentario, Integer idProductosControlador) {
         Fabrica.getInstance().getControladorProductos(idProductosControlador).agregarComentario(nickname, nroRef, padre, Comentario);
     }
+    
+    @WebMethod
+    public void agregarReclamo(String nickname, String nroRef, String Reclamo, Integer idProductosControlador) {
+        Fabrica.getInstance().getControladorProductos(idProductosControlador).agregarReclamo(nickname, nroRef, Reclamo);
+    }
 
     @WebMethod
     public Boolean verificarEspecificacionProducto(String nroRef, Integer idProductosControlador) {

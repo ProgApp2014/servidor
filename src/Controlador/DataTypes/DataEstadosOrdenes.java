@@ -2,12 +2,13 @@
 package Controlador.DataTypes;
 
 import Controlador.Clases.EstadosOrdenes;
+import java.io.Serializable;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class DataEstadosOrdenes {
+public class DataEstadosOrdenes implements Serializable {
     private Integer id;
     
     private DataOrdenCompra orden;

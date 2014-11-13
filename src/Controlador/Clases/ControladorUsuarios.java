@@ -102,7 +102,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
         List<DataOrdenCompra> dataOrdenCompra = new ArrayList<>();
         ManejadorOrdenes.getInstance().obtenerOrdenes().entrySet().stream().map((orden) -> orden.getValue()).forEach((valor) -> {
             if (valor.getCliente().getNickname().equals(clienteElegido.getNickname())) {
-                dataOrdenCompra.add(new DataOrdenCompra(valor));
+                dataOrdenCompra.add(new DataOrdenCompra(valor,true));
             }
         });
         return dataOrdenCompra;

@@ -168,6 +168,7 @@ public class GeneralTest{
         EntityManager entityManager = EntityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.createQuery("DELETE FROM ClienteCompraProducto").executeUpdate();
+        entityManager.createQuery("DELETE FROM EstadosOrdenes").executeUpdate();
         entityManager.createQuery("DELETE FROM OrdenCompra").executeUpdate();
         entityManager.createQuery("DELETE FROM Producto").executeUpdate();
         entityManager.createQuery("DELETE FROM Comentario").executeUpdate();

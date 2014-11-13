@@ -177,7 +177,16 @@ public class ControladorOrdenes implements IControladorOrdenes{
         System.out.println(cliComProds+" >clicom");
         orden.setPrecioTotal(tempSumTotal);
         orden.setClienteCompraProducto(cliComProd);
+                
         ManejadorOrdenes.getInstance().agregarOrden(orden);
+        
+        
+        List<EstadosOrdenes> estadoNuevaOrden = new ArrayList();
+        estadoNuevaOrden.add(new EstadosOrdenes(null,orden,0));
+        orden.setEstados(estadoNuevaOrden);
+        
+        ManejadorOrdenes.getInstance().modificarOrden(orden);
+        
         ultimaOrdenGuardada = orden.getNroOrden();
         cliComProds = new ArrayList<>();
     }
@@ -190,7 +199,7 @@ public class ControladorOrdenes implements IControladorOrdenes{
     public List<DataOrdenCompra> listarOrdenes(){
         List<DataOrdenCompra> dataOrdenCompra = new ArrayList<>();
         ManejadorOrdenes.getInstance().obtenerOrdenes().entrySet().stream().map((orden) -> orden.getValue()).forEach((valor) -> {
-            dataOrdenCompra.add(new DataOrdenCompra(valor));
+            dataOrdenCompra.add(new DataOrdenCompra(valor,true));
         });
         return dataOrdenCompra;
     }
@@ -212,7 +221,7 @@ public class ControladorOrdenes implements IControladorOrdenes{
     
     @Override
     public DataOrdenCompra mostrarDatosOrden(){
-        DataOrdenCompra dataOrden = new DataOrdenCompra(ordenElegida);
+        DataOrdenCompra dataOrden = new DataOrdenCompra(ordenElegida,true);
         return dataOrden;
     }
 

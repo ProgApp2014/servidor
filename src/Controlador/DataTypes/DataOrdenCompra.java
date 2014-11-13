@@ -21,6 +21,8 @@ public class DataOrdenCompra {
     private ArrayList<DataEstadosOrdenes> estados;
 
     public DataOrdenCompra() {
+        this.fecha = Calendar.getInstance();
+        this.fecha.setTime(new Date());
     }
 
     public DataOrdenCompra(OrdenCompra oc) {

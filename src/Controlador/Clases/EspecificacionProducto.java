@@ -27,51 +27,54 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
-public class EspecificacionProducto implements Serializable{
+public class EspecificacionProducto implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "NROREFERENCIA")
     private String nroReferencia;
     private String nombre;
     private String descripcion;
     private Float precio;
-    
+
     @ElementCollection
-    @MapKeyColumn(name="NOMBRE")
-    @Column(name="VALOR")
-    @CollectionTable(name="ESPECIFICACIONES", joinColumns=@JoinColumn(name="ESPPRID"))
+    @MapKeyColumn(name = "NOMBRE")
+    @Column(name = "VALOR")
+    @CollectionTable(name = "ESPECIFICACIONES", joinColumns = @JoinColumn(name = "ESPPRID"))
     //@Transient
-    private Map<String,String> especificacion;
-    
+    private Map<String, String> especificacion;
+
     @ManyToOne
     @JoinColumn(name = "PROVEEDOR_ID")
     private Proveedor proveedor;
 
     //@Transient
     @ElementCollection
-    @CollectionTable(name="IMAGENES",joinColumns=@JoinColumn(name="PARENTID"))
-    @Column(name="PATH")
+    @CollectionTable(name = "IMAGENES", joinColumns = @JoinColumn(name = "PARENTID"))
+    @Column(name = "PATH")
     private List<String> imagenes;
-    
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(name="CATEGORIAESPECIFICACIONPROD",
-        joinColumns={@JoinColumn(name="ESP_NROREF", referencedColumnName="NROREFERENCIA")},
-        inverseJoinColumns={@JoinColumn(name="CAT_NAME", referencedColumnName="NOMBRE")})
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "CATEGORIAESPECIFICACIONPROD",
+            joinColumns = {
+                @JoinColumn(name = "ESP_NROREF", referencedColumnName = "NROREFERENCIA")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "CAT_NAME", referencedColumnName = "NOMBRE")})
     private List<Categoria> categorias;
-    
-    @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL},mappedBy="especificacionProducto")
-    @JoinColumn(name="ID")
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, mappedBy = "especificacionProducto")
+    @JoinColumn(name = "ID")
     private List<Producto> listaProductos;
-    
-    @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL},mappedBy="especificacionProducto")
-    @JoinColumn(name="ID")
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, mappedBy = "especificacionProducto")
+    @JoinColumn(name = "ID")
     private List<Comentario> comentarios;
 
     public EspecificacionProducto() {
     }
-    
-    public EspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String,String> especificacion, Float precio, Proveedor proveedor, List<Categoria> categorias,List<Producto> listaProductos,List<Comentario> comentarios) {
+
+    public EspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String, String> especificacion, Float precio, Proveedor proveedor, List<Categoria> categorias, List<Producto> listaProductos, List<Comentario> comentarios) {
         this.nroReferencia = nroReferencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -83,24 +86,27 @@ public class EspecificacionProducto implements Serializable{
         this.comentarios = comentarios;
         this.imagenes = new ArrayList<String>();
     }
-    
+
     public EspecificacionProducto(DataEspecificacionProducto espProducto, Proveedor proveedor) {
         this.nroReferencia = espProducto.getNroReferencia();
         this.nombre = espProducto.getNombre();
         this.descripcion = espProducto.getDescripcion();
-        this.especificacion = espProducto.getEspecificacion();
+        this.especificacion = new HashMap<>();
+        for (int i = 0; i < espProducto.getEspecificacion().size(); i++) {
+            especificacion.put(espProducto.getEspecificacion().get(i).getKey(),espProducto.getEspecificacion().get(i).getValue());
+        }
         this.precio = espProducto.getPrecio();
         this.proveedor = proveedor;
         this.categorias = new ArrayList();
         this.imagenes = new ArrayList();
         this.listaProductos = new ArrayList();
         Iterator it = espProducto.getProductos().iterator();
-        while(it.hasNext()){
-            this.listaProductos.add((Producto)it.next());
+        while (it.hasNext()) {
+            this.listaProductos.add((Producto) it.next());
         }
         Iterator itC = espProducto.getComentarios().iterator();
-        while(itC.hasNext()){
-            this.comentarios.add((Comentario)itC.next());
+        while (itC.hasNext()) {
+            this.comentarios.add((Comentario) itC.next());
         }
     }
 
@@ -119,7 +125,7 @@ public class EspecificacionProducto implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -128,14 +134,14 @@ public class EspecificacionProducto implements Serializable{
         this.descripcion = descripcion;
     }
 
-    public Map<String,String> getEspecificacion() {
+    public Map<String, String> getEspecificacion() {
         return especificacion;
     }
 
-    public void setEspecificacion(Map<String,String> especificacion) {
+    public void setEspecificacion(Map<String, String> especificacion) {
         this.especificacion = especificacion;
     }
-    
+
     public List<Producto> getListaProductos() {
         return listaProductos;
     }
@@ -143,7 +149,7 @@ public class EspecificacionProducto implements Serializable{
     public void setListaProductos(List<Producto> listaProductos) {
         this.listaProductos = listaProductos;
     }
-    
+
     public List<Comentario> getComentarios() {
         return comentarios;
     }
@@ -159,11 +165,11 @@ public class EspecificacionProducto implements Serializable{
     public void setPrecio(Float precio) {
         this.precio = precio;
     }
-    
+
     public Proveedor getProveedor() {
         return proveedor;
     }
-    
+
     public DataProveedor getDataProveedor() {
         return new DataProveedor(proveedor);
     }
@@ -179,7 +185,7 @@ public class EspecificacionProducto implements Serializable{
     public void setImagenes(List<String> imagenes) {
         this.imagenes = imagenes;
     }
-    
+
     public List<Categoria> getCategorias() {
         return categorias;
     }
@@ -187,16 +193,16 @@ public class EspecificacionProducto implements Serializable{
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
-    
-    public void agregarCategoria(Categoria categoria){
+
+    public void agregarCategoria(Categoria categoria) {
         this.categorias.add(categoria);
     }
-    
+
     @Override
     public String toString() {
         return this.getNroReferencia() + "  --  " + this.getNombre();
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -212,5 +218,5 @@ public class EspecificacionProducto implements Serializable{
         EspecificacionProducto other = (EspecificacionProducto) object;
         return (this.nroReferencia != null || other.nroReferencia == null) && (this.nroReferencia == null || this.nroReferencia.equals(other.nroReferencia));
     }
-    
+
 }

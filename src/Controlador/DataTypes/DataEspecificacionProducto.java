@@ -17,8 +17,9 @@ public class DataEspecificacionProducto {
     private String nroReferencia;
     private String nombre;
     private String descripcion;
-    private HashMap<String,String> especificacion;
+    private ArrayList<DataEspecificacion> especificacion;
     private Float precio;
+    private int stock;
     private DataProveedor proveedor;
     private ArrayList<String> imagenes;
     private ArrayList<DataCategoria> categorias;
@@ -29,12 +30,16 @@ public class DataEspecificacionProducto {
         this.nroReferencia = ep.getNroReferencia();
         this.nombre = ep.getNombre();
         this.descripcion = ep.getDescripcion();
-        this.especificacion = new HashMap<>();
+        this.especificacion = new ArrayList<>();
         
         Iterator it = ep.getEspecificacion().keySet().iterator();
+        int index = 0;
         while(it.hasNext()){
             String key =(String) it.next();
-            this.especificacion.put(key,ep.getEspecificacion().get(key));
+            DataEspecificacion dep = new DataEspecificacion();
+            dep.setKey(key);
+            dep.setValue(ep.getEspecificacion().get(key)); 
+            this.especificacion.add(dep);
         }
         
         
@@ -69,7 +74,16 @@ public class DataEspecificacionProducto {
         this.nroReferencia = nroReferencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.especificacion = especificacion;
+        this.especificacion = new ArrayList<>();
+        Iterator it = especificacion.keySet().iterator();
+        int index = 0;
+        while(it.hasNext()){
+            String key =(String) it.next();
+            DataEspecificacion dep = new DataEspecificacion();
+            dep.setKey(key);
+            dep.setValue(especificacion.get(key)); 
+            this.especificacion.add(dep);
+        }
         this.precio = precio;
         this.proveedor = proveedor;
         this.imagenes = imagenes;
@@ -105,11 +119,11 @@ public class DataEspecificacionProducto {
         this.descripcion = descripcion;
     }
 
-    public HashMap<String,String> getEspecificacion() {
+    public ArrayList<DataEspecificacion> getEspecificacion() {
         return especificacion;
     }
 
-    public void setEspecificacion(HashMap<String,String> especificacion) {
+    public void setEspecificacion(ArrayList<DataEspecificacion> especificacion) {
         this.especificacion = especificacion;
     }
 
@@ -163,7 +177,9 @@ public class DataEspecificacionProducto {
         this.comentarios = new ArrayList<>();
         this.comentarios.addAll(comentarios);
     }
-    
+    public void setStock(int stock){
+        this.stock = stock;
+    }
     public int getStock(){
         Integer result = 0;
         Iterator<DataProducto> it = (Iterator<DataProducto>)productos.iterator();

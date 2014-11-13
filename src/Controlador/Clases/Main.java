@@ -1,13 +1,11 @@
 package Controlador.Clases;
 
+import Controlador.DataTypes.EstadoOrden;
 import Controlador.Middleware.ControladorOrdenesWS;
 import Controlador.Middleware.ControladorProductosWS;
 import Controlador.Middleware.ControladorUsuariosWS;
 import Controlador.Middleware.ImageHanlderWS;
 import java.awt.image.BufferedImage;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class Main {
 
@@ -53,7 +51,7 @@ public class Main {
             usuariosWS.publicar();
             productosWS.publicar();
             imageWS.publicar();
-                    
+             
 //
 ////        casoDeUso1(controlarUsuario);
 ////        casoDeUso2(controlarProducto);

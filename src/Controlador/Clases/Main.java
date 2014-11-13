@@ -3,7 +3,11 @@ package Controlador.Clases;
 import Controlador.Middleware.ControladorOrdenesWS;
 import Controlador.Middleware.ControladorProductosWS;
 import Controlador.Middleware.ControladorUsuariosWS;
+import Controlador.Middleware.ImageHanlderWS;
 import java.awt.image.BufferedImage;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class Main {
 
@@ -43,10 +47,12 @@ public class Main {
             ControladorOrdenesWS ordenesWS =  new ControladorOrdenesWS();
             ControladorUsuariosWS usuariosWS = new ControladorUsuariosWS();
             ControladorProductosWS productosWS = new ControladorProductosWS();
-            
+            ImageHanlderWS imageWS =  new ImageHanlderWS();
+                    
             ordenesWS.publicar();
             usuariosWS.publicar();
             productosWS.publicar();
+            imageWS.publicar();
                     
 //
 ////        casoDeUso1(controlarUsuario);

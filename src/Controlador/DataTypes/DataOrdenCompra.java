@@ -79,11 +79,7 @@ public class DataOrdenCompra {
         this.fecha.setTime(fecha);
     }
 
-    public String getFechaFormateada() {
-        SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
-        String formatted = format1.format(fecha.getTime());
-        return formatted;
-    }
+  
 
     public ArrayList<DataClienteCompraProducto> getClienteCompraProducto() {
         return clienteCompraProducto;

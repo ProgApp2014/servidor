@@ -8,6 +8,7 @@ import Controlador.DataTypes.DataMapEspProductos;
 import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProducto;
 import Controlador.DataTypes.DataProveedor;
+import Controlador.DataTypes.DataReclamo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;

@@ -39,12 +39,12 @@ public class Reclamo  implements Serializable{
         this.fecha = new Date();
     }
     
-    public Reclamo(Integer id, Cliente cliente, EspecificacionProducto especificacionProducto, String reclamo) {
+    public Reclamo(Integer id, Cliente cliente, EspecificacionProducto especificacionProducto, String reclamo, Date fecha) {
         this.id = id;
         this.cliente = cliente;
         this.especificacionProducto = especificacionProducto;
         this.reclamo = reclamo;
-        this.fecha = new Date();
+        this.fecha = fecha;
     }
 
     public Cliente getCliente() {

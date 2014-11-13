@@ -3,6 +3,7 @@ package Controlador.DataTypes;
 import Controlador.Clases.ClienteCompraProducto;
 import Controlador.Clases.EstadosOrdenes;
 import Controlador.Clases.OrdenCompra;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,7 +13,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class DataOrdenCompra {
+public class DataOrdenCompra implements Serializable {
 
     private Integer nroOrden;
     private Calendar fecha;

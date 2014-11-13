@@ -49,7 +49,7 @@ public class ControladorProducto4Test {
             //leer datos de nueva especificacion de IngresarDatosUnidad
             controlarProducto.elegirProveedor("gclaud");
             DataProveedor proveedor2 = new DataProveedor(ManejadorUsuarios.getInstance().getProveedor("gclaud"));
-            DataEspecificacionProducto espProducto2 = new DataEspecificacionProducto("nroref201", "nombre_prod2", "usado", new HashMap<>(), (float) 12.0, proveedor2, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+            DataEspecificacionProducto espProducto2 = new DataEspecificacionProducto("nroref201", "nombre_prod2", "usado", new HashMap<>(), (float) 12.0, proveedor2, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
             controlarProducto.ingresarDatosProductos(espProducto2);
             controlarProducto.ingresarEspecificacion("estado", "nuevo");
             controlarProducto.ingresarEspecificacion("color", "gris");

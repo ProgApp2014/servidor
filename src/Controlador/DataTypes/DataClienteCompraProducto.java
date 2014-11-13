@@ -1,11 +1,12 @@
 package Controlador.DataTypes;
 
 import Controlador.Clases.ClienteCompraProducto;
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class DataClienteCompraProducto {
+public class DataClienteCompraProducto implements Serializable  {
 
     private DataCliente cliente;
     private DataProducto producto;

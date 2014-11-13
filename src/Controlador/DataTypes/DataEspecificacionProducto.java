@@ -2,6 +2,7 @@ package Controlador.DataTypes;
 
 import Controlador.Clases.EspecificacionProducto;
 import Controlador.Clases.Producto;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType; 
 
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class DataEspecificacionProducto {
+public class DataEspecificacionProducto implements Serializable {
     
     private String nroReferencia;
     private String nombre;
@@ -25,6 +26,7 @@ public class DataEspecificacionProducto {
     private ArrayList<DataCategoria> categorias;
     private ArrayList<DataProducto> productos;
     private ArrayList<DataComentario> comentarios;
+    private ArrayList<DataReclamo> reclamo; 
     public DataEspecificacionProducto(){}
     public DataEspecificacionProducto(EspecificacionProducto ep, boolean conCategorias) {
         this.nroReferencia = ep.getNroReferencia();
@@ -70,7 +72,7 @@ public class DataEspecificacionProducto {
         }
     }
     
-    public DataEspecificacionProducto(String nroReferencia, String nombre, String descripcion, HashMap<String,String> especificacion, Float precio, DataProveedor proveedor, ArrayList<String> imagenes, ArrayList<DataCategoria> categorias,ArrayList<DataProducto> productos,ArrayList<DataComentario> comentarios) {
+    public DataEspecificacionProducto(String nroReferencia, String nombre, String descripcion, HashMap<String,String> especificacion, Float precio, DataProveedor proveedor, ArrayList<String> imagenes, ArrayList<DataCategoria> categorias,ArrayList<DataProducto> productos,ArrayList<DataComentario> comentarios, ArrayList<DataReclamo> reclamo) {
         this.nroReferencia = nroReferencia;
         this.nombre = nombre;
         this.descripcion = descripcion;

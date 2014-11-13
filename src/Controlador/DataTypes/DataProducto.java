@@ -3,11 +3,12 @@ package Controlador.DataTypes;
 import Controlador.Clases.EspecificacionProducto;
 import Controlador.Clases.Producto;
 import Controlador.Clases.Proveedor;
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType; 
 
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class DataProducto {
+public class DataProducto implements Serializable {
     
     private Integer id;
     private String idEspecifico;

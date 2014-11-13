@@ -1,12 +1,14 @@
 package Controlador.DataTypes;
 
 import Controlador.Clases.Comentario;
+import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType; 
 
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class DataComentario {
+public class DataComentario implements Serializable{
     private Integer id;
     private DataComentario padre;
     private DataCliente cliente;
@@ -29,12 +31,14 @@ public class DataComentario {
 
    
     
-    public DataComentario(DataCliente cliente, DataEspecificacionProducto especificacionProducto, String comentario, Integer id, DataComentario padre) {
+    public DataComentario(DataCliente cliente, DataEspecificacionProducto especificacionProducto, String comentario, Integer id, DataComentario padre, Date fecha) {
         this.id = id;
         this.padre = padre;
         this.cliente = cliente;
         this.especificacionProducto = especificacionProducto;
         this.comentario = comentario;
+        this.fecha =  Calendar.getInstance();
+        this.fecha.setTime(fecha);
     }
 
     public Integer getId() {

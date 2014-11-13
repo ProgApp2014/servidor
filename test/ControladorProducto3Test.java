@@ -42,7 +42,7 @@ public class ControladorProducto3Test {
             controlarUsuario.guardarUsuario();     
 
             //creamos la especificacion de producto
-            DataEspecificacionProducto espProducto3 = new DataEspecificacionProducto("nroref3", "nombre_prod3", "mordido", new HashMap <>() , (float) 12.0, proveedor3, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());  
+            DataEspecificacionProducto espProducto3 = new DataEspecificacionProducto("nroref3", "nombre_prod3", "mordido", new HashMap <>() , (float) 12.0, proveedor3, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());  
             //creamos el producto
             Boolean orden3 = false;
             DataProducto producto3 = new DataProducto(1,"idSpec3", orden3, espProducto3);
@@ -63,7 +63,7 @@ public class ControladorProducto3Test {
             }        
 
             //Modificar Producto
-            DataEspecificacionProducto espProducto4 = new DataEspecificacionProducto("nroref3", "nombre_prod_cambiado", "medio mordido", new HashMap<>(), (float) 2500.0, proveedor3, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+            DataEspecificacionProducto espProducto4 = new DataEspecificacionProducto("nroref3", "nombre_prod_cambiado", "medio mordido", new HashMap<>(), (float) 2500.0, proveedor3, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 
             controlarProducto.modificarDatosEspecificacionProducto(espProducto4);
             //ManejadorEspProductos.getInstance().modificarProducto(espProducto4);

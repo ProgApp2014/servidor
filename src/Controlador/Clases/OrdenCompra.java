@@ -3,6 +3,7 @@ package Controlador.Clases;
 import Controlador.DataTypes.DataClienteCompraProducto;
 import Controlador.DataTypes.DataEstadosOrdenes;
 import Controlador.DataTypes.DataOrdenCompra;
+import Controlador.DataTypes.EstadoOrden;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -117,6 +118,10 @@ public class OrdenCompra implements Serializable {
             return cliProd.getCliente();
         }
         return null;
+    }
+    
+    public int getEstadoActual(){
+        return this.estados.get(this.estados.size() - 1).getEstado();
     }
 
     @Override

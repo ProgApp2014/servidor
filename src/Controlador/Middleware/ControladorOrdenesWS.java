@@ -181,5 +181,38 @@ public class ControladorOrdenesWS {
     public void removerEspecificacionProducto(String ref, Integer idOrdenesControlador) {
         Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador).removerEspecificacionProducto(ref);
     }
+    
+    @WebMethod
+    public void agregarEstadoOrdenRecibida(Integer nroOrden, Integer idOrdenesControlador){
+        Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador).agregarEstadoOrdenRecibida(nroOrden);
+    }
+    
+    @WebMethod
+    public void agregarEstadoOrdenCancelada(Integer nroOrden, Integer idOrdenesControlador){
+        Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador).agregarEstadoOrdenCancelada(nroOrden);
+    }
+    
+    @WebMethod
+    public void agregarEstadoOrdenConfirmada(Integer nroOrden, Integer idOrdenesControlador){
+        Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador).agregarEstadoOrdenConfirmada(nroOrden);
+    }
+    
+    @WebMethod
+    public void agregarEstadoOrdenPreparada(Integer nroOrden, Integer idOrdenesControlador){
+        Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador).agregarEstadoOrdenPreparada(nroOrden);
+    }
+    
+    public DataOrdenCompra[] listarOrdenesAPreparar(Integer idOrdenesControlador){
+        
+        List<DataOrdenCompra> l = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador).listarOrdenesAPreparar();
+        DataOrdenCompra[] ll = new DataOrdenCompra[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataOrdenCompra) it.next();
+            index++;
+        }
+        return ll;
+    }
 
 }

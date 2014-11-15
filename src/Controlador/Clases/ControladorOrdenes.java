@@ -180,21 +180,57 @@ public class ControladorOrdenes implements IControladorOrdenes{
         orden.setClienteCompraProducto(cliComProd);
                 
         ManejadorOrdenes.getInstance().agregarOrden(orden);
-        
-        
-        List<EstadosOrdenes> estadoNuevaOrden = new ArrayList();
-        estadoNuevaOrden.add(new EstadosOrdenes(null,orden,EstadoOrden.ORDEN_RECIBIDA.getValue()));
-        orden.setEstados(estadoNuevaOrden);
-        ManejadorOrdenes.getInstance().modificarOrden(orden);
-        
         ultimaOrdenGuardada = orden.getNroOrden();
+        
+        agregarEstadoOrdenRecibida(ultimaOrdenGuardada);
+                
         cliComProds = new ArrayList<>();
     }
     
-    //@Override
-//    public void imprimirDatosOrden(){
-//        
-//    }
+    public void agregarEstadoOrden(OrdenCompra orden, EstadoOrden estado){
+        List<EstadosOrdenes> estadoNuevaOrden = new ArrayList();
+        estadoNuevaOrden.add(new EstadosOrdenes(null,orden, estado.getValue()));
+        orden.setEstados(estadoNuevaOrden);
+        ManejadorOrdenes.getInstance().modificarOrden(orden);
+    }
+    
+    @Override
+    public void agregarEstadoOrdenRecibida(Integer nroOrden){
+        OrdenCompra orden = ManejadorOrdenes.getInstance().getOrden(nroOrden);
+        agregarEstadoOrden(orden, EstadoOrden.ORDEN_RECIBIDA);
+    }
+    
+    @Override
+    public void agregarEstadoOrdenCancelada(Integer nroOrden){
+        OrdenCompra orden = ManejadorOrdenes.getInstance().getOrden(nroOrden);
+        agregarEstadoOrden(orden, EstadoOrden.ORDEN_CANCELADA);
+    }
+    
+    @Override
+    public void agregarEstadoOrdenConfirmada(Integer nroOrden){
+        OrdenCompra orden = ManejadorOrdenes.getInstance().getOrden(nroOrden);
+        agregarEstadoOrden(orden, EstadoOrden.ORDEN_CONFIRMADA);
+    }
+    
+    @Override
+    public void agregarEstadoOrdenPreparada(Integer nroOrden){
+        OrdenCompra orden = ManejadorOrdenes.getInstance().getOrden(nroOrden);
+        agregarEstadoOrden(orden, EstadoOrden.ORDEN_PREPARADA);
+    }
+    
+    @Override
+    public List<DataOrdenCompra> listarOrdenesAPreparar(){
+        List<DataOrdenCompra> result = new ArrayList();
+        Iterator it = ManejadorOrdenes.getInstance().obtenerOrdenes().values().iterator();
+        while(it.hasNext()){
+            OrdenCompra current = (OrdenCompra) it.next();
+            if(current.getEstadoActual() == EstadoOrden.ORDEN_RECIBIDA.getValue()){
+                result.add(new DataOrdenCompra(current,false));
+            }
+        }
+        return result;
+    }
+    
     @Override
     public List<DataOrdenCompra> listarOrdenes(){
         List<DataOrdenCompra> dataOrdenCompra = new ArrayList<>();

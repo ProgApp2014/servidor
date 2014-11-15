@@ -5,6 +5,7 @@ import Controlador.DataTypes.DataCliente;
 import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProducto;
+import Controlador.DataTypes.EstadoOrden;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,5 +36,10 @@ public interface IControladorOrdenes {
     public List<DataEspecificacionProducto> listarProductosCategoria();
     public List<DataProducto> listarProductosEnEspecificacion();
     public Integer getUltimaOrdenGuardada();
+    public void agregarEstadoOrdenRecibida(Integer nroOrden);
+    public void agregarEstadoOrdenCancelada(Integer nroOrden);
+    public void agregarEstadoOrdenConfirmada(Integer nroOrden);
+    public void agregarEstadoOrdenPreparada(Integer nroOrden);
+    public List<DataOrdenCompra> listarOrdenesAPreparar();
     
 }

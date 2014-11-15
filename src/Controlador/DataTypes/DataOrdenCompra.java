@@ -20,6 +20,7 @@ public class DataOrdenCompra implements Serializable {
     private Float precioTotal;
     private ArrayList<DataClienteCompraProducto> clienteCompraProducto;
     private ArrayList<DataEstadosOrdenes> estados;
+    private Integer EstadoActual;
 
     public DataOrdenCompra() {
         this.fecha = Calendar.getInstance();
@@ -131,6 +132,14 @@ public class DataOrdenCompra implements Serializable {
     public void setEstados(ArrayList<DataEstadosOrdenes> estados) {
         this.estados = new ArrayList<>();
         this.estados.addAll(estados);
+    }
+    
+    public void setEstadoActual(Integer estadoActual){
+        this.EstadoActual = estadoActual;
+    }
+    
+    public Integer getEstadoActual(){
+        return this.estados.get(this.estados.size() - 1).getEstado();
     }
  
     @Override

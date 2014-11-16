@@ -16,22 +16,35 @@ import javax.persistence.Table;
 @DiscriminatorValue("Cliente")
 public class Cliente extends Usuario implements Serializable{
     private static final long serialVersionUID = 1L;
+    
+    private Boolean recibeNotificacion;
    
     public Cliente() {
+        this.recibeNotificacion = true;
     }
     
-    public Cliente(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento) {
+    public Cliente(String nickname, String password, String nombre, String apellido, String email, Calendar fechaNacimiento, Boolean recibeNotificacion) {
         super(nickname, password, nombre, apellido, email, fechaNacimiento);
+        this.recibeNotificacion = recibeNotificacion;
     }
     
     public Cliente(DataCliente dc) {
         super(dc.getNickname(), dc.getPassword(), dc.getNombre(), dc.getApellido(), dc.getEmail(), dc.getFechaNacimiento());
+        this.recibeNotificacion = dc.getRecibeNotificacion();
         this.setImagen(dc.getImagen());
         
     }
     
     public ClienteCompraProducto obtenerClienteCompraProducto() {
         return null;
+    }
+    
+    public void setRecibeNotificacion(Boolean recibeNotificacion){
+        this.recibeNotificacion = recibeNotificacion;
+    }
+    
+    public Boolean getRecibeNotificacion(){
+        return this.recibeNotificacion;
     }
     
     @Override

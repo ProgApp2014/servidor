@@ -178,4 +178,19 @@ public class ControladorUsuarios implements IControladorUsuarios {
     public Boolean esCliente(String nickname){
         return ManejadorUsuarios.getInstance().getTipo(nickname) == "Cliente";
     }
+    
+    @Override
+    public void habilitarNotificaciones(String nickname){
+        Cliente usuCliente = ManejadorUsuarios.getInstance().getCliente(nickname);
+        usuCliente.setRecibeNotificacion(Boolean.TRUE);
+        ManejadorUsuarios.getInstance().modificarCliente(usuCliente);
+    }
+    
+    @Override
+    public void deshabilitarNotificaciones(String nickname){
+        Cliente usuCliente = ManejadorUsuarios.getInstance().getCliente(nickname);
+        usuCliente.setRecibeNotificacion(Boolean.FALSE);
+        ManejadorUsuarios.getInstance().modificarCliente(usuCliente);
+    }
+    
 }

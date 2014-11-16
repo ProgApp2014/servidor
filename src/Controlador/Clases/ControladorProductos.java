@@ -6,6 +6,7 @@ import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProducto;
 import Controlador.DataTypes.DataProveedor;
+import Controlador.DataTypes.EstadoOrden;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -389,7 +390,7 @@ public class ControladorProductos implements IControladorProductos {
         Iterator it = ManejadorOrdenes.getInstance().obtenerOrdenes().values().iterator();
         while (it.hasNext()) {
             OrdenCompra current = (OrdenCompra) it.next();
-            if (current.getCliente().getNickname().equals(nickname)) {
+            if (current.getEstadoActual() == EstadoOrden.ORDEN_CONFIRMADA.getValue() && current.getCliente().getNickname().equals(nickname)) {
                 Iterator it2 = current.getClienteCompraProducto().iterator();
                 while (it2.hasNext()) {
                     ClienteCompraProducto current2 = (ClienteCompraProducto) it2.next();

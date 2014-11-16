@@ -80,6 +80,7 @@ public class GeneralTest{
             assertTrue(!isNull(controlarProducto.buscarProductos("Apple")));
             assertTrue (!isNull(controlarProducto.buscarProductosSeparados("ne","ventas")));
             assertTrue (!isNull(controlarProducto.buscarProductosSeparados("app","ventas")));
+            
             GeneralTest.deleteAllData();
         }catch(Exception e){
             GeneralTest.deleteAllData();

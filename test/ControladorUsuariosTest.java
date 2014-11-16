@@ -32,7 +32,7 @@ public class ControladorUsuariosTest{
 
             Calendar cal = Calendar.getInstance();
             cal.set(1960, 11, 1);
-            DataCliente cliente1 = new DataCliente("dduck", "pasaguord1", "Daffy", "Duck", "dduck@gmail.com", cal);
+            DataCliente cliente1 = new DataCliente("dduck", "pasaguord1", "Daffy", "Duck", "dduck@gmail.com", cal,false);
             controlarUsuario.ingresarDatosCliente(cliente1);
             controlarUsuario.elegirCliente("dduck");
 
@@ -69,13 +69,13 @@ public class ControladorUsuariosTest{
 
 
             //crear usuario con nickname repetido
-            DataCliente cliente2 = new DataCliente("dduck", "pasaguord3", "Darwin", "Duck", "darwinduck@gmail.com", cal);
+            DataCliente cliente2 = new DataCliente("dduck", "pasaguord3", "Darwin", "Duck", "darwinduck@gmail.com", cal,true);
             assertTrue (!controlarUsuario.validarDatosUsuario());
 
 
             //crear usuario con email repetido
 
-            DataCliente cliente3 = new DataCliente("darwind", "pasaguord4", "Darwin", "Duck", "dduck@gmail.com", cal);
+            DataCliente cliente3 = new DataCliente("darwind", "pasaguord4", "Darwin", "Duck", "dduck@gmail.com", cal,false);
             assertTrue (!controlarUsuario.validarDatosUsuario());
             GeneralTest.deleteAllData();
         }catch(Exception e){
@@ -96,13 +96,13 @@ public class ControladorUsuariosTest{
 
             Calendar cal = Calendar.getInstance();
             cal.set(1960, 11, 1);
-            DataCliente cliente1 = new DataCliente("piedra", "pasaguord5" , "Pedro", "Picapiedra", "ppiedra@gmail.com", cal);
+            DataCliente cliente1 = new DataCliente("piedra", "pasaguord5" , "Pedro", "Picapiedra", "ppiedra@gmail.com", cal,true);
             controlarUsuario.ingresarDatosCliente(cliente1);
             controlarUsuario.guardarUsuario();         
-            DataCliente cliente2 = new DataCliente("pmar", "pasaguord6","Pablo", "Marmol", "pmarmol@gmail.com", cal);   
+            DataCliente cliente2 = new DataCliente("pmar", "pasaguord6","Pablo", "Marmol", "pmarmol@gmail.com", cal,false);   
             controlarUsuario.ingresarDatosCliente(cliente2);
             controlarUsuario.guardarUsuario();        
-            DataCliente cliente3 = new DataCliente("loco", "pasaguord7","Pajaro", "Loco", "ploco@gmail.com", cal);               
+            DataCliente cliente3 = new DataCliente("loco", "pasaguord7","Pajaro", "Loco", "ploco@gmail.com", cal,true);               
             controlarUsuario.ingresarDatosCliente(cliente3);
             controlarUsuario.guardarUsuario();                
 

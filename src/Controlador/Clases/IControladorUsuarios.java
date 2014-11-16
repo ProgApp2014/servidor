@@ -29,4 +29,6 @@ public interface IControladorUsuarios {
     public Boolean esProveedor(String nickname);
     public Boolean esCliente(String nickname);
     public List<DataEspecificacionProducto> listarProductosProveedor();
+    public void habilitarNotificaciones(String nickname);
+    public void deshabilitarNotificaciones(String nickname);
 }

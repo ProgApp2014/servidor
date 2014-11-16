@@ -73,16 +73,16 @@ public class Utils {
 
         Calendar cal6 = Calendar.getInstance();
         cal6.set(1963, 7, 5);
-        Cliente c1 = new Cliente("Dan", md5("password"), "Daniel", "Riccio", "dan.riccio@gmail.com", cal6);
+        Cliente c1 = new Cliente("Dan", md5("password"), "Daniel", "Riccio", "dan.riccio@gmail.com", cal6,true);
         Calendar cal7 = Calendar.getInstance();
         cal7.set(1961, 10, 7);
-        Cliente c2 = new Cliente("Phil", md5("password"), "Philip", "Schiller", "phil.schiller@gmail.com", cal7);
+        Cliente c2 = new Cliente("Phil", md5("password"), "Philip", "Schiller", "phil.schiller@gmail.com", cal7,false);
         Calendar cal8 = Calendar.getInstance();
         cal8.set(1959, 12, 3);
-        Cliente c3 = new Cliente("BruceS", md5("password"), "Bruce", "Sewell", "bruce.sewell@gmail.com", cal8);
+        Cliente c3 = new Cliente("BruceS", md5("password"), "Bruce", "Sewell", "bruce.sewell@gmail.com", cal8,true);
         Calendar cal9 = Calendar.getInstance();
         cal9.set(1964, 11, 27);
-        Cliente c4 = new Cliente("JeffW", md5("password"), "Jeff", "Wiliams", "jeff.williams@gmail.com", cal9);
+        Cliente c4 = new Cliente("JeffW", md5("password"), "Jeff", "Wiliams", "jeff.williams@gmail.com", cal9,false);
 
         p1.setImagen("cook.jpg");
         p2.setImagen("cue.jpg");

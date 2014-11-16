@@ -103,4 +103,13 @@ public class ManejadorUsuarios {
         entityManager.remove(aBorrar);
         entityManager.getTransaction().commit();
     }
+    
+    public void modificarCliente(Cliente clienteAModificar){
+        if(entityManager.find(Cliente.class, clienteAModificar.getNickname()) == null){
+           throw new IllegalArgumentException("Unknown User id");
+       }
+       entityManager.getTransaction().begin();
+       entityManager.merge(clienteAModificar);
+       entityManager.getTransaction().commit();
+    }
 }

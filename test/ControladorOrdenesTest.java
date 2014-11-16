@@ -42,7 +42,7 @@ public class ControladorOrdenesTest{
 
             Calendar cal2 = Calendar.getInstance();
             cal2.set(1960, 11, 1);
-            controlarUsuario.ingresarDatosCliente(new DataCliente("piedra", "password2", "Pedro", "Picapiedra", "ppiedra@gmail.com", cal2));
+            controlarUsuario.ingresarDatosCliente(new DataCliente("piedra", "password2", "Pedro", "Picapiedra", "ppiedra@gmail.com", cal2,true));
             controlarUsuario.guardarUsuario();
 
             DataCategoria cat1 = new DataCategoria("cat1", null);
@@ -115,7 +115,7 @@ public class ControladorOrdenesTest{
 
             Calendar cal2 = Calendar.getInstance();
             cal2.set(1960, 11, 1);
-            controlarUsuario.ingresarDatosCliente(new DataCliente("piedra", "password", "Pedro", "Picapiedra", "ppiedra@gmail.com", cal2));
+            controlarUsuario.ingresarDatosCliente(new DataCliente("piedra", "password", "Pedro", "Picapiedra", "ppiedra@gmail.com", cal2,true));
             controlarUsuario.guardarUsuario();
 
             DataCategoria cat1 = new DataCategoria("cat1", null);
@@ -190,7 +190,7 @@ public class ControladorOrdenesTest{
 
             Calendar cal2 = Calendar.getInstance();
             cal2.set(1960, 11, 1);
-            controlarUsuario.ingresarDatosCliente(new DataCliente("piedra","password", "Pedro", "Picapiedra", "ppiedra@gmail.com", cal2));
+            controlarUsuario.ingresarDatosCliente(new DataCliente("piedra","password", "Pedro", "Picapiedra", "ppiedra@gmail.com", cal2,true));
             controlarUsuario.guardarUsuario();
 
             DataCategoria cat1 = new DataCategoria("cat1", null);

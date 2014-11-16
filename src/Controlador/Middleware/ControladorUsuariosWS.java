@@ -162,4 +162,14 @@ public class ControladorUsuariosWS {
         }
         return ll;
     }
+    
+    @WebMethod
+    public void habilitarNotificaciones(String nickname, Integer idUsuariosControlador) {
+        Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador).habilitarNotificaciones(nickname);
+    }
+    
+    @WebMethod
+    public void deshabilitarNotificaciones(String nickname, Integer idUsuariosControlador) {
+        Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador).deshabilitarNotificaciones(nickname);
+    }
 }

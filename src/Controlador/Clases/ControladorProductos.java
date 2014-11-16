@@ -7,6 +7,7 @@ import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProducto;
 import Controlador.DataTypes.DataProveedor;
 import Controlador.DataTypes.EstadoOrden;
+import Controlador.DataTypes.DataReclamo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -419,6 +420,24 @@ public class ControladorProductos implements IControladorProductos {
     }
     
     @Override
+    public Boolean puedeReclamar(String nickname, String nroRef) {
+        Iterator it = ManejadorOrdenes.getInstance().obtenerOrdenes().values().iterator();
+        while (it.hasNext()) {
+            OrdenCompra current = (OrdenCompra) it.next();
+            if (current.getCliente().getNickname().equals(nickname)) {
+                Iterator it2 = current.getClienteCompraProducto().iterator();
+                while (it2.hasNext()) {
+                    ClienteCompraProducto current2 = (ClienteCompraProducto) it2.next();
+                    if (current2.getProducto().getEspecificacionProducto().getNroReferencia().equals(nroRef)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    } 
+    
+    @Override
     public void agregarReclamo(String nickname, String nroRef, String Rec) {
         EspecificacionProducto aModificar = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);
         List<Reclamo> reclamo = aModificar.getReclamo();
@@ -431,5 +450,25 @@ public class ControladorProductos implements IControladorProductos {
         ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).setReclamo(reclamo);
         ManejadorEspProductos.getInstance().modificarProducto(aModificar);
     }
+    
+    @Override
+    public List<DataReclamo> listarReclamos (String nickname){
+        List<DataReclamo> listaReclamo = new ArrayList<>();
+        Iterator it = ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().values().iterator();
+        
+        while (it.hasNext()) {
+            EspecificacionProducto current = (EspecificacionProducto) it.next();
+            if (current.getProveedor().getNickname().equals(nickname) && current.getReclamo().size() > 0){
+                Iterator it2 = current.getReclamo().iterator();
+                while (it2.hasNext()){
+                    Reclamo current2 = (Reclamo) it.next();
+                    listaReclamo.add(new DataReclamo (current2));
+                }
+            }
+        }
+        
+        return listaReclamo;
+    }
+         
     
 }

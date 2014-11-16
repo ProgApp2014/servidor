@@ -5,6 +5,7 @@ import Controlador.DataTypes.DataComentario;
 import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataProducto;
 import Controlador.DataTypes.DataProveedor;
+import Controlador.DataTypes.DataReclamo;
 import java.util.List;
 import java.util.Map;
 
@@ -55,5 +56,8 @@ public interface IControladorProductos {
     public List<DataProducto> listarProductosEnEspecificacion();
     public Boolean verificarEspecificacionProducto(String numRef);
     public void agregarReclamo(String nickname, String nroRef, String Rec);
+    public Boolean puedeReclamar(String nickname, String nroRef);
+    public List<DataReclamo> listarReclamos(String nickname);
+  
 }
     

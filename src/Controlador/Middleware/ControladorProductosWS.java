@@ -312,8 +312,26 @@ public class ControladorProductosWS {
     }
     
     @WebMethod
+    public Boolean puedeReclamar(String nickname, String nroRef, Integer idProductosControlador) {
+        return Fabrica.getInstance().getControladorProductos(idProductosControlador).puedeReclamar(nickname, nroRef);
+    }
+    
+    @WebMethod
     public void agregarReclamo(String nickname, String nroRef, String Reclamo, Integer idProductosControlador) {
         Fabrica.getInstance().getControladorProductos(idProductosControlador).agregarReclamo(nickname, nroRef, Reclamo);
+    }
+    
+    @WebMethod
+    public DataReclamo[] listarReclamos(String nickname, Integer idProductosControlador){   
+        List<DataReclamo> l = Fabrica.getInstance().getControladorProductos(idProductosControlador).listarReclamos(nickname);
+        DataReclamo[] ll = new DataReclamo[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataReclamo) it.next();
+            index++;
+        }
+        return ll;    
     }
 
     @WebMethod

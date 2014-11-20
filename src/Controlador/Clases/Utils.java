@@ -648,4 +648,39 @@ public class Utils {
         }
         return md5;
     }
+    
+    public static String genComentarioTemplate(){
+        String result = "";
+        result += "<strong><a href='http://localhost:8084/ProgWeb/'> Direct Market</a><strong>";
+        result += "<br/>";
+        result += "Comentario agregado: ";
+        result += "{!0}";
+        result += "Sobre Producto: ";
+        result += "{!1}";
+        return result;
+    }
+    
+    public static String genNuevoProductoTemplate(){
+        String result = "";
+        result += "<strong><a href='http://localhost:8084/ProgWeb/'> Direct Market</a><strong>";
+        result += "<br/>";
+        result += "Nuevo Producto: ";
+        result += "{!0}";
+        result += "De Proveedor: ";
+        result += "{!1}";
+        return result;
+    }
+    
+    public static String genCambioDeEstadoTemplate(){
+        String result = "";
+        result += "<strong><a href='http://localhost:8084/ProgWeb/'> Direct Market</a><strong>";
+        result += "<br/>";
+        result += "Hola {!USER}";
+        result += "<br/>";
+        result += "Orden: ";
+        result += "{!0}";
+        result += "Nuevo estado: ";
+        result += "{!1}";
+        return result;
+    }
 }

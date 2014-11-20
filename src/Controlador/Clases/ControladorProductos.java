@@ -188,10 +188,35 @@ public class ControladorProductos implements IControladorProductos {
         nuevoEspProducto.setImagenes(imagenes);
         nuevoEspProducto.setListaProductos(productosAAgregar);
         ManejadorEspProductos.getInstance().agregarEspecificacionProducto(nuevoEspProducto);
-
+        
+        String template = Utils.genNuevoProductoTemplate().replace("{!0}", nuevoEspProducto.getNombre()).replace("{!1}", nuevoEspProducto.getProveedor().getNombre() + " " + nuevoEspProducto.getProveedor().getApellido());
+        ArrayList<String> emails = listaMailsClientesCompradoProveedor(nuevoEspProducto.getProveedor().getNickname());
+        EmailHelper pepe = new EmailHelper(emails,"Direct Market - Nueva producto en nuestra tienda " ,template);
+        
         especificaciones = new HashMap();
         imagenes = new ArrayList<>();
         productosAAgregar = new ArrayList();
+    }
+    
+    public ArrayList<String> listaMailsClientesCompradoProveedor(String nickNameProveedor){
+        ArrayList<String> result = new ArrayList();
+        Iterator it = ManejadorOrdenes.getInstance().obtenerOrdenes().values().iterator();
+        while(it.hasNext()){
+            OrdenCompra current = (OrdenCompra)it.next();
+            if(!result.contains(current.getCliente().getEmail())){
+                Iterator it2 = current.getClienteCompraProducto().iterator();
+                while(it2.hasNext()){
+                    ClienteCompraProducto current2 = (ClienteCompraProducto)it2.next();
+                    if(current2.getDataProducto().getEspecificacionProducto().getProveedor().getNickname().equals(nickNameProveedor)){
+                        if(current.getCliente().getRecibeNotificacion()){
+                            result.add(current.getCliente().getEmail());
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     @Override
@@ -256,6 +281,32 @@ public class ControladorProductos implements IControladorProductos {
         comentarios.add(comentarioAAgregar);
         ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).setComentarios(comentarios);
         ManejadorEspProductos.getInstance().modificarProducto(aModificar);
+        
+        String template = Utils.genComentarioTemplate().replace("{!0}", Comentario).replace("{!1}", ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).getNombre());
+        ArrayList<String> emails = listaMailsClientesCompradoProveedor(nuevoEspProducto.getProveedor().getNickname());
+        EmailHelper pepe = new EmailHelper(emails,"Direct Market - Nueva producto en nuestra tienda " ,template);
+        
+    }
+    
+    public List<String> listaMailsClientesCompradoProducto(String nroRef){
+        List<String> result = new ArrayList();
+        Iterator it = ManejadorOrdenes.getInstance().obtenerOrdenes().values().iterator();
+        while(it.hasNext()){
+            OrdenCompra current = (OrdenCompra)it.next();
+            if(!result.contains(current.getCliente().getEmail())){
+                Iterator it2 = current.getClienteCompraProducto().iterator();
+                while(it2.hasNext()){
+                    ClienteCompraProducto current2 = (ClienteCompraProducto)it2.next();
+                    if(current2.getDataProducto().getEspecificacionProducto().getNroReferencia().equals(nroRef)){
+                        if(current.getCliente().getRecibeNotificacion()){
+                            result.add(current.getCliente().getEmail());
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     /*@Override

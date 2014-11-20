@@ -11,7 +11,7 @@ package Controlador.DataTypes;
  * @author rodro
  */
 public enum EstadoOrden {
-    ORDEN_CREADA(0) ,ORDEN_RECIBIDA(1),ORDEN_PREPARADA(2),ORDEN_CONFIRMADA(3),ORDEN_CANCELADA(4);
+    ORDEN_RECIBIDA(0),ORDEN_PREPARADA(1),ORDEN_CONFIRMADA(2),ORDEN_CANCELADA(3);
     
     private final int value;
     private EstadoOrden(int value) {

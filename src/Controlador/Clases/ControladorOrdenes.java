@@ -198,24 +198,42 @@ public class ControladorOrdenes implements IControladorOrdenes{
     public void agregarEstadoOrdenRecibida(Integer nroOrden){
         OrdenCompra orden = ManejadorOrdenes.getInstance().getOrden(nroOrden);
         agregarEstadoOrden(orden, EstadoOrden.ORDEN_RECIBIDA);
+        if(orden.getCliente().getRecibeNotificacion()){
+            String template = Utils.genCambioDeEstadoTemplate().replace("{!USER}", orden.getCliente().getNombre()).replace("{!0}", orden.getNroOrden().toString()).replace("{!1}", "Recibida");
+            ArrayList<String> emails = new ArrayList();
+            emails.add(orden.getCliente().getEmail());
+            EmailHelper pepe = new EmailHelper(emails,"Direct Market - Nueva orden "+orden.getNroOrden().toString() ,template);
+        }
+    }
+    
+    public void enviarNotificacion(OrdenCompra orden){
+        if(orden.getCliente().getRecibeNotificacion()){
+            String template = Utils.genCambioDeEstadoTemplate().replace("{!USER}", orden.getCliente().getNombre()).replace("{!0}", orden.getNroOrden().toString()).replace("{!1}", "Recibida");
+            ArrayList<String> emails = new ArrayList();
+            emails.add(orden.getCliente().getEmail());
+            EmailHelper pepe = new EmailHelper(emails,"Direct Market - Orden "+orden.getNroOrden().toString()+" cambio de estado" ,template);
+        }
     }
     
     @Override
     public void agregarEstadoOrdenCancelada(Integer nroOrden){
         OrdenCompra orden = ManejadorOrdenes.getInstance().getOrden(nroOrden);
         agregarEstadoOrden(orden, EstadoOrden.ORDEN_CANCELADA);
+        enviarNotificacion(orden);
     }
     
     @Override
     public void agregarEstadoOrdenConfirmada(Integer nroOrden){
         OrdenCompra orden = ManejadorOrdenes.getInstance().getOrden(nroOrden);
         agregarEstadoOrden(orden, EstadoOrden.ORDEN_CONFIRMADA);
+        enviarNotificacion(orden);
     }
     
     @Override
     public void agregarEstadoOrdenPreparada(Integer nroOrden){
         OrdenCompra orden = ManejadorOrdenes.getInstance().getOrden(nroOrden);
         agregarEstadoOrden(orden, EstadoOrden.ORDEN_PREPARADA);
+        enviarNotificacion(orden);
     }
     
     @Override

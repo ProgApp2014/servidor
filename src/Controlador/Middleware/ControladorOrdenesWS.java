@@ -202,6 +202,7 @@ public class ControladorOrdenesWS {
         Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador).agregarEstadoOrdenPreparada(nroOrden);
     }
     
+    @WebMethod
     public DataOrdenCompra[] listarOrdenesAPreparar(Integer idOrdenesControlador){
         
         List<DataOrdenCompra> l = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador).listarOrdenesAPreparar();

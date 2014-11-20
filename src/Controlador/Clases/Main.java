@@ -6,6 +6,7 @@ import Controlador.Middleware.ControladorProductosWS;
 import Controlador.Middleware.ControladorUsuariosWS;
 import Controlador.Middleware.ImageHanlderWS;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -51,8 +52,11 @@ public class Main {
             usuariosWS.publicar();
             productosWS.publicar();
             imageWS.publicar();
-             
-//
+            /*String template = Utils.genComentarioTemplate().replace("{!0}", "PEPE").replace("{!1}", "Chaleco");
+            ArrayList<String> emails = new ArrayList();
+            emails.add("elturko.dario@gmail.com");
+            EmailHelper pepe = new EmailHelper(emails,"Direct Market - Mensaje enviado",template);
+*///
 ////        casoDeUso1(controlarUsuario);
 ////        casoDeUso2(controlarProducto);
 ////        casoDeUso3(controlarProducto);

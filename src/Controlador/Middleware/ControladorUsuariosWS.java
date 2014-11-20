@@ -172,4 +172,5 @@ public class ControladorUsuariosWS {
     public void deshabilitarNotificaciones(String nickname, Integer idUsuariosControlador) {
         Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador).deshabilitarNotificaciones(nickname);
     }
+    
 }

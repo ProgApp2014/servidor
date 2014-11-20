@@ -27,7 +27,11 @@ public class DataEspecificacionProducto implements Serializable {
     private ArrayList<DataProducto> productos;
     private ArrayList<DataComentario> comentarios;
     private ArrayList<DataReclamo> reclamo; 
-    public DataEspecificacionProducto(){}
+    public DataEspecificacionProducto(){
+        this.especificacion = new ArrayList<>();
+        this.productos = new ArrayList<>();
+        this.comentarios = new ArrayList<>();
+    }
     public DataEspecificacionProducto(EspecificacionProducto ep, boolean conCategorias) {
         this.nroReferencia = ep.getNroReferencia();
         this.nombre = ep.getNombre();

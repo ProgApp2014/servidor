@@ -21,6 +21,7 @@ public class DataOrdenCompra implements Serializable {
     private ArrayList<DataClienteCompraProducto> clienteCompraProducto;
     private ArrayList<DataEstadosOrdenes> estados;
     private Integer EstadoActual;
+    private String EstadoActualTexto;
 
     public DataOrdenCompra() {
         this.fecha = Calendar.getInstance();
@@ -140,6 +141,17 @@ public class DataOrdenCompra implements Serializable {
     
     public Integer getEstadoActual(){
         return this.estados.get(this.estados.size() - 1).getEstado();
+    }
+    
+    public void setEstadoActualTexto(String estadoActual){
+        this.EstadoActualTexto = estadoActual;
+    }
+    
+    public String getEstadoActualTexto(){
+        String res;
+        Integer estado = this.estados.get(this.estados.size() - 1).getEstado();
+        res = estado == 0 ? "Recibida" : estado == 1 ? "Preparada" : estado == 2 ? "Confirmada" : "Cancelada";
+        return res;
     }
  
     @Override

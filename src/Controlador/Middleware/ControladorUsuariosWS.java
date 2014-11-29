@@ -5,7 +5,6 @@ import Controlador.DataTypes.DataCliente;
 import Controlador.DataTypes.DataEspecificacionProducto;
 import Controlador.DataTypes.DataOrdenCompra;
 import Controlador.DataTypes.DataProveedor;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.jws.WebMethod;
@@ -13,6 +12,9 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.xml.ws.Endpoint;
 
 @WebService
@@ -172,5 +174,21 @@ public class ControladorUsuariosWS {
     public void deshabilitarNotificaciones(String nickname, Integer idUsuariosControlador) {
         Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador).deshabilitarNotificaciones(nickname);
     }
-    
+    @WebMethod
+    public void genDatosPrueba(){
+
+//        EntityManagerFactory EntityManagerFactory = Persistence.createEntityManagerFactory("ProgramacionAppPU");
+//        EntityManager entityManager = EntityManagerFactory.createEntityManager();
+//        entityManager.getTransaction().begin();
+//        entityManager.createQuery("DELETE FROM ClienteCompraProducto").executeUpdate();
+//        entityManager.createQuery("DELETE FROM OrdenCompra").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Producto").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Comentario").executeUpdate();
+//        entityManager.createQuery("DELETE FROM EspecificacionProducto").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Categoria").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Cliente").executeUpdate();
+//        entityManager.createQuery("DELETE FROM Proveedor").executeUpdate();
+//        entityManager.getTransaction().commit();
+        Utils.generarDatosDePrueba();
+    }
 }

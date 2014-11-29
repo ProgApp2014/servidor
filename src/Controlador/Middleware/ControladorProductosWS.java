@@ -338,5 +338,15 @@ public class ControladorProductosWS {
     public Boolean verificarEspecificacionProducto(String nroRef, Integer idProductosControlador) {
         return Fabrica.getInstance().getControladorProductos(idProductosControlador).verificarEspecificacionProducto(nroRef);
     }
+    
+    @WebMethod
+    public void agregarPuntaje(String nickname, String nroRef, Integer puntaje, Integer idProductosControlador){
+        Fabrica.getInstance().getControladorProductos(idProductosControlador).agregarPuntaje(nickname, nroRef, puntaje);
+    }
+    
+    @WebMethod
+    public Float obtenerPuntjePromedio(String nroRef, Integer idProductosControlador){
+        return Fabrica.getInstance().getControladorProductos(idProductosControlador).obtenerPuntjePromedio(nroRef);
+    }
 
 }

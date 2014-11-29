@@ -22,12 +22,12 @@ public class Main {
          
        
 //        idUsuariosControlador = Fabrica.getInstance().getControladorUsuarios(null).getId();
-//        idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
-//        idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
+        idProductosControlador = Fabrica.getInstance().getControladorProductos(null).getId();
+        idOrdenesControlador = Fabrica.getInstance().getControladorOrdenes(null).getId();
 //
 //        controlarUsuario = Fabrica.getInstance().getControladorUsuarios(idUsuariosControlador);
-//        controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
-//        controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador); 
+        controlarProducto = Fabrica.getInstance().getControladorProductos(idProductosControlador);
+        controlarOrden = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador); 
 
 //        EntityManagerFactory EntityManagerFactory = Persistence.createEntityManagerFactory("ProgramacionAppPU");
 //        EntityManager entityManager = EntityManagerFactory.createEntityManager();
@@ -52,6 +52,7 @@ public class Main {
             usuariosWS.publicar();
             productosWS.publicar();
             imageWS.publicar();
+            controlarProducto.agregarPuntaje("Dan", "IPH4", 2);
             /*String template = Utils.genComentarioTemplate().replace("{!0}", "PEPE").replace("{!1}", "Chaleco");
             ArrayList<String> emails = new ArrayList();
             emails.add("elturko.dario@gmail.com");

@@ -238,12 +238,12 @@ public class ControladorOrdenes implements IControladorOrdenes{
     
     @Override
     public List<DataOrdenCompra> listarOrdenesAPreparar(){
-        List<DataOrdenCompra> result = new ArrayList();
+        List<DataOrdenCompra> result = new ArrayList<>();
         Iterator it = ManejadorOrdenes.getInstance().obtenerOrdenes().values().iterator();
         while(it.hasNext()){
             OrdenCompra current = (OrdenCompra) it.next();
             if(current.getEstadoActual() == EstadoOrden.ORDEN_RECIBIDA.getValue()){
-                result.add(new DataOrdenCompra(current,false));
+                result.add(new DataOrdenCompra(current,true));
             }
         }
         return result;

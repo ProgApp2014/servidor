@@ -144,20 +144,7 @@ public class ControladorOrdenesWS {
         Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador).guardarOrden(dataOrden);
     }
 
-    @WebMethod
-    public DataOrdenCompra[] listarOrdenes(Integer idOrdenesControlador) {
-
-        List<DataOrdenCompra> l = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador).listarOrdenes();
-        DataOrdenCompra[] ll = new DataOrdenCompra[l.size()];
-        Iterator it = l.iterator();
-        int index = 0;
-        while (it.hasNext()) {
-            ll[index] = (DataOrdenCompra) it.next();
-            index++;
-        }
-        return ll;
-
-    }
+    
 
     @WebMethod
     public void elegirOrden(Integer nroOrden, Integer idOrdenesControlador) {
@@ -214,6 +201,20 @@ public class ControladorOrdenesWS {
             index++;
         }
         return ll;
+    }
+    @WebMethod
+    public DataOrdenCompra[] listarOrdenes(Integer idOrdenesControlador) {
+
+        List<DataOrdenCompra> l = Fabrica.getInstance().getControladorOrdenes(idOrdenesControlador).listarOrdenes();
+        DataOrdenCompra[] ll = new DataOrdenCompra[l.size()];
+        Iterator it = l.iterator();
+        int index = 0;
+        while (it.hasNext()) {
+            ll[index] = (DataOrdenCompra) it.next();
+            index++;
+        }
+        return ll;
+
     }
 
 }

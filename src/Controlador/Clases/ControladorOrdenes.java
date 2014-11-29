@@ -208,7 +208,7 @@ public class ControladorOrdenes implements IControladorOrdenes{
     
     public void enviarNotificacion(OrdenCompra orden){
         if(orden.getCliente().getRecibeNotificacion()){
-            String template = Utils.genCambioDeEstadoTemplate().replace("{!USER}", orden.getCliente().getNombre()).replace("{!0}", orden.getNroOrden().toString()).replace("{!1}", "Recibida");
+            String template = Utils.genCambioDeEstadoTemplate().replace("{!USER}", orden.getCliente().getNombre()).replace("{!0}", orden.getNroOrden().toString()).replace("{!1}", orden.getEstadoActualTexto());
             ArrayList<String> emails = new ArrayList();
             emails.add(orden.getCliente().getEmail());
             EmailHelper pepe = new EmailHelper(emails,"Direct Market - Orden "+orden.getNroOrden().toString()+" cambio de estado" ,template);

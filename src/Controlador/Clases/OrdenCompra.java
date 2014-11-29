@@ -123,6 +123,13 @@ public class OrdenCompra implements Serializable {
     public int getEstadoActual(){
         return this.estados.get(this.estados.size() - 1).getEstado();
     }
+    
+    public String getEstadoActualTexto(){
+        String res;
+        Integer estado = this.estados.get(this.estados.size() - 1).getEstado();
+        res = estado == 0 ? "Recibida" : estado == 1 ? "Preparada" : estado == 2 ? "Confirmada" : "Cancelada";
+        return res;
+    }
 
     @Override
     public String toString() {

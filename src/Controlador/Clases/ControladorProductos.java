@@ -283,13 +283,13 @@ public class ControladorProductos implements IControladorProductos {
         ManejadorEspProductos.getInstance().modificarProducto(aModificar);
         
         String template = Utils.genComentarioTemplate().replace("{!0}", Comentario).replace("{!1}", ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).getNombre());
-        ArrayList<String> emails = listaMailsClientesCompradoProveedor(nuevoEspProducto.getProveedor().getNickname());
-        EmailHelper pepe = new EmailHelper(emails,"Direct Market - Nueva producto en nuestra tienda " ,template);
+        ArrayList<String> emails = listaMailsClientesCompradoProducto(nroRef);
+        EmailHelper pepe = new EmailHelper(emails,"Direct Market - Comentario agregado en producto " + aModificar.getNombre() ,template);
         
     }
     
-    public List<String> listaMailsClientesCompradoProducto(String nroRef){
-        List<String> result = new ArrayList();
+    public ArrayList<String> listaMailsClientesCompradoProducto(String nroRef){
+        ArrayList<String> result = new ArrayList();
         Iterator it = ManejadorOrdenes.getInstance().obtenerOrdenes().values().iterator();
         while(it.hasNext()){
             OrdenCompra current = (OrdenCompra)it.next();
@@ -504,20 +504,28 @@ public class ControladorProductos implements IControladorProductos {
     
     @Override
     public List<DataReclamo> listarReclamos (String nickname){
+        System.out.println("ACAAAAAA1");
         List<DataReclamo> listaReclamo = new ArrayList<>();
+        System.out.println("ACAAAAAA2");
         Iterator it = ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().values().iterator();
-        
+        System.out.println("ACAAAAAA3");
         while (it.hasNext()) {
+            System.out.println("ACAAAAAA4");
             EspecificacionProducto current = (EspecificacionProducto) it.next();
+            System.out.println("ACAAAAAA5");
             if (current.getProveedor().getNickname().equals(nickname) && current.getReclamo().size() > 0){
+                System.out.println("ACAAAAAA6");
                 Iterator it2 = current.getReclamo().iterator();
+                System.out.println("ACAAAAAA7");
                 while (it2.hasNext()){
-                    Reclamo current2 = (Reclamo) it.next();
+                    System.out.println("ACAAAAAA8");
+                    Reclamo current2 = (Reclamo) it2.next();
+                    System.out.println("ACAAAAAA9");
                     listaReclamo.add(new DataReclamo (current2));
                 }
             }
         }
-        
+        System.out.println("ACAAAAAA10");
         return listaReclamo;
     }
          

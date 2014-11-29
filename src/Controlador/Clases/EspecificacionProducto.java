@@ -73,11 +73,14 @@ public class EspecificacionProducto implements Serializable {
     @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL},mappedBy="especificacionProducto")    
     @JoinColumn(name="ID")
     private List<Reclamo> reclamo;
+    @OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL},mappedBy="especificacionProducto")    
+    @JoinColumn(name="ID")
+    private List<Puntaje> puntajes;
 
     public EspecificacionProducto() {
     }
 
-    public EspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String, String> especificacion, Float precio, Proveedor proveedor, List<Categoria> categorias, List<Producto> listaProductos, List<Comentario> comentarios, List<Reclamo> reclamo) {
+    public EspecificacionProducto(String nroReferencia, String nombre, String descripcion, Map<String, String> especificacion, Float precio, Proveedor proveedor, List<Categoria> categorias, List<Producto> listaProductos, List<Comentario> comentarios, List<Reclamo> reclamo, List<Puntaje> puntajes) {
         this.nroReferencia = nroReferencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -88,6 +91,7 @@ public class EspecificacionProducto implements Serializable {
         this.listaProductos = listaProductos;
         this.comentarios = comentarios;
         this.reclamo = reclamo;
+        this.puntajes = puntajes;
         this.imagenes = new ArrayList<String>();
     }
 
@@ -112,7 +116,14 @@ public class EspecificacionProducto implements Serializable {
         while (itC.hasNext()) {
             this.comentarios.add((Comentario) itC.next());
         }
-        this.reclamo = new ArrayList();
+        Iterator itR = espProducto.getReclamo().iterator();
+        while (itR.hasNext()) {
+            this.reclamo.add((Reclamo) itR.next());
+        }
+        Iterator itP = espProducto.getPuntajes().iterator();
+        while (itP.hasNext()) {
+            this.puntajes.add((Puntaje) itP.next());
+        }
     }
 
     public String getNroReferencia() {
@@ -169,6 +180,14 @@ public class EspecificacionProducto implements Serializable {
     
     public void setReclamo(List<Reclamo> reclamo){
         this.reclamo = reclamo;
+    }
+    
+    public List<Puntaje> getPuntajes() {
+        return puntajes;
+    }
+    
+    public void setPuntajes(List<Puntaje> puntajes){
+        this.puntajes = puntajes;
     }
 
     public Float getPrecio() {

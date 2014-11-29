@@ -27,10 +27,13 @@ public class DataEspecificacionProducto implements Serializable {
     private ArrayList<DataProducto> productos;
     private ArrayList<DataComentario> comentarios;
     private ArrayList<DataReclamo> reclamo; 
+    private ArrayList<DataPuntaje> puntajes; 
     public DataEspecificacionProducto(){
         this.especificacion = new ArrayList<>();
         this.productos = new ArrayList<>();
         this.comentarios = new ArrayList<>();
+        this.reclamo = new ArrayList<>();
+        this.puntajes = new ArrayList<>();
     }
     public DataEspecificacionProducto(EspecificacionProducto ep, boolean conCategorias) {
         this.nroReferencia = ep.getNroReferencia();
@@ -69,14 +72,28 @@ public class DataEspecificacionProducto implements Serializable {
                    comentarios.add(new DataComentario(comentario));
                 });
             }
+            this.reclamo = new ArrayList();
+            if(ep.getReclamo() != null  && !ep.getReclamo().isEmpty()){
+                ep.getReclamo().forEach((reclamo) -> {
+                   this.reclamo.add(new DataReclamo(reclamo));
+                });
+            }
+            this.puntajes = new ArrayList();
+            if(ep.getPuntajes() != null  && !ep.getPuntajes().isEmpty()){
+                ep.getPuntajes().forEach((puntajes) -> {
+                   this.puntajes.add(new DataPuntaje(puntajes));
+                });
+            }
         }else{
             this.categorias = new ArrayList<DataCategoria>();
             this.productos = new ArrayList();
             this.comentarios = new ArrayList();
+            this.reclamo = new ArrayList();
+            this.puntajes = new ArrayList();
         }
     }
     
-    public DataEspecificacionProducto(String nroReferencia, String nombre, String descripcion, HashMap<String,String> especificacion, Float precio, DataProveedor proveedor, ArrayList<String> imagenes, ArrayList<DataCategoria> categorias,ArrayList<DataProducto> productos,ArrayList<DataComentario> comentarios, ArrayList<DataReclamo> reclamo) {
+    public DataEspecificacionProducto(String nroReferencia, String nombre, String descripcion, HashMap<String,String> especificacion, Float precio, DataProveedor proveedor, ArrayList<String> imagenes, ArrayList<DataCategoria> categorias,ArrayList<DataProducto> productos,ArrayList<DataComentario> comentarios, ArrayList<DataReclamo> reclamo, ArrayList<DataPuntaje> puntajes) {
         this.nroReferencia = nroReferencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -99,6 +116,10 @@ public class DataEspecificacionProducto implements Serializable {
         this.productos.addAll(productos);
         this.comentarios = new ArrayList<>();
         this.comentarios.addAll(comentarios);
+        this.reclamo = new ArrayList<>();
+        this.reclamo.addAll(reclamo);
+        this.puntajes = new ArrayList<>();
+        this.puntajes.addAll(puntajes);
     }
 
     public String getNroReferencia() {
@@ -183,6 +204,25 @@ public class DataEspecificacionProducto implements Serializable {
         this.comentarios = new ArrayList<>();
         this.comentarios.addAll(comentarios);
     }
+    
+    public ArrayList<DataReclamo> getReclamo() {
+        return reclamo;
+    }
+
+    public void setReclamo(ArrayList<DataReclamo> reclamo) {
+        this.reclamo = new ArrayList<>();
+        this.reclamo.addAll(reclamo);
+    }
+    
+    public ArrayList<DataPuntaje> getPuntajes() {
+        return puntajes;
+    }
+
+    public void setPuntajes(ArrayList<DataPuntaje> puntajes) {
+        this.puntajes = new ArrayList<>();
+        this.puntajes.addAll(puntajes);
+    }
+    
     public void setStock(int stock){
         this.stock = stock;
     }

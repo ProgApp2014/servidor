@@ -13,6 +13,7 @@
     <class>Controlador.Clases.Comentario</class>
     <class>Controlador.Clases.Reclamo</class>
     <class>Controlador.Clases.EstadosOrdenes</class>
+    <class>Controlador.Clases.Puntaje</class>
     <properties>
       <!--<property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.logging.file" value="test.log"/>-->

@@ -503,31 +503,51 @@ public class ControladorProductos implements IControladorProductos {
     }
     
     @Override
+    public void agregarPuntaje(String nickname, String nroRef, Integer puntaje) {
+        EspecificacionProducto aModificar = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);
+        List<Puntaje> puntajes = aModificar.getPuntajes();
+        Puntaje puntajeAAgregar = new Puntaje();
+        puntajeAAgregar.setCliente(ManejadorUsuarios.getInstance().getCliente(nickname));
+        puntajeAAgregar.setEspecificacionProducto(aModificar);
+       
+        puntajeAAgregar.setPuntaje(puntaje);
+        puntajes.add(puntajeAAgregar);
+        ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).setPuntajes(puntajes);
+        ManejadorEspProductos.getInstance().modificarProducto(aModificar);
+    }
+    
+    @Override
     public List<DataReclamo> listarReclamos (String nickname){
-        System.out.println("ACAAAAAA1");
         List<DataReclamo> listaReclamo = new ArrayList<>();
-        System.out.println("ACAAAAAA2");
         Iterator it = ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().values().iterator();
-        System.out.println("ACAAAAAA3");
+        
         while (it.hasNext()) {
-            System.out.println("ACAAAAAA4");
             EspecificacionProducto current = (EspecificacionProducto) it.next();
-            System.out.println("ACAAAAAA5");
             if (current.getProveedor().getNickname().equals(nickname) && current.getReclamo().size() > 0){
-                System.out.println("ACAAAAAA6");
                 Iterator it2 = current.getReclamo().iterator();
-                System.out.println("ACAAAAAA7");
                 while (it2.hasNext()){
-                    System.out.println("ACAAAAAA8");
                     Reclamo current2 = (Reclamo) it2.next();
-                    System.out.println("ACAAAAAA9");
                     listaReclamo.add(new DataReclamo (current2));
                 }
             }
         }
-        System.out.println("ACAAAAAA10");
+        
         return listaReclamo;
     }
          
-    
+    @Override
+    public Float obtenerPuntjePromedio(String nroRef){
+        EspecificacionProducto aCalcular = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);
+        Integer sumaDePuntajes = 0;
+        Iterator it = aCalcular.getPuntajes().iterator();
+        while(it.hasNext()){
+            Puntaje current = (Puntaje) it.next();
+            sumaDePuntajes += current.getPuntaje();
+        }
+        if(!aCalcular.getPuntajes().isEmpty()){
+            return (float)(sumaDePuntajes / aCalcular.getPuntajes().size());
+        }else{    
+            return 0.0f;
+        }
+    }
 }

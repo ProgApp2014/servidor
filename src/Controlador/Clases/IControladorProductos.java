@@ -58,6 +58,7 @@ public interface IControladorProductos {
     public void agregarReclamo(String nickname, String nroRef, String Rec);
     public Boolean puedeReclamar(String nickname, String nroRef);
     public List<DataReclamo> listarReclamos(String nickname);
-  
+    public void agregarPuntaje(String nickname, String nroRef, Integer puntaje);
+    public Float obtenerPuntjePromedio(String nroRef);
 }
     

@@ -61,5 +61,7 @@ public interface IControladorProductos {
     public void agregarPuntaje(String nickname, String nroRef, Integer puntaje);
     public Float obtenerPuntjePromedio(String nroRef);
     public Boolean puedePuntuar(String nickname, String nroRef);
+    public Float obtenerPromedioPorEstrella(String nroRef, Integer estrella);
+    public Integer obtenerPuntosPorEstrella(String nroRef, Integer estrella);
 }
     

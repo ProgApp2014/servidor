@@ -472,20 +472,7 @@ public class ControladorProductos implements IControladorProductos {
     
     @Override
     public Boolean puedeReclamar(String nickname, String nroRef) {
-        Iterator it = ManejadorOrdenes.getInstance().obtenerOrdenes().values().iterator();
-        while (it.hasNext()) {
-            OrdenCompra current = (OrdenCompra) it.next();
-            if (current.getCliente().getNickname().equals(nickname)) {
-                Iterator it2 = current.getClienteCompraProducto().iterator();
-                while (it2.hasNext()) {
-                    ClienteCompraProducto current2 = (ClienteCompraProducto) it2.next();
-                    if (current2.getProducto().getEspecificacionProducto().getNroReferencia().equals(nroRef)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+        return puedeComentar(nickname,nroRef);
     } 
     
     @Override
@@ -564,5 +551,35 @@ public class ControladorProductos implements IControladorProductos {
             return true;
         }
         return false;
+    }
+    
+    @Override
+    public Float obtenerPromedioPorEstrella(String nroRef, Integer estrella){
+        List<Puntaje> grl = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).getPuntajes();
+        Iterator it = grl.iterator();
+        Integer aux = 0;
+        while(it.hasNext()){
+            Puntaje current = (Puntaje) it.next();
+            if(current.getPuntaje().equals(estrella)){
+                aux++;
+            }
+        }
+        if(!grl.isEmpty()){
+            return (float)(aux/grl.size()*100);
+        }
+        return 0.0f;
+    }
+    
+    @Override
+    public Integer obtenerPuntosPorEstrella(String nroRef, Integer estrella){
+        Iterator it = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).getPuntajes().iterator();
+        Integer aux = 0;
+        while(it.hasNext()){
+            Puntaje current = (Puntaje) it.next();
+            if(current.getPuntaje().equals(estrella)){
+                aux++;
+            }
+        }
+        return aux;
     }
 }

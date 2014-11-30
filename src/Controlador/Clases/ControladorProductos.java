@@ -550,4 +550,19 @@ public class ControladorProductos implements IControladorProductos {
             return 0.0f;
         }
     }
+    
+    @Override
+    public Boolean puedePuntuar(String nickname, String nroRef){
+        if(puedeComentar(nickname, nroRef)){
+            Iterator it = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).getPuntajes().iterator();
+            while(it.hasNext()){
+                Puntaje current = (Puntaje) it.next();
+                if(current.getCliente().getNickname().equals(nickname)){
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
 }

@@ -348,5 +348,9 @@ public class ControladorProductosWS {
     public Float obtenerPuntjePromedio(String nroRef, Integer idProductosControlador){
         return Fabrica.getInstance().getControladorProductos(idProductosControlador).obtenerPuntjePromedio(nroRef);
     }
-
+    
+    @WebMethod
+    public Boolean puedePuntuar(String nickname, String nroRef, Integer idProductosControlador){
+        return Fabrica.getInstance().getControladorProductos(idProductosControlador).puedePuntuar(nickname, nroRef);
+    }
 }

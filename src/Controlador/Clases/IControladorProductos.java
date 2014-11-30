@@ -60,5 +60,6 @@ public interface IControladorProductos {
     public List<DataReclamo> listarReclamos(String nickname);
     public void agregarPuntaje(String nickname, String nroRef, Integer puntaje);
     public Float obtenerPuntjePromedio(String nroRef);
+    public Boolean puedePuntuar(String nickname, String nroRef);
 }
     

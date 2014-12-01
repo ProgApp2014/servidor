@@ -532,7 +532,7 @@ public class ControladorProductos implements IControladorProductos {
             sumaDePuntajes += current.getPuntaje();
         }
         if(!aCalcular.getPuntajes().isEmpty()){
-            return (float)(sumaDePuntajes / aCalcular.getPuntajes().size());
+            return ((float)sumaDePuntajes / (float)aCalcular.getPuntajes().size());
         }else{    
             return 0.0f;
         }

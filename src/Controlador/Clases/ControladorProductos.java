@@ -565,7 +565,7 @@ public class ControladorProductos implements IControladorProductos {
             }
         }
         if(!grl.isEmpty()){
-            return (float)(aux/grl.size()*100);
+            return ((float)aux/(float)grl.size()*(float)100);
         }
         return 0.0f;
     }

@@ -1,7 +1,7 @@
 drop table ESPECIFICACIONES ;
 drop table COMENTARIO ;
 drop table RECLAMO ; 
-drop table PUNTAJES;
+drop table PUNTAJE;
 drop table ESPECIFICACIONPRODUCTO;
 drop table PRODUCTO;
 drop table PROVEEDOR;

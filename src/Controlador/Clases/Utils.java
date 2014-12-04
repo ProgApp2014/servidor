@@ -7,6 +7,7 @@ package Controlador.Clases;
 
 import static Controlador.Clases.Main.controlarProducto;
 import Controlador.DataTypes.DataOrdenCompra;
+import Controlador.DataTypes.EstadoOrden;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -57,32 +58,35 @@ public class Utils {
 
         Calendar cal1 = Calendar.getInstance();
         cal1.set(1960, 11, 1);
-        Proveedor p1 = new Proveedor("Tim1", md5("password"), "Tim", "Cook", "tim.cook@apple.com", cal1, "Apple", " http://www.apple.com");
+        Proveedor p1 = new Proveedor("Tim1", md5("tim123"), "Tim", "Cook", "tim.cook@apple.com", cal1, "Apple", " http://www.apple.com");
         Calendar cal2 = Calendar.getInstance();
         cal2.set(1965, 9, 2);
-        Proveedor p2 = new Proveedor("Eddy", md5("password"), "Eduardo", "Cue", "eddy.cue@samsung.com", cal2, "Samsung", "http://www.samsung.com");
+        Proveedor p2 = new Proveedor("Eddy", md5("edd"), "Eduardo", "Cue", "eddy.cue@samsung.com", cal2, "Samsung", "http://www.samsung.com");
         Calendar cal3 = Calendar.getInstance();
         cal3.set(1965, 9, 2);
-        Proveedor p3 = new Proveedor("CraigX", md5("password"), "Craig", "Federighi", "craig.feder@sony.com", cal3, "Sony", "http://us.playstation.com");
+        Proveedor p3 = new Proveedor("CraigX", md5("craig@"), "Craig", "Federighi", "craig.feder@sony.com", cal3, "Sony", "http://us.playstation.com");
         Calendar cal4 = Calendar.getInstance();
         cal4.set(1967, 2, 12);
-        Proveedor p4 = new Proveedor("Johnny", md5("password"), "Jonathan", "Ive", "johnny.ive@outlook.com", cal4, "Microsoft", "http://www.xbox.com");
+        Proveedor p4 = new Proveedor("Johnny", md5("john"), "Jonathan", "Ive", "johnny.ive@outlook.com", cal4, "Microsoft", "http://www.xbox.com");
         Calendar cal5 = Calendar.getInstance();
         cal5.set(1963, 8, 5);
-        Proveedor p5 = new Proveedor("OpenPeter", md5("password"), "Peter", "Oppenhemier", "peter.open@htc.com", cal5, "HTC", "http://www.htc.com");
+        Proveedor p5 = new Proveedor("OpenPeter", md5("peter42"), "Peter", "Oppenhemier", "peter.open@htc.com", cal5, "HTC", "http://www.htc.com");
 
         Calendar cal6 = Calendar.getInstance();
         cal6.set(1963, 7, 5);
-        Cliente c1 = new Cliente("Dan", md5("password"), "Daniel", "Riccio", "dan.riccio@gmail.com", cal6,true);
+        Cliente c1 = new Cliente("Dan", md5("danr"), "Daniel", "Riccio", "dan.riccio@gmail.com", cal6,true);
         Calendar cal7 = Calendar.getInstance();
         cal7.set(1961, 10, 7);
-        Cliente c2 = new Cliente("Phil", md5("password"), "Philip", "Schiller", "phil.schiller@gmail.com", cal7,false);
+        Cliente c2 = new Cliente("Phil", md5("philip61"), "Philip", "Schiller", "phil.schiller@gmail.com", cal7,false);
         Calendar cal8 = Calendar.getInstance();
         cal8.set(1959, 12, 3);
-        Cliente c3 = new Cliente("BruceS", md5("password"), "Bruce", "Sewell", "bruce.sewell@gmail.com", cal8,true);
+        Cliente c3 = new Cliente("BruceS", md5("bruces"), "Bruce", "Sewell", "bruce.sewell@gmail.com", cal8,true);
         Calendar cal9 = Calendar.getInstance();
         cal9.set(1964, 11, 27);
-        Cliente c4 = new Cliente("JeffW", md5("password"), "Jeff", "Wiliams", "jeff.williams@gmail.com", cal9,false);
+        Cliente c4 = new Cliente("JeffW", md5("jeffw"), "Jeff", "Wiliams", "jeff.williams@gmail.com", cal9,false);
+        Calendar cal10 = Calendar.getInstance();
+        cal10.set(1980, 8, 26);
+        Cliente c5 = new Cliente("Ricky", md5("rickyr"), "Ricky", "Ricon", "ricky.r@gmail.com", cal9,false);
 
         p1.setImagen("cook.jpg");
         p2.setImagen("cue.jpg");
@@ -116,6 +120,9 @@ public class Utils {
         }
         if (!ManejadorUsuarios.getInstance().obtenerClientes().containsKey(c4.getNickname())) {
             ManejadorUsuarios.getInstance().agregarUsuario(c4);
+        }
+        if (!ManejadorUsuarios.getInstance().obtenerClientes().containsKey(c5.getNickname())) {
+            ManejadorUsuarios.getInstance().agregarUsuario(c5);
         }
 
         /*Categorias*/
@@ -433,6 +440,82 @@ public class Utils {
             productospr14.add(new Producto(i, pr14));
         }
         pr14.setListaProductos(productospr14);
+        
+        /////////////////Producto 15
+        Map<String, String> esppr15 = new HashMap();
+        List<Producto> prodpr15 = new ArrayList();
+        List<Categoria> catpr15 = new ArrayList();
+        List<Producto> productospr15 = new ArrayList();
+        esppr15.put("Capacidad", "16 GB");
+        esppr15.put("Peso", "112 g");
+        esppr15.put("Pantalla", "4 p");
+        esppr15.put("Versiones de Wifi", "a/b/g/n");
+        catpr15.add(ManejadorCategorias.getInstance().getCategoria("iPhone"));
+        catpr15.add(ManejadorCategorias.getInstance().getCategoria("iOS"));
+        catpr15.add(ManejadorCategorias.getInstance().getCategoria("Apple"));
+        EspecificacionProducto pr15 = new EspecificacionProducto("IPH5S", "iPhone 5S", "La evolucion del iPhone 5, con Touch ID y A7", esppr15, (float) 199.0, p1, catpr15, prodpr15, new ArrayList(), new ArrayList(), new ArrayList());
+        controlarProducto.elegirEspProducto("IPH5S");
+        productospr15 = new ArrayList();
+        for (Integer i = 0; i < 10; i++) {
+            productospr15.add(new Producto(i, pr15));
+        }
+        pr15.setListaProductos(productospr15);
+        
+        /////////////////Producto 16
+        Map<String, String> esppr16 = new HashMap();
+        List<Producto> prodpr16 = new ArrayList();
+        List<Categoria> catpr16 = new ArrayList();
+        List<Producto> productospr16 = new ArrayList();
+        esppr16.put("Capacidad", "16 GB");
+        esppr16.put("Peso", "132 g");
+        esppr16.put("Pantalla", "4 p");
+        esppr16.put("Versiones de Wifi", "a/b/g/n");
+        catpr16.add(ManejadorCategorias.getInstance().getCategoria("iPhone"));
+        catpr16.add(ManejadorCategorias.getInstance().getCategoria("iOS"));
+        catpr16.add(ManejadorCategorias.getInstance().getCategoria("Apple"));
+        EspecificacionProducto pr16 = new EspecificacionProducto("IPH5C", "iPhone 5C", "Dale color a tu vida con esta gama de iPhone", esppr16, (float) 99.0, p1, catpr16, prodpr16, new ArrayList(), new ArrayList(), new ArrayList());
+        controlarProducto.elegirEspProducto("IPH5C");
+        productospr16 = new ArrayList();
+        for (Integer i = 0; i < 10; i++) {
+            productospr16.add(new Producto(i, pr16));
+        }
+        pr16.setListaProductos(productospr16);
+        
+        /////////////////Producto 17
+        Map<String, String> esppr17 = new HashMap();
+        List<Producto> prodpr17 = new ArrayList();
+        List<Categoria> catpr17 = new ArrayList();
+        List<Producto> productospr17 = new ArrayList();
+        esppr17.put("Capacidad", "16 GB");
+        esppr17.put("Peso", "469 g");
+        esppr17.put("Pantalla", "9.7 p");
+        esppr17.put("Versiones de Wifi", "a/b/g/n con MIMO");
+        catpr17.add(ManejadorCategorias.getInstance().getCategoria("iOS"));
+        catpr17.add(ManejadorCategorias.getInstance().getCategoria("Apple"));
+        EspecificacionProducto pr17 = new EspecificacionProducto("IPAA", "iPad Air", "Mas ligero, mas delgado y con mejor procesador que el anterior iPad", esppr17, (float) 499.0, p1, catpr17, prodpr17, new ArrayList(), new ArrayList(), new ArrayList());
+        controlarProducto.elegirEspProducto("IPAA");
+        for (Integer i = 0; i < 10; i++) {
+            productospr17.add(new Producto(i, pr17));
+        }
+        pr17.setListaProductos(productospr17);
+        
+        /////////////////Producto 18
+        Map<String, String> esppr18 = new HashMap();
+        List<Producto> prodpr18 = new ArrayList();
+        List<Categoria> catpr18 = new ArrayList();
+        List<Producto> productospr18 = new ArrayList();
+        esppr18.put("Capacidad", "16 GB");
+        esppr18.put("Peso", "332 g");
+        esppr18.put("Pantalla", "7.9 p");
+        esppr18.put("Versiones de Wifi", "a/b/g/n con MIMO");
+        catpr18.add(ManejadorCategorias.getInstance().getCategoria("iOS"));
+        catpr18.add(ManejadorCategorias.getInstance().getCategoria("Apple"));
+        EspecificacionProducto pr18 = new EspecificacionProducto("IPAM", "iPad Mini Retina Display", "Igual que el modelo anterior, solo que con pantalla Retina", esppr18, (float) 399.0, p1, catpr18, prodpr18, new ArrayList(), new ArrayList(), new ArrayList());
+        controlarProducto.elegirEspProducto("IPAM");
+        for (Integer i = 0; i < 10; i++) {
+            productospr18.add(new Producto(i, pr18));
+        }
+        pr18.setListaProductos(productospr18);
 
         if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr1.getNroReferencia())) {
             ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr1);
@@ -476,6 +559,18 @@ public class Utils {
         if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr14.getNroReferencia())) {
             ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr14);
         }
+        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr15.getNroReferencia())) {
+            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr15);
+        }
+        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr16.getNroReferencia())) {
+            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr16);
+        }
+        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr17.getNroReferencia())) {
+            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr17);
+        }
+        if (!ManejadorEspProductos.getInstance().obtenerEspecificacionProductos().containsKey(pr18.getNroReferencia())) {
+            ManejadorEspProductos.getInstance().agregarEspecificacionProducto(pr18);
+        }
 
         if (ManejadorOrdenes.getInstance().obtenerOrdenes().isEmpty()) {
             controlarOrden.elegirCliente("Dan");
@@ -492,7 +587,16 @@ public class Utils {
             DataOrdenCompra dataOrden = new DataOrdenCompra(1);
             dataOrden.setFecha(getDateFromString("12/8/2013"));
             controlarOrden.guardarOrden(dataOrden);
-
+            OrdenCompra orden1 = ManejadorOrdenes.getInstance().getOrden(controlarOrden.getUltimaOrdenGuardada());
+            orden1.getEstados().get(0).setFecha(getDateFromString("12/8/2013"));
+            EstadosOrdenes estadoPreparada1 = new EstadosOrdenes(0,orden1,EstadoOrden.ORDEN_PREPARADA.getValue());
+            estadoPreparada1.setFecha(getDateFromString("13/8/2013"));
+            orden1.getEstados().add(estadoPreparada1);
+            EstadosOrdenes estadoConfirmada1 = new EstadosOrdenes(0,orden1,EstadoOrden.ORDEN_CONFIRMADA.getValue());
+            estadoConfirmada1.setFecha(getDateFromString("20/8/2013"));
+            orden1.getEstados().add(estadoConfirmada1);
+            ManejadorOrdenes.getInstance().modificarOrden(orden1);
+                                
             controlarOrden.elegirCliente("Dan");
             controlarOrden.elegirEspecificacionProducto("NEX4");
             controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("NEX4").getListaProductos().get(0).getId());
@@ -502,6 +606,9 @@ public class Utils {
             DataOrdenCompra dataOrden2 = new DataOrdenCompra(2);
             dataOrden2.setFecha(getDateFromString("19/8/2013"));
             controlarOrden.guardarOrden(dataOrden2);
+            OrdenCompra orden2 = ManejadorOrdenes.getInstance().getOrden(controlarOrden.getUltimaOrdenGuardada());
+            orden2.getEstados().get(0).setFecha(getDateFromString("19/8/2013"));
+            ManejadorOrdenes.getInstance().modificarOrden(orden2);
 
             controlarOrden.elegirCliente("Phil");
             controlarOrden.elegirEspecificacionProducto("CHP");
@@ -514,8 +621,14 @@ public class Utils {
             controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("CP3").getListaProductos().get(2).getId());
             controlarOrden.generarItemOrden();
             DataOrdenCompra dataOrden3 = new DataOrdenCompra(3);
-            dataOrden3.setFecha(getDateFromString("19/8/2013"));
+            dataOrden3.setFecha(getDateFromString("12/8/2013"));
             controlarOrden.guardarOrden(dataOrden3);
+            OrdenCompra orden3 = ManejadorOrdenes.getInstance().getOrden(controlarOrden.getUltimaOrdenGuardada());
+            orden3.getEstados().get(0).setFecha(getDateFromString("12/8/2013"));
+            EstadosOrdenes estadoPreparada3 = new EstadosOrdenes(0,orden3,EstadoOrden.ORDEN_PREPARADA.getValue());
+            estadoPreparada3.setFecha(getDateFromString("30/8/2013"));
+            orden3.getEstados().add(estadoPreparada3);
+            ManejadorOrdenes.getInstance().modificarOrden(orden3);
 
             controlarOrden.elegirCliente("BruceS");
             controlarOrden.elegirEspecificacionProducto("CIX");
@@ -525,16 +638,196 @@ public class Utils {
             controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("CIX").getListaProductos().get(3).getId());
             controlarOrden.generarItemOrden();
             DataOrdenCompra dataOrden4 = new DataOrdenCompra(4);
-            dataOrden4.setFecha(getDateFromString("22/8/2013"));
+            dataOrden4.setFecha(getDateFromString("19/9/2013"));
             controlarOrden.guardarOrden(dataOrden4);
+            OrdenCompra orden4 = ManejadorOrdenes.getInstance().getOrden(controlarOrden.getUltimaOrdenGuardada());
+            orden4.getEstados().get(0).setFecha(getDateFromString("19/9/2013"));
+            EstadosOrdenes estadoPreparada4 = new EstadosOrdenes(0,orden4,EstadoOrden.ORDEN_PREPARADA.getValue());
+            estadoPreparada4.setFecha(getDateFromString("20/9/2013"));
+            orden4.getEstados().add(estadoPreparada4);
+            EstadosOrdenes estadoConfirmada4 = new EstadosOrdenes(0,orden4,EstadoOrden.ORDEN_CONFIRMADA.getValue());
+            estadoConfirmada4.setFecha(getDateFromString("25/9/2013"));
+            orden4.getEstados().add(estadoConfirmada4);
+            ManejadorOrdenes.getInstance().modificarOrden(orden4);
 
             controlarOrden.elegirCliente("JeffW");
             controlarOrden.elegirEspecificacionProducto("PCG");
             controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("PCG").getListaProductos().get(0).getId());
             controlarOrden.generarItemOrden();
             DataOrdenCompra dataOrden5 = new DataOrdenCompra(5);
-            dataOrden5.setFecha(getDateFromString("25/8/2013"));
+            dataOrden5.setFecha(getDateFromString("17/9/2013"));
             controlarOrden.guardarOrden(dataOrden5);
+            OrdenCompra orden5 = ManejadorOrdenes.getInstance().getOrden(controlarOrden.getUltimaOrdenGuardada());
+            orden5.getEstados().get(0).setFecha(getDateFromString("17/9/2013"));
+            EstadosOrdenes estadoPreparada5 = new EstadosOrdenes(0,orden5,EstadoOrden.ORDEN_PREPARADA.getValue());
+            estadoPreparada5.setFecha(getDateFromString("20/9/2013"));
+            orden5.getEstados().add(estadoPreparada5);
+            EstadosOrdenes estadoConfirmada5 = new EstadosOrdenes(0,orden5,EstadoOrden.ORDEN_CONFIRMADA.getValue());
+            estadoConfirmada5.setFecha(getDateFromString("25/9/2013"));
+            orden5.getEstados().add(estadoConfirmada5);
+            ManejadorOrdenes.getInstance().modificarOrden(orden5);
+            
+            controlarOrden.elegirCliente("Phil");
+            controlarOrden.elegirEspecificacionProducto("IPH5");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPH5").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            DataOrdenCompra dataOrden6 = new DataOrdenCompra(3);
+            dataOrden6.setFecha(getDateFromString("9/8/2013"));
+            controlarOrden.guardarOrden(dataOrden6);
+            OrdenCompra orden6 = ManejadorOrdenes.getInstance().getOrden(controlarOrden.getUltimaOrdenGuardada());
+            orden6.getEstados().get(0).setFecha(getDateFromString("9/8/2013"));
+            EstadosOrdenes estadoPreparada6 = new EstadosOrdenes(0,orden6,EstadoOrden.ORDEN_PREPARADA.getValue());
+            estadoPreparada6.setFecha(getDateFromString("12/9/2013"));
+            orden6.getEstados().add(estadoPreparada6);
+            EstadosOrdenes estadoConfirmada6 = new EstadosOrdenes(0,orden6,EstadoOrden.ORDEN_CONFIRMADA.getValue());
+            estadoConfirmada6.setFecha(getDateFromString("19/9/2013"));
+            orden6.getEstados().add(estadoConfirmada6);
+            ManejadorOrdenes.getInstance().modificarOrden(orden6);
+            
+            controlarOrden.elegirCliente("Ricky");
+            controlarOrden.elegirEspecificacionProducto("IPH5");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPH5").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IPH5C");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPH5C").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            DataOrdenCompra dataOrden7 = new DataOrdenCompra(3);
+            dataOrden7.setFecha(getDateFromString("12/8/2013"));
+            controlarOrden.guardarOrden(dataOrden7);
+            OrdenCompra orden7 = ManejadorOrdenes.getInstance().getOrden(controlarOrden.getUltimaOrdenGuardada());
+            orden7.getEstados().get(0).setFecha(getDateFromString("12/8/2013"));
+            EstadosOrdenes estadoPreparada7 = new EstadosOrdenes(0,orden7,EstadoOrden.ORDEN_PREPARADA.getValue());
+            estadoPreparada7.setFecha(getDateFromString("13/9/2013"));
+            orden7.getEstados().add(estadoPreparada7);
+            EstadosOrdenes estadoConfirmada7 = new EstadosOrdenes(0,orden7,EstadoOrden.ORDEN_CONFIRMADA.getValue());
+            estadoConfirmada7.setFecha(getDateFromString("20/8/2013"));
+            orden7.getEstados().add(estadoConfirmada7);
+            ManejadorOrdenes.getInstance().modificarOrden(orden7);
+            
+            controlarOrden.elegirCliente("Ricky");
+            controlarOrden.elegirEspecificacionProducto("IPH4");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPH4").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IPAA");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPAA").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IM");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IM").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IRD");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IRD").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            DataOrdenCompra dataOrden8 = new DataOrdenCompra(3);
+            dataOrden8.setFecha(getDateFromString("13/9/2013"));
+            controlarOrden.guardarOrden(dataOrden8);
+            OrdenCompra orden8 = ManejadorOrdenes.getInstance().getOrden(controlarOrden.getUltimaOrdenGuardada());
+            orden8.getEstados().get(0).setFecha(getDateFromString("13/9/2013"));
+            EstadosOrdenes estadoPreparada8 = new EstadosOrdenes(0,orden8,EstadoOrden.ORDEN_PREPARADA.getValue());
+            estadoPreparada8.setFecha(getDateFromString("14/9/2013"));
+            orden8.getEstados().add(estadoPreparada8);
+            EstadosOrdenes estadoConfirmada8 = new EstadosOrdenes(0,orden8,EstadoOrden.ORDEN_CONFIRMADA.getValue());
+            estadoConfirmada8.setFecha(getDateFromString("21/9/2013"));
+            orden8.getEstados().add(estadoConfirmada8);
+            ManejadorOrdenes.getInstance().modificarOrden(orden8);
+            
+            
+            controlarOrden.elegirCliente("Ricky");
+            controlarOrden.elegirEspecificacionProducto("IPAM");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPAM").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IPH5C");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPH5C").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IPH4");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPH4").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IPH5S");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPH5S").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            DataOrdenCompra dataOrden9 = new DataOrdenCompra(3);
+            dataOrden9.setFecha(getDateFromString("14/9/2013"));
+            controlarOrden.guardarOrden(dataOrden9);
+            OrdenCompra orden9 = ManejadorOrdenes.getInstance().getOrden(controlarOrden.getUltimaOrdenGuardada());
+            orden9.getEstados().get(0).setFecha(getDateFromString("14/9/2013"));
+            EstadosOrdenes estadoPreparada9 = new EstadosOrdenes(0,orden9,EstadoOrden.ORDEN_PREPARADA.getValue());
+            estadoPreparada9.setFecha(getDateFromString("15/9/2013"));
+            orden9.getEstados().add(estadoPreparada9);
+            EstadosOrdenes estadoConfirmada9 = new EstadosOrdenes(0,orden9,EstadoOrden.ORDEN_CONFIRMADA.getValue());
+            estadoConfirmada9.setFecha(getDateFromString("20/9/2013"));
+            orden9.getEstados().add(estadoConfirmada9);
+            ManejadorOrdenes.getInstance().modificarOrden(orden9);
+            
+            controlarOrden.elegirCliente("Ricky");
+            controlarOrden.elegirEspecificacionProducto("IPAA");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPAA").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IM");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IM").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IRD");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IRD").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            DataOrdenCompra dataOrden10 = new DataOrdenCompra(3);
+            dataOrden10.setFecha(getDateFromString("10/10/2013"));
+            controlarOrden.guardarOrden(dataOrden10);
+            OrdenCompra orden10 = ManejadorOrdenes.getInstance().getOrden(controlarOrden.getUltimaOrdenGuardada());
+            orden10.getEstados().get(0).setFecha(getDateFromString("10/10/2013"));
+            EstadosOrdenes estadoPreparada10 = new EstadosOrdenes(0,orden10,EstadoOrden.ORDEN_PREPARADA.getValue());
+            estadoPreparada10.setFecha(getDateFromString("11/10/2013"));
+            orden10.getEstados().add(estadoPreparada10);
+            EstadosOrdenes estadoConfirmada10 = new EstadosOrdenes(0,orden10,EstadoOrden.ORDEN_CONFIRMADA.getValue());
+            estadoConfirmada10.setFecha(getDateFromString("20/10/2013"));
+            orden10.getEstados().add(estadoConfirmada10);
+            ManejadorOrdenes.getInstance().modificarOrden(orden10);
+            
+            controlarOrden.elegirCliente("Ricky");
+            controlarOrden.elegirEspecificacionProducto("IPH5");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPH5").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IRD");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IRD").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IM");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IM").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IPH5C");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPH5C").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            DataOrdenCompra dataOrden11 = new DataOrdenCompra(3);
+            dataOrden11.setFecha(getDateFromString("25/10/2013"));
+            controlarOrden.guardarOrden(dataOrden11);
+            OrdenCompra orden11 = ManejadorOrdenes.getInstance().getOrden(controlarOrden.getUltimaOrdenGuardada());
+            orden11.getEstados().get(0).setFecha(getDateFromString("25/10/2013"));
+            EstadosOrdenes estadoCancelada11 = new EstadosOrdenes(0,orden11,EstadoOrden.ORDEN_CANCELADA.getValue());
+            estadoCancelada11.setFecha(getDateFromString("26/10/2013"));
+            orden11.getEstados().add(estadoCancelada11);
+            ManejadorOrdenes.getInstance().modificarOrden(orden11);
+            
+            controlarOrden.elegirCliente("Ricky");
+            controlarOrden.elegirEspecificacionProducto("IPH5");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPH5").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IRD");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IRD").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IM");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IM").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            controlarOrden.elegirEspecificacionProducto("IPH5C");
+            controlarOrden.elegirProducto(ManejadorEspProductos.getInstance().getEspecificacionProducto("IPH5C").getListaProductos().get(0).getId());
+            controlarOrden.generarItemOrden();
+            DataOrdenCompra dataOrden12 = new DataOrdenCompra(3);
+            dataOrden12.setFecha(getDateFromString("24/10/2013"));
+            controlarOrden.guardarOrden(dataOrden12);
+            OrdenCompra orden12 = ManejadorOrdenes.getInstance().getOrden(controlarOrden.getUltimaOrdenGuardada());
+            orden12.getEstados().get(0).setFecha(getDateFromString("24/10/2013"));
+            EstadosOrdenes estadoPreparada12 = new EstadosOrdenes(0,orden12,EstadoOrden.ORDEN_PREPARADA.getValue());
+            estadoPreparada12.setFecha(getDateFromString("25/10/2013"));
+            orden12.getEstados().add(estadoPreparada12);
+            EstadosOrdenes estadoConfirmada12 = new EstadosOrdenes(0,orden12,EstadoOrden.ORDEN_CONFIRMADA.getValue());
+            estadoConfirmada12.setFecha(getDateFromString("1/11/2013"));
+            orden12.getEstados().add(estadoConfirmada12);
+            ManejadorOrdenes.getInstance().modificarOrden(orden12);
 
             Comentario com1 = agregarComentario("Dan", "IPH5", null, "El mejor iPhone hasta el momento. Es la mejor compra que he hecho en años. Le pasa el trapo a todos los teléfonos Android.", "19/9/2013");
             Comentario com2 = agregarComentario("Phil", "IPH5", com1.getId(), "Me parece que tu comentario es un poco desubicado. Hay muy buenos teléfonos que creo que mejoran las prestaciones de este, como el Samsung Galaxy S4.", "19/9/2013");
@@ -545,16 +838,44 @@ public class Utils {
             agregarComentario("BruceS", "CIX", null, "Retracto lo que escribí antes....se me rompió a los 3 dias. Me han estafado.", "28/9/2013");
             agregarComentario("JeffW", "PCG", null, "Cumple su cometido. No he notado ninguna rayita nueva en mi Samsung.", "25/9/2013");
             
-            agregarReclamo("Dan", "IPH5",  "Es una bosta");
+            agregarReclamo("Phil", "IPH5",  "Me demoro mas de un mes en llegar el telefono, estaria bueno que mejoraran los tiempos de envio.","19/9/2013");
+            agregarReclamo("BruceS", "CIX",  "Lo puse en los comentarios y quiero escribirlo aca. Su producto me vino defectuoso, espero un reembolso de dinero","28/9/2013");
+            agregarReclamo("BruceS", "CIX",  "No he tenido respuesta de parte suya. Estaria bueno que mejoraran su servicio de atencion al cliente, porque me parece que el actual es pesimo","15/10/2013");
+            agregarReclamo("Ricky", "IPH5",  "Me han enviado un iPhone 4 en lugar del iPhone 5 que encargue..","1/11/2013");
+            agregarReclamo("Ricky", "IRD",  "Vino con algunas rayitas. Estaria bueno que controlatan que estas cosas no pasaran en el traslado del producto.","1/11/2013");
+            agregarReclamo("Ricky", "IM",  "Este dispositivo vino fallado de fabrica, me gustaria que me lo reembolsaran.","1/11/2013");
+            agregarReclamo("Ricky", "IPH5C",  "No vinieron los auriculares incluidos en la caja.","1/11/2013");
+    
+            agregarPuntaje("Dan","IPH5",5);
+            agregarPuntaje("Dan","IM",5);
+            agregarPuntaje("Dan","IRD",5);
+            agregarPuntaje("Phil","IPH5",3);
+            agregarPuntaje("Ricky","IPH5",3);
+            agregarPuntaje("Ricky","IM",4);
+            agregarPuntaje("Ricky","IRD",3);
         }
     }
     
-    public static void agregarReclamo(String nickname, String nroRef, String Rec) {
+    public static void agregarPuntaje(String nickname, String nroRef, Integer Punto) {
+        EspecificacionProducto aModificar = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);
+        List<Puntaje> puntajes = aModificar.getPuntajes();
+        Puntaje puntajeAAgregar = new Puntaje();
+        puntajeAAgregar.setCliente(ManejadorUsuarios.getInstance().getCliente(nickname));
+        puntajeAAgregar.setEspecificacionProducto(aModificar);
+       
+        puntajeAAgregar.setPuntaje(Punto);
+        puntajes.add(puntajeAAgregar);
+        ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef).setPuntajes(puntajes);
+        ManejadorEspProductos.getInstance().modificarProducto(aModificar);
+    }
+    
+    public static void agregarReclamo(String nickname, String nroRef, String Rec, String fecha) {
         EspecificacionProducto aModificar = ManejadorEspProductos.getInstance().getEspecificacionProducto(nroRef);
         List<Reclamo> reclamo = aModificar.getReclamo();
         Reclamo reclamoAAgregar = new Reclamo();
         reclamoAAgregar.setCliente(ManejadorUsuarios.getInstance().getCliente(nickname));
         reclamoAAgregar.setEspecificacionProducto(aModificar);
+        reclamoAAgregar.setFecha(getDateFromString(fecha));
        
         reclamoAAgregar.setReclamo(Rec);
         reclamo.add(reclamoAAgregar);
